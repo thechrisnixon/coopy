@@ -1,0 +1,69 @@
+name: Skillet Cornbread
+serves: 8
+tags: [side, quick, cast-iron]
+
+time:
+  prep: 10m
+  cook: 25m
+
+sources:
+  a:
+    name: Cook's Illustrated
+    url: https://www.americastestkitchen.com
+    role: the whole thing — no blending needed
+
+ingredients:
+  - qty: 1.5
+    unit: cups
+    item: stone-ground yellow cornmeal
+    from: a
+  - qty: 0.5
+    unit: cup
+    item: all-purpose flour
+    from: a
+  - qty: 2
+    unit: tsp
+    item: baking powder
+    from: a
+  - qty: 0.5
+    unit: tsp
+    item: baking soda
+    from: a
+  - qty: 1
+    unit: tsp
+    item: kosher salt
+    from: a
+  - qty: 2
+    unit: ''
+    item: eggs
+    from: a
+    discrete: true
+  - qty: 1.5
+    unit: cups
+    item: buttermilk
+    from: a
+  - qty: 4
+    unit: tbsp
+    item: butter, melted
+    from: a
+  - qty: 2
+    unit: tbsp
+    item: bacon fat
+    from: a
+    note: for the skillet — this is what makes the crust
+
+steps:
+  - Heat the oven to 425°F with a 10-inch cast iron skillet inside.
+  - Whisk the dry ingredients together in a large bowl.
+  - >-
+    Whisk the eggs, buttermilk and melted butter together, then fold into the
+    dry ingredients until just combined. Lumps are fine; overmixing is not.
+  - >-
+    Pull the hot skillet, swirl in the bacon fat until it shimmers, and pour
+    the batter straight in. It should hiss loudly.
+  - Bake 20–25 minutes until the top is deep gold and a tester comes out clean.
+  - Turn out onto a rack after 5 minutes so the crust doesn't steam.
+
+notes: |
+  The skillet must be properly hot before the batter goes in — that sizzle is
+  the entire difference between good cornbread and cake.

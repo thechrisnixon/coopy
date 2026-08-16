@@ -1,0 +1,163 @@
+/**
+ * Cook mode is full-bleed and sized for reading at arm's length across a
+ * counter, so everything here runs larger than the rest of the app.
+ */
+
+.cook {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-background-body);
+}
+
+.cook__bar {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding: 1.25rem var(--gutter);
+  border-bottom: var(--rule-heavy);
+  position: sticky;
+  top: 0;
+  background: var(--color-background-body);
+  z-index: 10;
+}
+
+.cook__exit {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.cook__exit:hover {
+  color: var(--color-accent);
+}
+
+.cook__title {
+  font-size: 1.75rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.cook__scale {
+  margin-left: auto;
+}
+
+.cook__body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 0;
+}
+
+@media (max-width: 60rem) {
+  .cook__body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cook__panel {
+  padding: 2rem var(--gutter) 3rem;
+}
+
+.cook__panel--steps {
+  border-left: var(--rule);
+  background: var(--color-background-surface);
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 60rem) {
+  .cook__panel--steps {
+    border-left: 0;
+    border-top: var(--rule-heavy);
+  }
+}
+
+.cook__panelhead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 0.5rem;
+  border-bottom: var(--rule);
+}
+
+.cook__reset {
+  font-family: var(--font-family-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-accent);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Ingredients get a full step up in size here — this is the list you read
+   while holding a measuring spoon. */
+.cook__panel .ingredients__row {
+  font-size: 1.125rem;
+  padding: 0.875rem 0.75rem;
+  min-height: 3rem;
+}
+
+.cook__panel .ingredients__qty {
+  font-size: 1.1875rem;
+}
+
+/* --- steps ------------------------------------------------------------- */
+
+.cook__step {
+  flex: 1;
+  margin: 1.5rem 0 2rem;
+  font-family: var(--font-family-heading);
+  font-weight: var(--display-weight);
+  font-size: clamp(1.5rem, 3vw, 2.125rem);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  max-width: 24ch;
+}
+
+.cook__nav {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.cook__dots {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 1.75rem 0 0;
+  padding: 0;
+}
+
+.cook__dot {
+  display: block;
+  width: 2.25rem;
+  height: 0.375rem;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background: var(--color-border);
+  transition: background-color 0.15s ease;
+}
+
+.cook__dot.is-done {
+  background: var(--source-a);
+}
+
+.cook__dot.is-current {
+  background: var(--color-accent);
+}
+
+.cook__foot {
+  padding: 1rem var(--gutter);
+  border-top: var(--rule);
+  color: var(--color-text-secondary);
+}

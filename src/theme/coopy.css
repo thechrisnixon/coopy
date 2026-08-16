@@ -1,0 +1,133 @@
+/**
+ * coopy — editorial palette.
+ *
+ * Astryx Stone supplies the component behaviour and the full token surface;
+ * this file retunes only the tokens that carry the look. The design rests on
+ * typography and whitespace, so colour stays deliberately narrow: a near-white
+ * ground, near-black ink, one crimson accent, and two muted source tints.
+ *
+ * Astryx defines its tokens inside `@layer astryx-theme`, using `@scope` rules
+ * rooted at [data-astryx-theme]. Scope proximity is resolved before source
+ * order, so a same-layer override loses no matter where it is imported.
+ * These declarations are therefore deliberately UNLAYERED — unlayered normal
+ * declarations outrank every layer, which beats the scoped rules cleanly and
+ * without a single !important.
+ */
+
+[data-astryx-theme='stone'] {
+  /* --- ground --------------------------------------------------------- */
+  --color-background-body: #ffffff;
+  --color-background-surface: #f4f4f2;
+  --color-background-card: #ffffff;
+  --color-background-muted: #f4f4f2;
+  --color-background-popover: #ffffff;
+
+  /* --- ink ------------------------------------------------------------ */
+  --color-text-primary: #111111;
+  --color-text-secondary: #6b6b6b;
+  --color-icon-primary: #111111;
+  --color-icon-secondary: #6b6b6b;
+
+  /* --- structure ------------------------------------------------------ */
+  --color-border: #e4e4e0;
+  --color-border-emphasized: #111111;
+  --color-shadow: rgb(17 17 17 / 0.08);
+
+  /* --- accent --------------------------------------------------------- */
+  --color-accent: #c1121f;
+  --color-accent-muted: #fdf0f1;
+  --color-icon-accent: #c1121f;
+  --color-on-accent: #ffffff;
+
+  /* --- type ----------------------------------------------------------- */
+  --font-family-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-family-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/**
+ * Application-level tokens. These sit outside Astryx's namespace because they
+ * describe coopy's own concepts (source attribution, editorial scale) rather
+ * than overriding anything the design system ships.
+ */
+:root {
+  /* Source attribution. Chosen to differ in lightness as well as hue, so the
+     two stay separable for red-green colour blindness and in greyscale print. */
+  --source-a: #8a8fa8; /* slate  */
+  --source-a-wash: #f2f3f7;
+  --source-b: #a89078; /* sand   */
+  --source-b-wash: #f8f4ef;
+
+  /* Editorial display scale. Playfair is only ever used at 24px and above —
+     below that its hairlines break up on non-retina screens. */
+  --display-xl: clamp(2.75rem, 7vw, 4.5rem);
+  --display-lg: clamp(2rem, 5vw, 3rem);
+  --display-md: 1.75rem;
+  --display-sm: 1.5rem;
+
+  /* Weight 600 rather than 400: keeps the thick–thin drama Playfair is chosen
+     for while giving the thin strokes enough mass to survive rasterisation. */
+  --display-weight: 600;
+
+  --measure: 34rem; /* comfortable reading column for steps and notes */
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+
+  --rule: 1px solid var(--color-border);
+  --rule-heavy: 2px solid #111111;
+}
+
+/* --- primitives ------------------------------------------------------- */
+
+.display {
+  font-family: var(--font-family-heading);
+  font-weight: var(--display-weight);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+  margin: 0;
+  /* Playfair's default figures are proportional; lining figures keep numerals
+     in headings from bouncing on the baseline. */
+  font-variant-numeric: lining-nums;
+}
+
+/* Small caps eyebrow used for metadata rows — the editorial counterweight
+   to the large serif display type. */
+.eyebrow {
+  font-family: var(--font-family-body);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+/* Tabular figures so ingredient quantities form a clean column when scaled. */
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+.rule {
+  border: 0;
+  border-top: var(--rule);
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  background: var(--color-background-body);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Respect users who've asked for less motion — every transition here is
+   decorative, so removing them costs nothing. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

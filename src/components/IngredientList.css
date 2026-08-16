@@ -1,0 +1,135 @@
+.ingredients__group + .ingredients__group {
+  margin-top: 2rem;
+}
+
+.ingredients__grouplabel {
+  margin: 0 0 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: var(--rule);
+}
+
+.ingredients__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ingredients__row {
+  display: grid;
+  /* The third column is a fixed one-letter marker rather than a source name —
+     names run long enough to squeeze the ingredient text out of shape. */
+  grid-template-columns: 6.5rem minmax(0, 1fr) 1.5rem;
+  gap: 0.25rem 1rem;
+  align-items: baseline;
+  width: 100%;
+  padding: 0.625rem 0.75rem;
+  margin-left: -0.75rem;
+  border-radius: 3px;
+  text-align: left;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  /* Transparent by default so the source wash can fade in without the row
+     shifting or the text reflowing. */
+  background: transparent;
+  border: 0;
+  border-left: 3px solid transparent;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.ingredients__row + .ingredients__row {
+  border-top: var(--rule);
+}
+
+.ingredients__qty {
+  font-weight: 600;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+.ingredients__item {
+  color: var(--color-text-primary);
+}
+
+.ingredients__note {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  font-style: italic;
+  color: var(--color-text-secondary);
+}
+
+.ingredients__from {
+  justify-self: end;
+  display: grid;
+  place-items: center;
+  width: 1.375rem;
+  height: 1.375rem;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: help;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* --- source attribution ------------------------------------------------ */
+
+.ingredients__row.is-source-a {
+  background: var(--source-a-wash);
+  border-left-color: var(--source-a);
+}
+
+.ingredients__row.is-source-a .ingredients__from {
+  color: var(--source-a);
+}
+
+.ingredients__row.is-source-b {
+  background: var(--source-b-wash);
+  border-left-color: var(--source-b);
+}
+
+.ingredients__row.is-source-b .ingredients__from {
+  color: var(--source-b);
+}
+
+/* --- cook mode checkoff ------------------------------------------------ */
+
+.ingredients__row.is-checkable {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.ingredients__row.is-checkable:hover {
+  background: var(--color-background-surface);
+}
+
+.ingredients__row.is-checked {
+  opacity: 0.35;
+}
+
+.ingredients__row.is-checked .ingredients__item,
+.ingredients__row.is-checked .ingredients__qty {
+  text-decoration: line-through;
+}
+
+@media (max-width: 34rem) {
+  .ingredients__row {
+    grid-template-columns: 5rem minmax(0, 1fr);
+  }
+
+  .ingredients__from {
+    grid-column: 2;
+  }
+}

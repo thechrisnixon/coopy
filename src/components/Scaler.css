@@ -1,0 +1,30 @@
+.scaler {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  padding: 1rem 0;
+  border-top: var(--rule);
+  border-bottom: var(--rule);
+}
+
+.scaler__row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.scaler__legend {
+  color: var(--color-text-secondary);
+}
+
+.scaler__yield {
+  color: var(--color-accent);
+}
+
+.scaler__toggles {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}

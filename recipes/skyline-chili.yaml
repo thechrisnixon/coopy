@@ -1,0 +1,173 @@
+name: Skyline Chili
+serves: 8
+tags: [cincinnati, chili, freezes-well, weekend]
+
+time:
+  prep: 20m
+  cook: 2h 30m
+  total: 2h 50m
+
+sources:
+  a:
+    name: The Chunky Chef — Copycat Skyline
+    url: https://www.thechunkychef.com/copycat-skyline-cincinnati-chili/
+    role: the chocolate, the sugar, and the heavy chili powder — what makes it read as Skyline rather than generic chili
+  b:
+    name: "\"Chili Capital of the U.S.A.\" card"
+    role: the aromatics and the 3-hour simmer — real onion and garlic instead of powder, plus bay and Worcestershire
+    scan: /sources/skyline-chili-card.png
+
+# Base is 2 lb beef, taken from b. a's amounts are scaled up from its 1¼ lb
+# where a wins the line, so the two are compared on equal footing.
+
+ingredients:
+  - qty: 2
+    unit: lb
+    item: lean ground beef
+    from: b
+    note: crumbled in raw and never browned — both sources insist, and it's what gives the fine, sauce-like texture
+
+  - qty: 6
+    unit: cups
+    item: water
+    from: b
+    note: between the two — a scales to 8 cups at this batch size, b calls for 4; 6 reduces to the right consistency in 2½ hours
+
+  - qty: 6
+    unit: oz
+    item: tomato paste
+    from: a
+    note: the one line both sources agree on exactly — one small can
+
+  - qty: 0.5
+    unit: oz
+    item: unsweetened baking chocolate
+    from: a
+    note: the signature. b's card predates it entirely and is noticeably flatter without it
+
+  - qty: 0.25
+    unit: cup
+    item: chili powder
+    from: a
+    note: b calls for 2 tbsp; a scales to 6½. A quarter cup splits it and is where it tastes right
+
+  - qty: 2
+    unit: large
+    item: yellow onions, chopped
+    from: b
+    discrete: true
+    note: a uses none at all — this is most of what b is for
+
+  - qty: 2
+    unit: ''
+    item: garlic cloves
+    from: b
+    discrete: true
+    note: 'the card says "1 toe garlic," left whole and fished out at the end — two, minced, is better'
+
+  - qty: 1.5
+    unit: tsp
+    item: ground cinnamon
+    from: b
+
+  - qty: 1.5
+    unit: tsp
+    item: ground cumin
+    from: a
+
+  - qty: 1
+    unit: tsp
+    item: ground allspice
+    from: b
+    note: b runs heavy here (1½ tsp) against a's ¼ — b is right, this is a Cincinnati marker
+
+  - qty: 0.5
+    unit: tsp
+    item: ground cloves
+    from: a
+    note: absent from b entirely
+
+  - qty: 1
+    unit: tsp
+    item: Worcestershire sauce
+    from: b
+
+  - qty: 3
+    unit: ''
+    item: whole bay leaves
+    from: b
+    discrete: true
+
+  - qty: 2
+    unit: tsp
+    item: kosher salt
+    from: a
+    note: b's full tablespoon is too much at this batch size
+
+  - qty: 0.5
+    unit: tsp
+    item: black pepper
+    from: b
+
+  - qty: 0.5
+    unit: tsp
+    item: red pepper flakes
+    from: b
+
+  - qty: 1
+    unit: tsp
+    item: sugar
+    from: a
+    note: not in b — rounds off the vinegar
+
+  - qty: 2
+    unit: tbsp
+    item: cider vinegar
+    from: a
+
+  - group: To serve
+    qty: 1
+    unit: lb
+    item: thin spaghetti
+
+  - group: To serve
+    qty: 8
+    unit: oz
+    item: mild cheddar, finely shredded
+
+  - group: To serve
+    item: oyster crackers
+
+steps:
+  - >-
+    Heat the water in a large pot over medium and whisk in the tomato paste and
+    the chocolate until both fully dissolve, about 3 minutes. Doing this before
+    the meat goes in is a's contribution — it stops the paste from clumping.
+  - >-
+    Add the chili powder, cinnamon, cumin, allspice, cloves, black pepper, red
+    pepper flakes, salt, sugar, Worcestershire and vinegar. Stir to combine.
+  - >-
+    Crumble the raw beef straight into the pot with your fingers, then work it
+    apart with a potato masher or whisk until no lumps remain. Do not brown it
+    first — this is the whole trick.
+  - Add the onions, garlic and bay leaves. Bring to a boil.
+  - >-
+    Drop to a low simmer and cook uncovered for 2½ hours, stirring every half
+    hour, until it has reduced by about a third and the fat has risen.
+  - Pull the bay leaves. Taste and adjust salt and vinegar.
+  - >-
+    Serve over thin spaghetti under a mound of finely shredded cheddar — a
+    three-way. Oyster crackers on the side.
+
+notes: |
+  Better on day two, and noticeably better on day three. Make it the day before
+  you want to eat it.
+
+  Chill overnight and lift the fat cap off before reheating if you want it
+  cleaner, but leave some — it carries the spice. Reheat gently; boiling breaks
+  the texture.
+
+  Freezes well in 2-cup portions.
+
+  The card is scaled for 10–12 and has kitchen conversions scribbled across the
+  top in pen: 4 C = 1 qt, 2 C = 1 pt.

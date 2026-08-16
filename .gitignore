@@ -1,0 +1,9 @@
+node_modules
+dist
+.vercel
+*.local
+
+# Never commit credentials. The Anthropic key lives in a Vercel env var and the
+# GitHub token lives in browser localStorage — neither belongs in this repo.
+.env
+.env.*
