@@ -48,4 +48,4 @@ if (failed) {
   process.exit(1)
 }
 
-console.log(`✓ ${files.length} recipes valid`)
+console.log(`✓ ${files.length} recipe${files.length === 1 ? '' : 's'} valid`)
