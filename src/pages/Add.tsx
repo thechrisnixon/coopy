@@ -39,10 +39,26 @@ export default function Add() {
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify(payload),
       })
-      const body = (await res.json()) as { recipe?: ParsedRecipe; error?: string }
 
-      if (!res.ok || !body.recipe) {
-        throw new Error(body.error ?? `Parser returned ${res.status}.`)
+      // A crashed or timed-out function returns the host's HTML error page,
+      // not JSON. Parsing it blindly would report a misleading "Unexpected
+      // token" instead of what actually went wrong, so read text first.
+      const raw = await res.text()
+      let body: { recipe?: ParsedRecipe; error?: string } | null = null
+      try {
+        body = JSON.parse(raw)
+      } catch {
+        throw new Error(
+          res.status === 504 || /timed? ?out/i.test(raw)
+            ? 'The parser timed out. Long pages sometimes need a second attempt.'
+            : `The parser failed (HTTP ${res.status}) and did not return JSON. ` +
+              `This usually means ANTHROPIC_API_KEY isn't set on the server. ` +
+              `Response began: "${raw.slice(0, 80).replace(/\s+/g, ' ').trim()}"`,
+        )
+      }
+
+      if (!res.ok || !body?.recipe) {
+        throw new Error(body?.error ?? `Parser returned ${res.status}.`)
       }
 
       setYaml(toYaml(body.recipe))
@@ -168,6 +184,7 @@ export default function Add() {
             <div className="add__panel">
               <TextInput
                 label="Recipe URL"
+                description="Some sites (Serious Eats, Allrecipes) block automated requests. If a link fails, copy the recipe and use the Text tab."
                 placeholder="https://…"
                 value={url}
                 onChange={setUrl}

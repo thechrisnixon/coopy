@@ -10,7 +10,15 @@ import { zodOutputFormat } from '@anthropic-ai/sdk/helpers/zod'
  * browser posts the source material here and gets structured JSON back.
  */
 
-const client = new Anthropic() // reads ANTHROPIC_API_KEY from the environment
+/**
+ * Constructed lazily, inside the handler. The SDK constructor throws when no
+ * API key resolves, and at module scope that throw happens at import time —
+ * crashing the whole function before any of our error handling runs, so the
+ * caller gets Vercel's HTML error page instead of a usable message.
+ */
+function getClient(): Anthropic {
+  return new Anthropic()
+}
 
 /**
  * Sources are returned as an array with an explicit `key` rather than a keyed
@@ -132,12 +140,18 @@ export default async function handler(request: Request): Promise<Response> {
   }
 
   try {
-    const response = await client.messages.parse({
+    const response = await getClient().messages.parse({
       model: 'claude-opus-5',
       max_tokens: 16000,
       system: SYSTEM,
       messages: [{ role: 'user', content }],
-      output_config: { format: zodOutputFormat(ParsedRecipe) },
+      output_config: {
+        format: zodOutputFormat(ParsedRecipe),
+        // Transcription against an explicit schema isn't a deep-reasoning
+        // task, and this runs inside a serverless request budget — medium
+        // keeps it comfortably inside the function's time limit.
+        effort: 'medium',
+      },
     })
 
     if (response.stop_reason === 'refusal') {
@@ -167,12 +181,45 @@ async function fetchReadable(url: string): Promise<string> {
   }
 
   const res = await fetch(parsed, {
-    headers: { 'user-agent': 'coopy-recipe-parser' },
+    // Serious Eats and Allrecipes answer a bare user-agent with 402 and a
+    // 612-byte stub; they only serve the page to something that looks like a
+    // real navigation. Verified against both — the full set is load-bearing,
+    // not cargo cult.
+    headers: {
+      'user-agent':
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36',
+      accept:
+        'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+      'accept-language': 'en-US,en;q=0.9',
+      'sec-ch-ua': '"Chromium";v="120", "Not(A:Brand";v="24"',
+      'sec-ch-ua-platform': '"macOS"',
+      'sec-fetch-dest': 'document',
+      'sec-fetch-mode': 'navigate',
+      'sec-fetch-site': 'none',
+      'upgrade-insecure-requests': '1',
+    },
     signal: AbortSignal.timeout(15_000),
   })
-  if (!res.ok) throw new Error(`${res.status} ${res.statusText}`)
+  // Serious Eats and Allrecipes answer requests they judge non-human with 402
+  // (and 403/429 elsewhere). Datacenter IPs — which is what this runs on —
+  // get flagged readily, so say plainly what to do instead of leaking a
+  // status code the reader can't act on.
+  if (res.status === 402 || res.status === 403 || res.status === 429) {
+    throw new Error(
+      `${parsed.hostname} blocks automated requests (HTTP ${res.status}). ` +
+        `Open the page, copy the recipe, and use the Text tab instead — that always works.`,
+    )
+  }
+  if (!res.ok) throw new Error(`the site returned ${res.status} ${res.statusText}`)
 
   const html = await res.text()
+
+  // Most recipe sites publish schema.org Recipe as JSON-LD. When it's there
+  // it's already structured, an order of magnitude smaller than the page, and
+  // free of navigation and comment noise — better input and a much faster call.
+  const jsonLd = extractRecipeJsonLd(html)
+  if (jsonLd) return `schema.org Recipe metadata from the page:\n\n${jsonLd}`
+
   const text = html
     .replace(/<script\b[\s\S]*?<\/script>/gi, ' ')
     .replace(/<style\b[\s\S]*?<\/style>/gi, ' ')
@@ -182,9 +229,69 @@ async function fetchReadable(url: string): Promise<string> {
     .replace(/\s+/g, ' ')
     .trim()
 
+  if (!text) throw new Error('the page had no readable text')
+
   // Recipe pages bury the content in navigation and comments; a generous slice
   // from the top reliably contains the ingredients and method.
   return text.slice(0, 40_000)
+}
+
+/** Pull a schema.org Recipe object out of a page's JSON-LD, if present. */
+export function extractRecipeJsonLd(html: string): string | null {
+  const blocks = html.matchAll(
+    /<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi,
+  )
+
+  for (const [, raw] of blocks) {
+    let data: unknown
+    try {
+      data = JSON.parse(raw.trim())
+    } catch {
+      continue // one malformed block shouldn't abandon the whole page
+    }
+
+    // JSON-LD arrives as a bare object, an array, or wrapped in an @graph.
+    const candidates: unknown[] = []
+    const collect = (node: unknown) => {
+      if (Array.isArray(node)) node.forEach(collect)
+      else if (node && typeof node === 'object') {
+        candidates.push(node)
+        const graph = (node as { '@graph'?: unknown })['@graph']
+        if (graph) collect(graph)
+      }
+    }
+    collect(data)
+
+    for (const node of candidates) {
+      const type = (node as { '@type'?: unknown })['@type']
+      const types = Array.isArray(type) ? type : [type]
+      if (types.includes('Recipe')) {
+        // Keep only the fields we map, so a page's unrelated metadata doesn't
+        // ride along into the prompt.
+        const r = node as Record<string, unknown>
+        const picked = Object.fromEntries(
+          [
+            'name',
+            'recipeYield',
+            'prepTime',
+            'cookTime',
+            'totalTime',
+            'recipeIngredient',
+            'recipeInstructions',
+            'recipeCategory',
+            'recipeCuisine',
+            'keywords',
+            'description',
+          ]
+            .filter((k) => r[k] !== undefined)
+            .map((k) => [k, r[k]]),
+        )
+        return JSON.stringify(picked, null, 1).slice(0, 40_000)
+      }
+    }
+  }
+
+  return null
 }
 
 function json(body: unknown, status = 200): Response {
