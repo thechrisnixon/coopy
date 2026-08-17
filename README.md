@@ -78,6 +78,22 @@ React 19 + TypeScript + Vite, built on [Astryx](https://astryx.atmeta.com)
 (Meta's design system) with a retuned Stone theme. Playfair Display and Inter
 are self-hosted — no CDN call, no layout shift.
 
+## Reading it without the app
+
+The archive is meant to outlive this website. Every build regenerates
+[`cookbook/`](cookbook) — plain Markdown, one file per recipe plus a combined
+[`cookbook/README.md`](cookbook/README.md) — and that output is committed, so
+GitHub renders the whole cookbook with no app, no build step, and no
+JavaScript. Quantities are written the way a recipe is written (`½ oz`, not
+`0.5`), and the blend attribution and reasoning notes come along with it.
+
+In the app, **Download .md** on any recipe and **Download the whole cookbook**
+on the index produce byte-identical files — same renderer
+([`src/lib/markdown.ts`](src/lib/markdown.ts)), so the two can't drift.
+
+The export is deterministic: no timestamps, so regenerating produces no diff
+unless a recipe actually changed.
+
 ## Adding a recipe
 
 **From your phone or a browser:** go to `/add`, drop a photo of a recipe card
@@ -108,7 +124,8 @@ committed by accident.
 
 ```sh
 pnpm dev        # dev server
-pnpm build      # validate recipes → typecheck → build
+pnpm build      # validate → export cookbook → typecheck → build
 pnpm validate   # check every recipe against the schema
+pnpm export     # regenerate cookbook/ (Markdown)
 pnpm astryx     # Astryx CLI (component docs, theme tools)
 ```

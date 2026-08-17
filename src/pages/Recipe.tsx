@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { Button } from '@astryxdesign/core/Button'
 import { getRecipe } from '../lib/recipes'
+import { recipeToMarkdown } from '../lib/markdown'
+import { downloadText } from '../lib/download'
 import IngredientList from '../components/IngredientList'
 import Scaler from '../components/Scaler'
 import './Recipe.css'
@@ -100,6 +102,15 @@ export default function Recipe() {
             // with your hands already covered in flour.
             navigate(`/cook/${recipe.slug}?x=${multiplier}`)
           }}
+        />
+        <Button
+          label="Download .md"
+          variant="secondary"
+          size="lg"
+          tooltip="Plain Markdown — readable anywhere, forever"
+          onClick={() =>
+            downloadText(`${recipe.slug}.md`, recipeToMarkdown(recipe))
+          }
         />
       </div>
 

@@ -2,6 +2,8 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { TextInput } from '@astryxdesign/core/TextInput'
 import { recipes, allTags, searchRecipes } from '../lib/recipes'
+import { cookbookToMarkdown } from '../lib/markdown'
+import { downloadText } from '../lib/download'
 import './Index.css'
 
 export default function Index() {
@@ -27,11 +29,24 @@ export default function Index() {
           <br />
           kept properly.
         </h1>
-        <p className="index__blurb">
-          Every quantity is stored at 1× — one batch, the way it's written —
-          so it scales cleanly. Blended recipes keep a record of which source
-          each decision came from.
-        </p>
+        <div className="index__aside">
+          <p className="index__blurb">
+            Every quantity is stored at 1× — one batch, the way it's written —
+            so it scales cleanly. Blended recipes keep a record of which source
+            each decision came from.
+          </p>
+          {/* The archive should outlive this website. One file, plain text,
+              opens anywhere. */}
+          <button
+            type="button"
+            className="index__export"
+            onClick={() =>
+              downloadText('coopy-cookbook.md', cookbookToMarkdown(recipes))
+            }
+          >
+            Download the whole cookbook (.md)
+          </button>
+        </div>
       </div>
 
       <div className="index__controls">
