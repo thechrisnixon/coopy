@@ -129,3 +129,25 @@ pnpm validate   # check every recipe against the schema
 pnpm export     # regenerate cookbook/ (Markdown)
 pnpm astryx     # Astryx CLI (component docs, theme tools)
 ```
+
+## Recipe API
+
+The deployed site serves the archive as static JSON, generated at build time
+(`vite/data-plugin.ts`) — no server, read-only:
+
+- `https://coopy-nu.vercel.app/data/recipes.json` — every recipe, with `slug`
+  and `url` added
+- `https://coopy-nu.vercel.app/data/recipes/<slug>.json` — one recipe
+
+`pnpm dev` serves the same paths locally.
+
+## Weekly shop
+
+`.claude/skills/weekly-shop` is a Claude Code skill: tell it what you want to
+eat this week (coopy recipes, links, one-offs), and it builds the Whole Foods
+order in Chrome, adjusts it with you, and only places it when you say so.
+
+It reads `shopping/household.yaml` (who eats, dietary needs, staples, brands)
+and writes each week to `plans/<date>.yaml`. Both are gitignored — they hold
+prices and order details, and this repo is public. Plans show at `/plans`
+under `pnpm dev` only; that route isn't in the deployed site.
