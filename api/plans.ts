@@ -14,7 +14,7 @@ import { guard, json, listPathnames, message, readBlob, readJsonBody, writeBlob 
 const ID = /^\d{4}-\d{2}-\d{2}$/
 const pathFor = (id: string) => `plans/${id}.json`
 
-export default async function handler(request: Request): Promise<Response> {
+async function handler(request: Request): Promise<Response> {
   const denied = guard(request)
   if (denied) return denied
 
@@ -70,3 +70,9 @@ export default async function handler(request: Request): Promise<Response> {
     return json({ error: message(err) }, 502)
   }
 }
+
+// Vercel's Node runtime only treats NAMED method exports as web-style
+// (Request → Response) handlers; a default export is called as a Node
+// (req, res) handler and never ends, which times the function out.
+export const GET = handler
+export const PUT = handler

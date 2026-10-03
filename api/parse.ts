@@ -82,7 +82,7 @@ Transcribe only what is actually present. Do not invent ingredients, times, or
 steps to fill out the shape. If a quantity is genuinely illegible, use null for
 qty and say so in the item text.`
 
-export default async function handler(request: Request): Promise<Response> {
+async function handler(request: Request): Promise<Response> {
   if (request.method !== 'POST') {
     return json({ error: 'POST only' }, 405)
   }
@@ -172,6 +172,10 @@ export default async function handler(request: Request): Promise<Response> {
     return json({ error: message(err) }, 502)
   }
 }
+
+// Named method export: Vercel's Node runtime calls a default export as a
+// Node (req, res) handler, which never ends when it returns a Response.
+export const POST = handler
 
 /** Strip a page down to something worth spending tokens on. */
 async function fetchReadable(url: string): Promise<string> {

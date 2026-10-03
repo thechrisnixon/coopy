@@ -11,7 +11,7 @@ import { guard, json, message, readBlob, readJsonBody, writeBlob } from './_lib/
 
 const PATH = 'household.json'
 
-export default async function handler(request: Request): Promise<Response> {
+async function handler(request: Request): Promise<Response> {
   const denied = guard(request)
   if (denied) return denied
 
@@ -37,3 +37,9 @@ export default async function handler(request: Request): Promise<Response> {
     return json({ error: message(err) }, 502)
   }
 }
+
+// Vercel's Node runtime only treats NAMED method exports as web-style
+// (Request → Response) handlers; a default export is called as a Node
+// (req, res) handler and never ends, which times the function out.
+export const GET = handler
+export const PUT = handler
