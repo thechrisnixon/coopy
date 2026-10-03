@@ -74,7 +74,7 @@ points at an undeclared source fails the deploy instead of shipping broken.
 | `/cook/:slug` | Kitchen mode — oversized type, tap-to-check, screen stays awake |
 | `/add` | Parse a recipe from a photo, link, or text, then commit it |
 | `/skills` | How to install the `/weekly-shop` Claude Code skill |
-| `/plans` | Weekly shopping plans — private, behind the family passcode |
+| `/orders` | Weekly orders built by /weekly-shop — private, behind the family passcode (`/plans` redirects here) |
 
 React 19 + TypeScript + Vite, built on [Astryx](https://astryx.atmeta.com)
 (Meta's design system) with a retuned Stone theme. Playfair Display and Inter
@@ -153,12 +153,12 @@ with private access; blob URLs never reach a client. Responses are
    `shopping/household.yaml`. It reads the passcode from `COOPY_PASSCODE` or
    `~/.coopy/passcode`, and targets `COOPY_URL` (default the live site).
 
-**The passcode on each device:** the `/plans` page asks for it once and keeps
+**The passcode on each device:** the `/orders` page asks for it once and keeps
 it in that browser's `localStorage` (a wrong one is cleared and re-asked).
 The `/weekly-shop` skill keeps it in `~/.coopy/passcode` — one line,
 `chmod 600` — and asks for it the first time it's missing.
 
-Under `pnpm dev` the functions don't run, so `/plans` falls back to the
+Under `pnpm dev` the functions don't run, so `/orders` falls back to the
 local `plans/` folder via the dev-only `/__local/plans.json`.
 
 ## Commands
@@ -206,6 +206,6 @@ staples, brands) and writes each week to `plans/<date>.yaml`; anywhere else it
 uses `~/.coopy/household.yaml` and `~/.coopy/plans/`. Both are gitignored —
 they hold prices and order details, and this repo is public. The skill also
 pushes every plan and profile change to the private storage above, so the
-whole family sees plans at `https://coopy-nu.vercel.app/plans`, and on a new
+whole family sees plans at `https://coopy-nu.vercel.app/orders`, and on a new
 machine it pulls the profile from there — no files to pass around, just the
 passcode.

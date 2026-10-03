@@ -34,10 +34,10 @@ export default function App() {
             Skills
           </Link>
           <Link
-            to="/plans"
-            className={`masthead__link ${pathname.startsWith('/plans') ? 'is-current' : ''}`}
+            to="/orders"
+            className={`masthead__link ${pathname.startsWith('/orders') ? 'is-current' : ''}`}
           >
-            Plans
+            Orders
           </Link>
         </nav>
       </header>

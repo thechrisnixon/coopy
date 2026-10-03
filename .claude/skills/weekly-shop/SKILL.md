@@ -23,7 +23,7 @@ else. Check which first — it decides every local path below.
 
 Plans and the household profile are also **synced to the site's private
 storage**, so everyone in the family sees the same plans at
-`https://coopy-nu.vercel.app/plans` and the skill works on any machine. The
+`https://coopy-nu.vercel.app/orders` and the skill works on any machine. The
 local YAML is the working copy; the site is the shared copy.
 
 **Recipes:** `https://coopy-nu.vercel.app/data/recipes.json` (all) or
@@ -283,7 +283,7 @@ push the profile (see "Household profile"), and tell the user what changed.
 ## 6. Wrap up
 
 - Make sure the final plan is pushed, then point them to
-  `https://coopy-nu.vercel.app/plans` (it asks for the family passcode once
+  `https://coopy-nu.vercel.app/orders` (it asks for the family passcode once
   per browser). Mention the local plan file too.
 - Offer to save any URL/one-off meals that worked into coopy (see step 1 for
   how, in or out of the repo).

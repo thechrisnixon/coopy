@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-dom'
 import { Theme } from '@astryxdesign/core/theme'
 import { stoneTheme } from '@astryxdesign/theme-stone/built'
 
@@ -18,7 +18,12 @@ import Recipe from './pages/Recipe'
 import Cook from './pages/Cook'
 import Add from './pages/Add'
 import Skills from './pages/Skills'
-import Plans from './pages/Plans'
+import Orders from './pages/Orders'
+
+function PlansRedirect() {
+  const { id } = useParams()
+  return <Navigate to={`/orders/${id}`} replace />
+}
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -34,11 +39,14 @@ createRoot(document.getElementById('root')!).render(
             <Route path="/r/:slug" element={<Recipe />} />
             <Route path="/add" element={<Add />} />
             <Route path="/skills" element={<Skills />} />
-            {/* Shopping plans are private (prices, order details): the page
+            {/* Orders are private (prices, order details): the page
                 ships, but the data comes from /api/plans behind the family
                 passcode. */}
-            <Route path="/plans" element={<Plans />} />
-            <Route path="/plans/:id" element={<Plans />} />
+            <Route path="/orders" element={<Orders />} />
+            <Route path="/orders/:id" element={<Orders />} />
+            {/* Old name, kept so saved links still work. */}
+            <Route path="/plans" element={<Navigate to="/orders" replace />} />
+            <Route path="/plans/:id" element={<PlansRedirect />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -48,14 +48,14 @@ export default function Skills() {
         <Heading level={2}>2. Have the family passcode handy</Heading>
         <Text as="p">
           The skill reads who's eating, dietary needs, staples, and brand rules from
-          a household profile, and saves each week's plan. Both are private: they
+          a household profile, and saves each week's order. Both are private: they
           sync through this site behind the family passcode, never in public. The
           first time it runs, the skill asks for the passcode and keeps it in:
         </Text>
         <CodeBlock code="~/.coopy/passcode" width="100%" />
         <Text as="p" color="secondary">
-          It then pulls the profile from the site, and every plan it builds shows
-          up on <Link href="/plans">Plans</Link> for the whole family. No profile
+          It then pulls the profile from the site, and every order it builds shows
+          up on <Link href="/orders">Orders</Link> for the whole family. No profile
           yet? The skill will offer to walk you through making one.
         </Text>
       </VStack>

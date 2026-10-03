@@ -16,7 +16,8 @@ import { FormLayout } from '@astryxdesign/core/FormLayout'
 import { Plan, type LoadedPlan } from '../lib/plan'
 
 /**
- * Weekly shopping plans written by the /weekly-shop skill. The site is
+ * The Orders page: weekly shops built by the /weekly-shop skill (the data
+ * model still calls each one a "plan", since it starts as a draft). The site is
  * public, so plans live in private storage behind `/api/plans` and the
  * family passcode (api/plans.ts). The passcode is asked for once and kept in
  * this browser's localStorage.
@@ -138,9 +139,9 @@ function PasscodePrompt({ error, onSubmit }: { error?: string; onSubmit: (v: str
 
   return (
     <VStack gap={4}>
-      <Heading level={1}>Weekly plans</Heading>
+      <Heading level={1}>Orders</Heading>
       <Text color="secondary">
-        Plans are private to the family. Enter the passcode once and this
+        Orders are private to the family. Enter the passcode once and this
         browser will remember it.
       </Text>
       <form
@@ -160,7 +161,7 @@ function PasscodePrompt({ error, onSubmit }: { error?: string; onSubmit: (v: str
             status={error ? { type: 'error', message: error } : undefined}
           />
           <HStack>
-            <Button type="submit" variant="primary" label="Show plans" isDisabled={!value.trim()} />
+            <Button type="submit" variant="primary" label="Show orders" isDisabled={!value.trim()} />
           </HStack>
         </FormLayout>
       </form>
@@ -168,13 +169,13 @@ function PasscodePrompt({ error, onSubmit }: { error?: string; onSubmit: (v: str
   )
 }
 
-export default function Plans() {
+export default function Orders() {
   const { id } = useParams()
   const { state, unlock } = usePlans()
 
   if (state.kind === 'locked') return <PasscodePrompt error={state.error} onSubmit={unlock} />
-  if (state.kind === 'error') return <Text>Couldn't load plans: {state.error}</Text>
-  if (state.kind === 'loading') return <Text color="secondary">Loading plans…</Text>
+  if (state.kind === 'error') return <Text>Couldn't load orders: {state.error}</Text>
+  if (state.kind === 'loading') return <Text color="secondary">Loading orders…</Text>
 
   const { plans } = state
   const plan = plans.find((p) => p.id === id)
@@ -182,17 +183,17 @@ export default function Plans() {
 
   return (
     <VStack gap={4}>
-      <Heading level={1}>Weekly plans</Heading>
+      <Heading level={1}>Orders</Heading>
       {plans.length === 0 ? (
         <Text color="secondary">
-          No plans yet. Run /weekly-shop in Claude Code to build one.
+          No orders yet. Run /weekly-shop in Claude Code to build one.
         </Text>
       ) : (
         <List hasDividers>
           {plans.map((p) => (
             <ListItem
               key={p.id}
-              href={`/plans/${p.id}`}
+              href={`/orders/${p.id}`}
               label={p.week ? `${p.week} (built ${p.id})` : p.id}
               description={p.meals.map((m) => m.name).join(' · ') || 'No meals yet'}
               startContent={<StatusDot {...STATUS[p.status]} />}
@@ -253,8 +254,8 @@ function PlanDetail({ plan }: { plan: LoadedPlan }) {
   return (
     <VStack gap={6}>
       <VStack gap={2}>
-        <Link href="/plans">← All plans</Link>
-        <Heading level={1}>{plan.week ?? `Plan ${plan.id}`}</Heading>
+        <Link href="/orders">← All orders</Link>
+        <Heading level={1}>{plan.week ?? `Order ${plan.id}`}</Heading>
         <HStack gap={2} align="center">
           <StatusDot variant={status.variant} label={status.label} />
           <Text>{status.label}</Text>
