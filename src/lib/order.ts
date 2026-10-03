@@ -18,6 +18,7 @@ export const OrderStatus = z.enum([
   'draft', // still talking about it
   'carted', // cart built on Whole Foods, waiting for a yes
   'ordered', // placed after an explicit yes
+  'delivered', // arrived, and checked against the final invoice
   'cancelled',
 ])
 
@@ -34,6 +35,30 @@ export const Meal = z.object({
   notes: z.string().optional(),
 })
 
+/**
+ * One line of the final invoice, recorded after delivery. Whole Foods swaps
+ * out-of-stock items for something close, short-ships weighted items, and
+ * reprices by weight, so the cart is only what was asked for; this is what
+ * came. Next week reads these to price the list and avoid repeat misses.
+ */
+export const Delivered = z.object({
+  status: z.enum([
+    'as-ordered', // the product asked for, full quantity
+    'substituted', // a different product came instead (see `as`)
+    'short', // the right product, less of it
+    'missing', // never came; refunded
+  ]),
+  /** Product that came instead, when substituted. */
+  as: z.string().optional(),
+  /** Count, or pounds for weighted items. */
+  qty: z.number().nonnegative().optional(),
+  /** Final unit price charged (per pound for weighted items). */
+  price: z.number().nonnegative().optional(),
+  /** Final line amount charged, straight from the invoice. */
+  total: z.number().nonnegative().optional(),
+  note: z.string().optional(),
+})
+
 export const Item = z.object({
   /** Product title as Whole Foods lists it. */
   name: z.string().min(1),
@@ -48,6 +73,8 @@ export const Item = z.object({
   /** Set when a cheaper swap or an out-of-stock substitution replaced something. */
   replaced: z.string().optional(),
   note: z.string().optional(),
+  /** What actually arrived, from the final invoice. Absent until delivered. */
+  delivered: Delivered.optional(),
 })
 
 export const Checkout = z.object({
@@ -60,6 +87,9 @@ export const Checkout = z.object({
   tax: z.number().optional(),
   total: z.number().optional(),
   placed_at: z.string().optional(),
+  /** Final amount charged after delivery (weights and substitutions move it). */
+  charged: z.number().optional(),
+  delivered_at: z.string().optional(),
 })
 
 export const Order = z.object({
@@ -75,3 +105,5 @@ export const Order = z.object({
 
 export type Order = z.infer<typeof Order>
 export type LoadedOrder = Order & { id: string }
+
+export type Delivered = z.infer<typeof Delivered>

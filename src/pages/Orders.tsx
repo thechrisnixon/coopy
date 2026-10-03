@@ -13,7 +13,7 @@ import { Link } from '@astryxdesign/core/Link'
 import { TextInput } from '@astryxdesign/core/TextInput'
 import { Button } from '@astryxdesign/core/Button'
 import { FormLayout } from '@astryxdesign/core/FormLayout'
-import { Order, type LoadedOrder } from '../lib/order'
+import { Order, type Delivered, type LoadedOrder } from '../lib/order'
 
 /**
  * Weekly orders built by the /weekly-shop skill. The site is
@@ -29,12 +29,15 @@ import { Order, type LoadedOrder } from '../lib/order'
 const STATUS = {
   draft: { variant: 'neutral', label: 'Draft' },
   carted: { variant: 'warning', label: 'In cart — waiting for a yes' },
-  ordered: { variant: 'success', label: 'Ordered' },
+  ordered: { variant: 'accent', label: 'Ordered — on its way' },
+  delivered: { variant: 'success', label: 'Delivered' },
   cancelled: { variant: 'error', label: 'Cancelled' },
 } as const
 
 const money = (n: number | undefined) =>
   n === undefined ? '—' : `$${n.toFixed(2)}`
+
+const diff = (n: number) => (n < 0 ? `−$${(-n).toFixed(2)}` : `+$${n.toFixed(2)}`)
 
 const PASSCODE_KEY = 'coopy.passcode'
 
@@ -196,7 +199,11 @@ export default function Orders() {
               label={p.week ? `${p.week} (built ${p.id})` : p.id}
               description={p.meals.map((m) => m.name).join(' · ') || 'No meals yet'}
               startContent={<StatusDot {...STATUS[p.status]} />}
-              endContent={<Text hasTabularNumbers>{money(p.checkout?.total ?? p.checkout?.subtotal ?? subtotal(p))}</Text>}
+              endContent={
+                <Text hasTabularNumbers>
+                  {money(p.checkout?.charged ?? p.checkout?.total ?? p.checkout?.subtotal ?? subtotal(p))}
+                </Text>
+              }
             />
           ))}
         </List>
@@ -231,24 +238,71 @@ type Row = {
   replaced: string
 }
 
+const ARRIVED = {
+  substituted: { color: 'orange', label: 'Substituted' },
+  short: { color: 'yellow', label: 'Short' },
+  missing: { color: 'red', label: 'Missing' },
+} as const
+
+function Arrived({ d }: { d?: Delivered }) {
+  // Only flag what went wrong; a tag on every good line is noise.
+  if (!d || d.status === 'as-ordered') return null
+  const { color, label } = ARRIVED[d.status]
+  const detail = [d.as && `came as ${d.as}`, d.status === 'short' && d.qty !== undefined && `got ${d.qty}`, d.note]
+    .filter(Boolean)
+    .join(' · ')
+  return (
+    <VStack gap={1}>
+      <HStack>
+        <Token size="sm" color={color} label={label} />
+      </HStack>
+      {detail && (
+        <Text size="sm" color="secondary">
+          {detail}
+        </Text>
+      )}
+    </VStack>
+  )
+}
+
+/** "3 substituted · 1 missing" — only the lines that didn't arrive as ordered. */
+function arrivalSummary(order: LoadedOrder): string | undefined {
+  const counts = new Map<string, number>()
+  for (const i of order.items) {
+    const s = i.delivered?.status
+    if (s && s !== 'as-ordered') counts.set(s, (counts.get(s) ?? 0) + 1)
+  }
+  if (!order.items.some((i) => i.delivered)) return undefined
+  if (!counts.size) return 'Everything arrived as ordered'
+  return [...counts].map(([s, n]) => `${n} ${s}`).join(' · ')
+}
+
 function OrderDetail({ order }: { order: LoadedOrder }) {
   const rows = useMemo<Row[]>(
     () =>
       [...order.items]
         .sort((a, b) => (a.category ?? 'other').localeCompare(b.category ?? 'other'))
-        .map((i) => ({
-          name: i.note ? `${i.name} — ${i.note}` : i.name,
-          qty: i.qty,
-          price: money(i.price),
-          line: money(i.price === undefined ? undefined : i.price * i.qty),
-          category: i.category ?? 'other',
-          for: (i.for ?? []).join(', '),
-          replaced: i.replaced ?? '',
-        })),
+        .map((i) => {
+          // Once delivered, show what was charged, not what was carted.
+          const d = i.delivered
+          const price = d?.price ?? i.price
+          const qty = d?.qty ?? i.qty
+          return {
+            name: i.note ? `${i.name} — ${i.note}` : i.name,
+            qty,
+            price: money(price),
+            line: money(d?.total ?? (d?.status === 'missing' ? 0 : price === undefined ? undefined : price * qty)),
+            category: i.category ?? 'other',
+            for: (i.for ?? []).join(', '),
+            replaced: i.replaced ?? '',
+          }
+        }),
     [order.items],
   )
 
   const status = STATUS[order.status]
+  const arrival = arrivalSummary(order)
+  const problems = order.items.filter((i) => i.delivered && i.delivered.status !== 'as-ordered')
 
   return (
     <VStack gap={6}>
@@ -267,9 +321,16 @@ function OrderDetail({ order }: { order: LoadedOrder }) {
           {money(order.checkout?.subtotal ?? subtotal(order))}
         </MetadataListItem>
         <MetadataListItem label="Tip">{money(order.checkout?.tip)}</MetadataListItem>
-        <MetadataListItem label={order.checkout?.total ? 'Total' : 'Est. total'}>
+        <MetadataListItem label={order.checkout?.total ? 'Total at checkout' : 'Est. total'}>
           {money(order.checkout?.total ?? estTotal(order))}
         </MetadataListItem>
+        {order.checkout?.charged !== undefined && (
+          <MetadataListItem label="Charged">
+            {money(order.checkout.charged)}
+            {order.checkout.total !== undefined && ` (${diff(order.checkout.charged - order.checkout.total)} vs checkout)`}
+          </MetadataListItem>
+        )}
+        {arrival && <MetadataListItem label="Delivery check">{arrival}</MetadataListItem>}
         {order.budget !== undefined && (
           <MetadataListItem label="Budget">{money(order.budget)}</MetadataListItem>
         )}
@@ -306,8 +367,24 @@ function OrderDetail({ order }: { order: LoadedOrder }) {
         </List>
       </VStack>
 
+      {problems.length > 0 && (
+        <VStack gap={2}>
+          <Heading level={2}>Didn't arrive as ordered</Heading>
+          <List hasDividers density="compact">
+            {problems.map((i) => (
+              <ListItem
+                key={i.name}
+                label={i.name}
+                description={(i.for ?? []).join(', ') || undefined}
+                endContent={<Arrived d={i.delivered} />}
+              />
+            ))}
+          </List>
+        </VStack>
+      )}
+
       <VStack gap={2}>
-        <Heading level={2}>Cart</Heading>
+        <Heading level={2}>{arrival ? 'What came' : 'Cart'}</Heading>
         <Table<Row>
           data={rows}
           density="compact"

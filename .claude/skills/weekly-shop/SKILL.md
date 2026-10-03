@@ -1,6 +1,6 @@
 ---
 name: weekly-shop
-description: Plan the week's meals from the coopy recipe archive (plus one-offs and recipe URLs), build the Whole Foods order on Amazon in Chrome, iterate on it in conversation until it's explicitly approved, then place it and record it on the Orders page. Use when the user says "weekly shop", "plan meals", "grocery order", "Whole Foods order", or asks to add groceries/recipes to an order.
+description: Plan the week's meals from the coopy recipe archive (plus one-offs and recipe URLs), build the Whole Foods order on Amazon in Chrome, iterate on it in conversation until it's explicitly approved, then place it and record it on the Orders page. Use when the user says "weekly shop", "plan meals", "grocery order", "Whole Foods order", asks to add groceries/recipes to an order, or says the groceries arrived / asks to check a delivery.
 ---
 
 # Weekly shop
@@ -112,7 +112,7 @@ One YAML file per week, named for the date it was built (`2026-10-03.yaml`).
 Amounts are plain numbers in USD.
 
 ```yaml
-status: draft        # draft | carted (in cart, waiting for a yes) | ordered | cancelled
+status: draft        # draft | carted (in cart, waiting for a yes) | ordered | delivered | cancelled
 week: Oct 5–11       # the week the food is for
 budget: 250          # optional
 meals:
@@ -130,6 +130,12 @@ items:
     category: produce   # produce|meat|dairy|pantry|frozen|bakery|snacks|drinks|household|other
     replaced: Diestel ground turkey (out of stock)   # only when swapped
     note: optional
+    delivered:          # filled in after delivery, from the final invoice
+      status: as-ordered   # as-ordered | substituted | short | missing
+      as: 365 Organic Yellow Onion, 3 lb bag   # what came, when substituted
+      qty: 2            # what arrived (pounds for weighted items)
+      price: 1.29       # final unit price (per lb for weighted items)
+      total: 2.58       # final line amount from the invoice
 checkout:            # filled in once placed
   order_id: 113-…
   delivery: Sun Oct 4 10am–12pm
@@ -139,6 +145,8 @@ checkout:            # filled in once placed
   tax: 1.78
   total: 275.18
   placed_at: 2026-10-03T14:05:00-04:00
+  charged: 271.02    # final charge after delivery
+  delivered_at: 2026-10-04
 log:                 # every decision, in order
   - Swapped 4 items to 365, −11.20 USD
 ```
@@ -291,3 +299,41 @@ push the profile (see "Household profile"), and tell the user what changed.
   now"), update household.yaml and push it so next week starts smarter, on
   either machine.
 - Close any browser tabs you opened.
+
+## 7. After delivery — check what came
+
+Run this when the user says the groceries arrived, asks to "check the
+delivery", or opens /weekly-shop and the newest order is `ordered` with a
+delivery date in the past (offer it first, before planning a new week).
+
+1. Find the order id in the order's `checkout`. In Chrome, read the final
+   invoice at `https://www.amazon.com/gp/css/summary/print.html?orderID=<id>`
+   with `get_page_text` (wait ~3s after navigating). Then read the order
+   details page `https://www.amazon.com/gp/your-account/order-details?orderID=<id>`
+   — that's where substitutions ("Replaced with…"), items not delivered and
+   refunds are listed; the invoice alone can hide them. If the invoice still
+   shows estimated amounts, the order hasn't been finalized yet: say so and
+   stop.
+2. Match each invoice line to an item in the order (titles drift — match on
+   brand + product, and ask if two lines could be the same thing). For every
+   item, set `delivered`: `status`, `qty`, `price`, `total` from the invoice,
+   and `as` for a substitution. An item that never came is `missing` with
+   `total: 0`. Don't touch the carted `price`/`qty` — the difference is the
+   point.
+3. Set `checkout.charged` to the final amount charged and
+   `checkout.delivered_at`, set `status: delivered`, append a log line ("Final
+   271.02 USD vs 275.18 at checkout; 2 substituted, 1 missing"), and push the
+   order.
+4. Tell the user, briefly: final charge vs checkout total, each substitution
+   (and whether it still works for the meal it was for), what's missing, and
+   any refund Amazon shows. Ask whether a missing item needs replacing before
+   the meal it was for.
+5. Learn from it, with the user's OK: a substitution they didn't like or a
+   product that went missing two weeks running → a `brands` note in
+   household.yaml ("Mary's thighs often out — cart 365 Organic first"); a
+   weighted item that came heavier/lighter than asked → adjust how much to
+   cart next time. Push the profile.
+
+When building a new list (step 2), use the last delivered `price` for each
+product as the expected price, and skip carting a product that came
+`missing` last week without asking.
