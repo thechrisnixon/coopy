@@ -19,7 +19,9 @@ import { Recipe } from '../src/lib/schema.ts'
  *
  * - `/__local/plans.json` — weekly shopping plans from `plans/`. Served by the
  *   dev server ONLY and never emitted into the build: plans hold prices and
- *   order details, and the deployed site is public.
+ *   order details, and the deployed site is public. It's the /plans page's
+ *   fallback under `vite dev`, which doesn't run `api/plans.ts` (the
+ *   passcode-gated private store the deployed page uses).
  */
 
 const SITE = 'https://coopy-nu.vercel.app'

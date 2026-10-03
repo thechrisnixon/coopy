@@ -33,14 +33,12 @@ export default function App() {
           >
             Skills
           </Link>
-          {import.meta.env.DEV && (
-            <Link
-              to="/plans"
-              className={`masthead__link ${pathname.startsWith('/plans') ? 'is-current' : ''}`}
-            >
-              Plans
-            </Link>
-          )}
+          <Link
+            to="/plans"
+            className={`masthead__link ${pathname.startsWith('/plans') ? 'is-current' : ''}`}
+          >
+            Plans
+          </Link>
         </nav>
       </header>
 

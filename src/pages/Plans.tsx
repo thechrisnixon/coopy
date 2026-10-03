@@ -10,13 +10,20 @@ import { Table, proportional, pixel } from '@astryxdesign/core/Table'
 import { StatusDot } from '@astryxdesign/core/StatusDot'
 import { Token } from '@astryxdesign/core/Token'
 import { Link } from '@astryxdesign/core/Link'
+import { TextInput } from '@astryxdesign/core/TextInput'
+import { Button } from '@astryxdesign/core/Button'
+import { FormLayout } from '@astryxdesign/core/FormLayout'
 import { Plan, type LoadedPlan } from '../lib/plan'
 
 /**
- * Weekly shopping plans written by the /weekly-shop skill. Dev-only: the
- * route is registered only under `pnpm dev`, and the data comes from a
- * dev-server endpoint (vite/data-plugin.ts) — plans hold prices and order
- * details, and the deployed site is public.
+ * Weekly shopping plans written by the /weekly-shop skill. The site is
+ * public, so plans live in private storage behind `/api/plans` and the
+ * family passcode (api/plans.ts). The passcode is asked for once and kept in
+ * this browser's localStorage.
+ *
+ * Under `pnpm dev` there are no serverless functions, so when `/api/plans`
+ * isn't there the page falls back to the dev-only `/__local/plans.json`
+ * (vite/data-plugin.ts), which reads the local `plans/` folder.
  */
 
 const STATUS = {
@@ -29,35 +36,148 @@ const STATUS = {
 const money = (n: number | undefined) =>
   n === undefined ? '—' : `$${n.toFixed(2)}`
 
-function usePlans() {
-  const [state, setState] = useState<{ plans: LoadedPlan[]; error?: string }>({
-    plans: [],
+const PASSCODE_KEY = 'coopy.passcode'
+
+// Storage can throw (private mode, blocked site data) — the page must still
+// work, it just asks again next visit.
+function loadPasscode(): string {
+  try {
+    return localStorage.getItem(PASSCODE_KEY) ?? ''
+  } catch {
+    return ''
+  }
+}
+function savePasscode(value: string) {
+  try {
+    if (value) localStorage.setItem(PASSCODE_KEY, value)
+    else localStorage.removeItem(PASSCODE_KEY)
+  } catch {
+    // not fatal
+  }
+}
+
+type RawPlan = { id: string } & Record<string, unknown>
+
+type PlansState =
+  | { kind: 'loading' }
+  | { kind: 'locked'; error?: string }
+  | { kind: 'error'; error: string }
+  | { kind: 'ready'; plans: LoadedPlan[] }
+
+function toPlans(raw: RawPlan[]): LoadedPlan[] {
+  return raw.flatMap((p) => {
+    const parsed = Plan.safeParse(p)
+    // A plan the skill wrote badly shouldn't hide every other week.
+    return parsed.success ? [{ ...parsed.data, id: p.id }] : []
   })
+}
+
+/** True when the response is a real API answer rather than a dev-server miss. */
+const isApiResponse = (r: Response) =>
+  r.status !== 404 && (r.headers.get('content-type') ?? '').includes('application/json')
+
+function usePlans() {
+  const [passcode, setPasscode] = useState(loadPasscode)
+  const [state, setState] = useState<PlansState>(() =>
+    // Production with no saved passcode: ask before making any request.
+    passcode || import.meta.env.DEV ? { kind: 'loading' } : { kind: 'locked' },
+  )
 
   useEffect(() => {
-    fetch('/__local/plans.json')
-      .then((r) => r.json())
-      .then((raw: ({ id: string } & Record<string, unknown>)[]) =>
-        setState({
-          plans: raw.flatMap((p) => {
-            const parsed = Plan.safeParse(p)
-            // A plan the skill wrote badly shouldn't hide every other week.
-            return parsed.success ? [{ ...parsed.data, id: p.id }] : []
-          }),
-        }),
-      )
-      .catch((err) => setState({ plans: [], error: String(err) }))
-  }, [])
+    if (!passcode && !import.meta.env.DEV) return
+    let cancelled = false
 
-  return state
+    async function load(): Promise<PlansState> {
+      const res = await fetch('/api/plans', { headers: { 'x-coopy-passcode': passcode } })
+
+      if (import.meta.env.DEV && !isApiResponse(res)) {
+        // `vite dev` doesn't run functions — read the local plans/ folder.
+        const local = await fetch('/__local/plans.json')
+        return { kind: 'ready', plans: toPlans(await local.json()) }
+      }
+
+      if (res.status === 401) {
+        savePasscode('')
+        return {
+          kind: 'locked',
+          error: passcode ? "That passcode didn't work." : undefined,
+        }
+      }
+
+      const body = await res.json().catch(() => null)
+      if (!res.ok) {
+        return { kind: 'error', error: body?.error ?? `HTTP ${res.status}` }
+      }
+      return { kind: 'ready', plans: toPlans(body as RawPlan[]) }
+    }
+
+    load()
+      .then((next) => {
+        if (cancelled) return
+        if (next.kind === 'locked') setPasscode('')
+        setState(next)
+      })
+      .catch((err) => !cancelled && setState({ kind: 'error', error: String(err) }))
+
+    return () => {
+      cancelled = true
+    }
+  }, [passcode])
+
+  const unlock = (value: string) => {
+    savePasscode(value)
+    setState({ kind: 'loading' })
+    setPasscode(value)
+  }
+
+  return { state, unlock }
+}
+
+function PasscodePrompt({ error, onSubmit }: { error?: string; onSubmit: (v: string) => void }) {
+  const [value, setValue] = useState('')
+
+  return (
+    <VStack gap={4}>
+      <Heading level={1}>Weekly plans</Heading>
+      <Text color="secondary">
+        Plans are private to the family. Enter the passcode once and this
+        browser will remember it.
+      </Text>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault()
+          if (value.trim()) onSubmit(value.trim())
+        }}
+      >
+        <FormLayout>
+          <TextInput
+            type="password"
+            label="Family passcode"
+            value={value}
+            onChange={setValue}
+            hasAutoFocus
+            width="100%"
+            status={error ? { type: 'error', message: error } : undefined}
+          />
+          <HStack>
+            <Button type="submit" variant="primary" label="Show plans" isDisabled={!value.trim()} />
+          </HStack>
+        </FormLayout>
+      </form>
+    </VStack>
+  )
 }
 
 export default function Plans() {
   const { id } = useParams()
-  const { plans, error } = usePlans()
-  const plan = plans.find((p) => p.id === id)
+  const { state, unlock } = usePlans()
 
-  if (error) return <Text>Couldn't load plans: {error}</Text>
+  if (state.kind === 'locked') return <PasscodePrompt error={state.error} onSubmit={unlock} />
+  if (state.kind === 'error') return <Text>Couldn't load plans: {state.error}</Text>
+  if (state.kind === 'loading') return <Text color="secondary">Loading plans…</Text>
+
+  const { plans } = state
+  const plan = plans.find((p) => p.id === id)
   if (id && plan) return <PlanDetail plan={plan} />
 
   return (

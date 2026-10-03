@@ -2,9 +2,10 @@ import { z } from 'zod'
 
 /**
  * A week's shopping plan, written by the /weekly-shop skill to
- * `plans/<YYYY-MM-DD>.yaml` (the date the order was built). Plans are local
- * only — see .gitignore — and the /plans page reads them through the dev
- * server, never the public build.
+ * `plans/<YYYY-MM-DD>.yaml` (the date the order was built). Plan files are
+ * gitignored; the skill pushes each one to private storage behind
+ * /api/plans (passcode-gated, api/plans.ts validates against this schema),
+ * and the /plans page reads them from there.
  *
  * The file is the record of what was decided, not just what was bought: the
  * `log` keeps the back-and-forth ("swapped to 365 to get under $250") so a

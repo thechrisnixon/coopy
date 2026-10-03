@@ -8,6 +8,7 @@
     "build": "pnpm validate && pnpm export && tsc -b && vite build",
     "validate": "tsx scripts/validate-recipes.ts",
     "export": "tsx scripts/export-markdown.ts",
+    "push-private": "tsx scripts/push-private.ts",
     "lint": "oxlint",
     "preview": "vite preview",
     "astryx": "node node_modules/@astryxdesign/cli/clients/cli/bin/astryx.mjs"
@@ -17,6 +18,7 @@
     "@astryxdesign/core": "^0.4.1",
     "@astryxdesign/theme-stone": "^0.4.1",
     "@stylexjs/stylex": "^0.19.0",
+    "@vercel/blob": "^2.8.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-router-dom": "^7.18.2",

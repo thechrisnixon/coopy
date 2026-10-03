@@ -34,14 +34,11 @@ createRoot(document.getElementById('root')!).render(
             <Route path="/r/:slug" element={<Recipe />} />
             <Route path="/add" element={<Add />} />
             <Route path="/skills" element={<Skills />} />
-            {/* Shopping plans are local-only (prices, order details) — the
-                route doesn't exist in the public build. */}
-            {import.meta.env.DEV && (
-              <>
-                <Route path="/plans" element={<Plans />} />
-                <Route path="/plans/:id" element={<Plans />} />
-              </>
-            )}
+            {/* Shopping plans are private (prices, order details): the page
+                ships, but the data comes from /api/plans behind the family
+                passcode. */}
+            <Route path="/plans" element={<Plans />} />
+            <Route path="/plans/:id" element={<Plans />} />
           </Route>
         </Routes>
       </BrowserRouter>

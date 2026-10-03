@@ -13,7 +13,7 @@ whenever an answer changes what lands in the cart.
 
 This skill runs in two places: inside the coopy repo (a checkout with
 `recipes/` and `vite/data-plugin.ts` in the current directory) or anywhere
-else. Check which first — it decides every path below.
+else. Check which first — it decides every local path below.
 
 | What | In the coopy repo | Anywhere else |
 | --- | --- | --- |
@@ -21,21 +21,90 @@ else. Check which first — it decides every path below.
 | Household profile | `shopping/household.yaml` | `~/.coopy/household.yaml` |
 | Plans | `plans/<date>.yaml` | `~/.coopy/plans/<date>.yaml` (create the folder if needed) |
 
+Plans and the household profile are also **synced to the site's private
+storage**, so everyone in the family sees the same plans at
+`https://coopy-nu.vercel.app/plans` and the skill works on any machine. The
+local YAML is the working copy; the site is the shared copy.
+
 **Recipes:** `https://coopy-nu.vercel.app/data/recipes.json` (all) or
 `https://coopy-nu.vercel.app/data/recipes/<slug>.json` (one). Fetch with
 `curl -s`. Quantities are 1X as written; `serves` is how many 1X feeds.
 
-**Household profile** (the file called household.yaml everywhere below):
-people, dietary needs, heat, portions, staples, brand rules, tip, what
-"cheaper" may do, farmers market items. It is private and never on the
-website. If it's missing, tell the user: they can get the file from whoever
-set coopy up for them and save it to `~/.coopy/household.yaml`, or you can
-walk them through creating one now — ask the key questions (who eats, dietary
-needs, heat tolerance, portions, staples, brands, tip) and write it before
-building anything.
+### The family passcode
+
+The private endpoints need the family passcode in an `x-coopy-passcode`
+header. It lives in `~/.coopy/passcode` (one line). If that file is missing,
+ask the user for the passcode once, then save it without echoing it:
+
+```sh
+mkdir -p ~/.coopy && umask 077 && printf '%s\n' 'PASSCODE' > ~/.coopy/passcode && chmod 600 ~/.coopy/passcode
+```
+
+(substituting what they gave you for PASSCODE). Never repeat it back, never
+put it in a URL, a log entry, a plan file or a commit — always read it from
+the file with `"$(cat ~/.coopy/passcode)"` inside the header. A `401` means
+the passcode is wrong: ask for it again and overwrite the file.
+
+### Household profile
+
+The file called household.yaml everywhere below: people, dietary needs,
+heat, portions, staples, brand rules, tip, what "cheaper" may do, farmers
+market items. It is private and never in the repo or the public site.
+
+Find it in this order:
+
+1. `shopping/household.yaml` (in the repo), else `~/.coopy/household.yaml`.
+2. If neither exists, fetch it from the site and cache it. JSON is valid
+   YAML, so the response can be saved as-is (tidy it into block YAML the
+   first time you edit it):
+
+   ```sh
+   mkdir -p ~/.coopy && curl -fsS https://coopy-nu.vercel.app/api/household \
+     -H "x-coopy-passcode: $(cat ~/.coopy/passcode)" > ~/.coopy/household.yaml
+   ```
+
+   A `404` means no profile has been stored yet (delete the empty file).
+3. Still nothing: walk them through creating one now — ask the key questions
+   (who eats, dietary needs, heat tolerance, portions, staples, brands, tip),
+   write it locally, and push it (below) before building anything.
+
+**Whenever you change the profile** (a new brand, a new staple, portions),
+write the local file AND push it so the other machine sees it:
+
+```sh
+npx -y yaml --json --single --strict < PATH/TO/household.yaml \
+  | curl -fsS -X PUT https://coopy-nu.vercel.app/api/household \
+    -H "x-coopy-passcode: $(cat ~/.coopy/passcode)" \
+    -H 'content-type: application/json' --data-binary @- > /dev/null
+```
+
+### Plans
+
+Write the local YAML as described in "Plan file format", and **after every
+meaningful change** (list agreed, cart built, each round of iteration, order
+placed) push it, using the plan's date as the id:
+
+```sh
+npx -y yaml --json --single --strict < PATH/TO/plans/2026-10-03.yaml \
+  | curl -fsS -X PUT 'https://coopy-nu.vercel.app/api/plans?id=2026-10-03' \
+    -H "x-coopy-passcode: $(cat ~/.coopy/passcode)" \
+    -H 'content-type: application/json' --data-binary @-
+```
+
+The server validates the plan against the schema; a `400` lists what's wrong
+— fix the YAML and push again. A plan that isn't pushed won't appear on the
+site.
 
 **Past plans:** last week's order, what got swapped, what ran out. Read the
-most recent one or two before building a new list.
+most recent one or two before building a new list — from the local folder,
+or from the site if the local folder is empty or behind (the site has
+everyone's plans):
+
+```sh
+curl -fsS https://coopy-nu.vercel.app/api/plans -H "x-coopy-passcode: $(cat ~/.coopy/passcode)"
+```
+
+(newest first; add `?id=<date>` for one).
 
 ### Plan file format
 
@@ -134,7 +203,8 @@ already in the fridge/pantry, anything running low, any budget this week.
 
 Show the list grouped by category with which meal each line is for, and ask
 for changes **before** touching the browser. Write `<today>.yaml` in the plans
-folder (see "Where things live") with `status: draft` now and keep it updated as things change.
+folder (see "Where things live") with `status: draft` now, push it to the
+site, and keep both updated as things change.
 
 ## 3. Build the cart (Chrome)
 
@@ -164,7 +234,7 @@ Swaps: Diestel ground turkey → 365 ground turkey (out of stock)
 Biggest lines: NY strip 40 USD, Mary's thighs 13 USD …
 ```
 
-Set `status: carted` and fill `items` with real prices.
+Set `status: carted`, fill `items` with real prices, and push the plan.
 
 ## 4. Iterate until accepted
 
@@ -176,7 +246,8 @@ Stay in the conversation. Typical asks:
   without dropping a meal or staple, say what it would take and ask.
 - Adds, removes, quantity changes — do them in the cart and re-read the total.
 
-Append every decision to the plan's `log` ("Swapped 4 items to 365, −11.20 USD").
+Append every decision to the plan's `log` ("Swapped 4 items to 365, −11.20 USD")
+and push the plan after each round.
 
 ## 5. Place the order — only on an explicit yes
 
@@ -194,7 +265,7 @@ address, or account settings, and never apply anything that commits to a
 subscription.
 
 After it's placed, record `order` (order id, delivery window, subtotal, fees,
-tip, tax, total, placed_at) and set `status: ordered`.
+tip, tax, total, placed_at), set `status: ordered`, and push the plan.
 
 ## Refreshing the profile from order history
 
@@ -206,16 +277,17 @@ and prices from its invoice at
 `https://www.amazon.com/gp/css/summary/print.html?orderID=<id>` with
 `get_page_text` (wait ~3s after navigating, or you'll read the previous page).
 Invoice quantities can undercount substituted items — treat them as
-approximate. Update `staples` (bought in 3+ of the last 5) and `brands`, and
-tell the user what changed.
+approximate. Update `staples` (bought in 3+ of the last 5) and `brands`,
+push the profile (see "Household profile"), and tell the user what changed.
 
 ## 6. Wrap up
 
-- Tell them where the plan file is. Inside the coopy repo only, it's also
-  viewable at `http://localhost:5173/plans` while `pnpm dev` is running — the
-  plans page is never in the public build, and doesn't exist outside the repo.
+- Make sure the final plan is pushed, then point them to
+  `https://coopy-nu.vercel.app/plans` (it asks for the family passcode once
+  per browser). Mention the local plan file too.
 - Offer to save any URL/one-off meals that worked into coopy (see step 1 for
   how, in or out of the repo).
 - If they corrected a preference (new brand, new staple, "the kid eats more
-  now"), update household.yaml so next week starts smarter.
+  now"), update household.yaml and push it so next week starts smarter, on
+  either machine.
 - Close any browser tabs you opened.

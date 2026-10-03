@@ -8,7 +8,7 @@ import { Link } from '@astryxdesign/core/Link'
 /**
  * Install instructions for the /weekly-shop Claude Code skill. The skill file
  * is published verbatim at build time by vite/data-plugin.ts; the household
- * profile it reads is private and never on this site.
+ * profile and plans it uses are private, behind the family passcode.
  */
 
 const SKILL_PATH = '/skills/weekly-shop/SKILL.md'
@@ -45,16 +45,18 @@ export default function Skills() {
       </VStack>
 
       <VStack gap={3}>
-        <Heading level={2}>2. Add your household profile</Heading>
+        <Heading level={2}>2. Have the family passcode handy</Heading>
         <Text as="p">
           The skill reads who's eating, dietary needs, staples, and brand rules from
-          a profile that is private and never on this website. Get the file from
-          the person who set coopy up for you and save it as:
+          a household profile, and saves each week's plan. Both are private: they
+          sync through this site behind the family passcode, never in public. The
+          first time it runs, the skill asks for the passcode and keeps it in:
         </Text>
-        <CodeBlock code="~/.coopy/household.yaml" width="100%" />
+        <CodeBlock code="~/.coopy/passcode" width="100%" />
         <Text as="p" color="secondary">
-          No profile yet? The skill will offer to walk you through making one.
-          Weekly plans are saved next to it, in <Code>~/.coopy/plans/</Code>.
+          It then pulls the profile from the site, and every plan it builds shows
+          up on <Link href="/plans">Plans</Link> for the whole family. No profile
+          yet? The skill will offer to walk you through making one.
         </Text>
       </VStack>
 
