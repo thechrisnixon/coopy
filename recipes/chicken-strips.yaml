@@ -1,0 +1,88 @@
+name: Chicken Strips
+tags: [dinner, chicken, contains-dairy]
+
+time:
+  prep: 30m
+  cook: 8m
+  total: 38m
+
+sources:
+  a:
+    name: Recipe52 — Homemade Chicken Nuggets with Ground Chicken
+    url: https://recipe52.com/chicken-nugget-recipe-fried/
+    role: the recipe — ground chicken bound with milk-soaked bread, double breaded
+
+ingredients:
+  - group: Main
+    qty: 1
+    unit: slice
+    item: bread
+    discrete: true
+  - group: Main
+    qty: ¼
+    unit: cup
+    item: milk
+  - group: Main
+    qty: 500
+    unit: grams
+    item: ground chicken
+
+  - group: Seasonings
+    qty: 1
+    unit: teaspoon
+    item: onion powder (or 2 tablespoons finely chopped onion, excess water squeezed out)
+  - group: Seasonings
+    qty: ½
+    unit: teaspoon
+    item: garlic powder (or 1 teaspoon garlic paste)
+  - group: Seasonings
+    qty: 1½
+    unit: teaspoon
+    item: chicken powder (or ½ bouillon cube mixed with a little cornflour)
+  - group: Seasonings
+    qty: 2
+    unit: tablespoon
+    item: lemon juice
+  - group: Seasonings
+    qty: ½
+    unit: teaspoon
+    item: salt, more to taste
+  - group: Seasonings
+    qty: ½
+    unit: teaspoon
+    item: pepper
+
+  - group: To coat
+    qty: 2
+    unit: large
+    item: eggs, for egg wash
+    discrete: true
+  - group: To coat
+    qty: 3
+    unit: cup
+    item: bread crumb
+  - group: To coat
+    item: oil, to fry
+
+steps:
+  - Soak the bread in the milk, then mash it.
+  - >-
+    Mix the mashed bread, seasonings and lemon juice into the ground chicken and
+    chill for 15 minutes.
+  - Whisk the eggs with a little salt and pepper; spread the breadcrumbs on a plate.
+  - >-
+    With oiled hands, portion the mixture, roll it in breadcrumbs and shape into
+    strips. Dip in egg wash, then coat in breadcrumbs again.
+  - >-
+    Pan fry in a cast iron skillet in hot oil over medium heat, 2–3 minutes, then
+    turn the heat up for about 2 minutes more until golden.
+  - >-
+    Move them to the air fryer for about 5 minutes at 400°F to finish cooking
+    through and crisp up. Serve with a dip or ketchup.
+
+notes: |
+  The source makes these as nuggets (about 20 pieces per batch); we shape them
+  into strips.
+
+  Our method: pan fry in cast iron, then finish in the air fryer for about 5
+  minutes at 400°F.

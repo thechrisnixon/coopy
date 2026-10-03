@@ -1,0 +1,67 @@
+name: Whole Wheat Banana Bread
+tags: [baking, snack]
+
+time:
+  prep: 10m
+  cook: 55m
+  total: 1h 5m
+
+sources:
+  a:
+    name: The Seasoned Mom — Whole Wheat Banana Bread
+    url: https://www.theseasonedmom.com/the-perfect-whole-wheat-banana-bread/
+    role: the whole recipe — a one-bowl loaf, half whole wheat, lightened with applesauce
+
+ingredients:
+  - qty: 1 ½
+    unit: cups
+    item: mashed very ripe bananas (about 3 large or 4 smaller)
+    note: we've made it with just 1 big banana and it's fine
+  - qty: ¼
+    unit: cup
+    item: unsweetened applesauce
+  - qty: 2
+    unit: tablespoons
+    item: salted butter, melted
+  - qty: ½
+    unit: cup
+    item: sugar
+  - qty: 1
+    unit: large
+    item: egg
+    discrete: true
+  - qty: 1
+    unit: teaspoon
+    item: vanilla extract
+  - qty: 1
+    unit: teaspoon
+    item: baking soda
+  - qty: ¼
+    unit: teaspoon
+    item: salt
+  - qty: ¾
+    unit: cup
+    item: whole wheat flour
+  - qty: ¾
+    unit: cup
+    item: all-purpose flour
+
+steps:
+  - Heat the oven to 350°F and spray an 8½ × 4½-inch loaf pan.
+  - In a large bowl, stir together the bananas, applesauce and melted butter.
+  - Stir in the sugar, egg and vanilla until smooth.
+  - Sprinkle the baking soda and salt over the batter and stir them in.
+  - >-
+    Add both flours and stir just until no dry streaks remain — don't overmix.
+    Fold in any mix-ins (chocolate chips, nuts, blueberries) now.
+  - >-
+    Pour into the pan and bake 50–60 minutes, until golden and a toothpick in
+    the center comes out clean. Tent with foil if the top browns too fast.
+  - >-
+    Cool in the pan 5–10 minutes, then turn out onto a rack and cool completely
+    before slicing.
+
+notes: |
+  OK to make with 1 big banana instead of the full 1 ½ cups.
+
+  Makes one loaf, about 12 slices.

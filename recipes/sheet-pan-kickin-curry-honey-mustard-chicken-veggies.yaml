@@ -1,0 +1,101 @@
+name: Sheet Pan Kickin' Curry Honey Mustard Chicken & Veggies
+serves: 4
+tags: [dinner, sheet-pan, chicken]
+
+time:
+  prep: 15m
+  cook: 30m
+  total: 45m
+
+sources:
+  a:
+    name: Ambitious Kitchen — Sheet Pan Kickin' Curry Honey Mustard Chicken & Veggies
+    url: https://www.ambitiouskitchen.com/sheet-pan-honey-mustard-chicken/
+    role: the whole recipe — chicken, veg and the curry honey mustard
+  us:
+    name: Our changes
+    role: butternut squash with the roots, and the slow-cooking veg go in 15 minutes ahead of the chicken
+
+ingredients:
+  - group: For the chicken and veggies
+    qty: 1 ½
+    unit: pounds
+    item: boneless skinless chicken thighs
+    from: a
+  - group: For the chicken and veggies
+    qty: 2
+    unit: cups
+    item: 1-inch diced yukon gold or baby red potatoes (or sweet potatoes)
+    from: a
+  - group: For the chicken and veggies
+    item: butternut squash, cubed
+    from: us
+    note: we add butternut squash and roast it with the potatoes and carrots
+  - group: For the chicken and veggies
+    qty: 3
+    unit: large
+    item: carrots, sliced into ½ inch thick chunks (or 6 small heirloom rainbow carrots)
+    from: a
+    discrete: true
+  - group: For the chicken and veggies
+    qty: 1
+    item: yellow onion, cut into chunks
+    from: a
+    discrete: true
+  - group: For the chicken and veggies
+    qty: 8
+    unit: ounces
+    item: brussels sprouts, halved, outer yellow leaves removed
+    from: a
+
+  - group: For the kickin' curry honey mustard
+    qty: ¼
+    unit: cup
+    item: honey
+    from: a
+  - group: For the kickin' curry honey mustard
+    qty: ¼
+    unit: cup
+    item: dijon mustard (grainy is good)
+    from: a
+  - group: For the kickin' curry honey mustard
+    qty: 2
+    unit: tablespoons
+    item: olive oil
+    from: a
+  - group: For the kickin' curry honey mustard
+    qty: 1
+    unit: tablespoon
+    item: yellow curry powder
+    from: a
+  - group: For the kickin' curry honey mustard
+    qty: ¼
+    unit: teaspoon
+    item: cayenne pepper (optional, for a bit of heat)
+    from: a
+  - group: For the kickin' curry honey mustard
+    item: salt and lots of freshly ground black pepper
+    from: a
+
+steps:
+  - Heat the oven to 425°F. Line one large or two small baking sheets with parchment or foil.
+  - Whisk the honey, mustard, olive oil, curry powder, cayenne, salt and pepper in a bowl.
+  - >-
+    Toss the potatoes, butternut squash and carrots with some of the sauce, spread
+    them on the pan in their own sections, and roast for 15 minutes on their own —
+    they take longer than the chicken.
+  - >-
+    Meanwhile toss the chicken, onion and brussels sprouts with the rest of the
+    sauce. Add them to the pan in their own sections and season with more salt and
+    pepper.
+  - >-
+    Bake 25–35 minutes more, rotating the pan and stirring the veg halfway, until
+    the potatoes and carrots are fork tender and the chicken reaches 165°F.
+  - Garnish with chopped parsley if you like and serve right away.
+
+notes: |
+  We start the potatoes, butternut squash and carrots 15 minutes before the
+  chicken and brussels sprouts go in, so everything finishes together.
+
+  The cayenne is optional and the sauce isn't hot without it — leave it out
+  and this works for Coop as is.

@@ -1,0 +1,67 @@
+name: Blueberry Carrot Oatmeal Bars
+tags: [coop, snack]
+
+time:
+  prep: 10m
+  cook: 24m
+  total: 34m
+
+sources:
+  a:
+    name: Yummy Toddler Food — Easy Oatmeal Bars (with Blueberry and Carrot)
+    url: https://www.yummytoddlerfood.com/easy-oatmeal-bars/
+    role: the whole recipe — one-bowl oat bars with almond butter, maple and grated carrot
+
+ingredients:
+  - qty: ¾
+    unit: cup
+    item: quick or instant oats (or rolled oats ground in a blender)
+  - qty: ½
+    unit: cup
+    item: whole wheat flour
+  - qty: ½
+    unit: teaspoon
+    item: baking powder
+  - qty: ½
+    unit: teaspoon
+    item: cinnamon
+  - qty: ¼
+    unit: teaspoon
+    item: salt
+  - qty: ¼
+    unit: cup
+    item: melted coconut oil (or butter)
+  - qty: ¼
+    unit: cup
+    item: creamy unsweetened almond butter
+  - qty: ¼
+    unit: cup
+    item: maple syrup
+  - qty: 1
+    unit: ''
+    item: egg (optional)
+    discrete: true
+    note: without it the bars are crisp like a cookie; with it they're cakier
+  - qty: ½
+    unit: cup
+    item: grated carrot
+  - qty: ½
+    unit: cup
+    item: blueberries, halved if very large
+
+steps:
+  - >-
+    Heat the oven to 375°F. Line an 8×8-inch pan with parchment, leaving an
+    overhang on two sides to lift the bars out later.
+  - >-
+    Mix everything except the blueberries in a medium bowl (egg too, if using),
+    then gently fold in the berries.
+  - Press evenly into the pan, right to the edges.
+  - Bake 24–26 minutes, until the edges are lightly golden and set.
+  - >-
+    Let it cool completely — the fridge speeds this up. Cut warm and it
+    crumbles.
+  - Lift out and cut into 16 small squares, or larger if you like.
+
+notes: |
+  Makes 16 small bars. Good made ahead.

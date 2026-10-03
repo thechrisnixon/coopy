@@ -1,0 +1,85 @@
+name: Instant Pot Teriyaki Chicken
+serves: 4
+tags: [dinner, instant-pot, chicken, freezes-well]
+
+time:
+  prep: 10m
+  cook: 20m
+  total: 40m
+
+sources:
+  a:
+    name: Well Plated — Instant Pot Teriyaki Chicken
+    url: https://www.wellplated.com/instant-pot-teriyaki-chicken/
+    role: the whole recipe — chicken breasts pressure-cooked in a homemade teriyaki sauce, then shredded
+  us:
+    name: Our changes
+    role: a lot more ginger
+
+ingredients:
+  - qty: 1½
+    unit: pounds
+    item: boneless, skinless chicken breasts (about 3 medium)
+    from: a
+  - qty: ⅔
+    unit: cup
+    item: low-sodium soy sauce (or tamari for gluten free)
+    from: a
+  - qty: ⅓
+    unit: cup
+    item: water
+    from: a
+  - qty: 3
+    unit: tablespoons
+    item: rice vinegar
+    from: a
+  - qty: 3
+    unit: tablespoons
+    item: honey
+    from: a
+  - qty: 3
+    unit: tablespoons
+    item: brown sugar
+    from: a
+  - qty: 2
+    unit: cloves
+    item: garlic, minced
+    from: a
+    discrete: true
+  - qty: 2
+    unit: tablespoons
+    item: fresh ginger, minced
+    from: us
+    note: the recipe's 2 tablespoons is the minimum — add a lot more! We don't measure, just keep going
+  - qty: 3
+    unit: tablespoons
+    item: cornstarch, stirred with ¼ cup water
+    from: a
+  - group: For serving
+    item: green onions, thinly sliced (optional)
+    from: a
+  - group: For serving
+    item: toasted sesame seeds (optional)
+    from: a
+  - group: For serving
+    item: cooked brown rice, quinoa, noodles, cauliflower rice, or vegetables
+    from: a
+
+steps:
+  - Coat the bottom of the Instant Pot with nonstick spray and lay the chicken in it.
+  - >-
+    Whisk the soy sauce, water, rice vinegar, honey, brown sugar, garlic and
+    plenty of ginger together and pour over the chicken.
+  - >-
+    Seal and cook on HIGH pressure for 10 minutes. Let the pressure release
+    naturally for 5 minutes, then vent the rest.
+  - Lift out the chicken and shred it with two forks.
+  - >-
+    Switch to SAUTÉ, whisk in the cornstarch slurry and cook 1–2 minutes until
+    the sauce thickens.
+  - Return the chicken to the pot, toss it in the sauce, and serve over rice or whatever you like.
+
+notes: |
+  We add a lot of ginger — far more than written.
+
+  We make 3x and freeze some.

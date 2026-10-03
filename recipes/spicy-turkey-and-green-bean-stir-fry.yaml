@@ -1,0 +1,86 @@
+name: Spicy Turkey and Green Bean Stir-fry
+tags: [dinner, turkey, spicy]
+
+time:
+  prep: 5m
+  cook: 15m
+  total: 20m
+
+sources:
+  a:
+    name: Slender Kitchen — Spicy Ground Turkey and Green Bean Stir-fry
+    url: https://www.slenderkitchen.com/recipe/spicy-ground-turkey-and-green-bean-stir-fry
+    role: the whole recipe — broiled green beans, gingery turkey, quick soy-vinegar sauce
+  us:
+    name: Our changes
+    role: double the sauce and round the turkey up to 1 1/2 lb
+
+ingredients:
+  - qty: 1
+    unit: lb
+    item: green beans
+    from: a
+  - qty: 4
+    unit: tsp
+    item: coconut oil (or vegetable oil)
+    from: a
+  - qty: 1
+    unit: tbsp
+    item: sesame oil
+    from: a
+  - qty: 2
+    unit: ''
+    item: garlic cloves, minced
+    from: a
+    discrete: true
+  - qty: 2
+    unit: tbsp
+    item: ginger, minced
+    from: a
+  - qty: 1 1/2
+    unit: lb
+    item: 99% lean ground turkey
+    from: us
+    note: the recipe says 1.33 lb — we make a full 1 1/2 lb so there's more to go around
+  - qty: 8
+    unit: tbsp
+    item: low sodium soy sauce (GF if needed, or coconut aminos)
+    from: us
+    note: double the recipe's 4 tbsp — we always double the sauce
+  - qty: 4
+    unit: tbsp
+    item: rice vinegar
+    from: us
+    note: doubled from 2 tbsp, along with the rest of the sauce
+  - qty: 4
+    unit: tsp
+    item: Asian chili garlic paste (like sambal oelek)
+    from: us
+    note: doubled from 2 tsp with the rest of the sauce — this is all the heat, so it goes in after Coop's portion comes out
+
+steps:
+  - >-
+    Heat the broiler. Toss the green beans with half the coconut oil, spread
+    them on a foil-lined sheet pan and broil 6–8 minutes, shaking the pan once,
+    until tender and charred in spots.
+  - >-
+    Meanwhile, heat the rest of the coconut oil and the sesame oil in a large
+    skillet over medium-high. Add the turkey, garlic and ginger and cook,
+    breaking it up, until browned and cooked through.
+  - >-
+    Add the broiled green beans, the soy sauce and the rice vinegar and toss to
+    coat. Scoop out Coop's portion now.
+  - >-
+    Stir in the chili garlic paste and cook 1 minute. Taste and add more soy
+    sauce if it needs it.
+
+notes: |
+  Ease: 1/6 (our rating, 1 = easiest).
+
+  We double the sauce and use a full 1 1/2 lb of turkey instead of the
+  recipe's 1.33 lb — the quantities above already include both changes.
+
+  The chili garlic paste is the only heat. Pull Coop's portion after the soy
+  sauce and vinegar go in, before the chili paste.
+
+  The recipe says it serves 2–3 (1 1/2–2 cups each), before our changes.

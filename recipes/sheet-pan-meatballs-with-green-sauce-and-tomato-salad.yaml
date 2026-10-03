@@ -1,0 +1,120 @@
+name: Sheet Pan Meatballs with Green Sauce and Tomato Salad
+serves: 4
+tags: [dinner, sheet-pan, beef, contains-dairy]
+
+time:
+  prep: 15m
+  cook: 30m
+  total: 45m
+
+sources:
+  a:
+    name: Pinch of Yum — Sheet Pan Meatballs with Tomato Salad and Green Sauce
+    url: https://pinchofyum.com/sheet-pan-meatballs-with-tomato-salad-and-green-sauce
+    role: the whole recipe — one herb base that seasons the meatballs and becomes the sauce
+
+ingredients:
+  - group: Green sauce
+    qty: 2
+    item: garlic cloves
+    discrete: true
+  - group: Green sauce
+    qty: 1
+    unit: cup
+    item: parsley
+  - group: Green sauce
+    qty: 1
+    unit: cup
+    item: cilantro
+  - group: Green sauce
+    qty: 1/4
+    unit: cup
+    item: capers or pitted castelvetrano olives
+  - group: Green sauce
+    qty: 1/2
+    unit: cup
+    item: walnuts
+  - group: Green sauce
+    item: juice and zest of a lemon
+  - group: Green sauce
+    qty: 1/2
+    unit: cup
+    item: olive oil
+  - group: Green sauce
+    item: salt to taste
+
+  - group: Sheet pan meatballs
+    qty: 1
+    item: egg
+    discrete: true
+  - group: Sheet pan meatballs
+    qty: 1
+    unit: tablespoon
+    item: paprika
+  - group: Sheet pan meatballs
+    qty: 1
+    unit: teaspoon
+    item: salt
+  - group: Sheet pan meatballs
+    qty: 1
+    unit: cup
+    item: panko
+  - group: Sheet pan meatballs
+    qty: 1
+    unit: lb.
+    item: ground beef
+
+  - group: Extras
+    qty: 1
+    unit: small
+    item: baguette, for serving
+    discrete: true
+  - group: Extras
+    qty: 1
+    unit: cup
+    item: tzatziki (store-bought)
+
+  - group: Marinated tomato salad
+    qty: 1
+    unit: pound
+    item: cherry or grape tomatoes, halved or quartered
+  - group: Marinated tomato salad
+    qty: 1
+    unit: clove
+    item: garlic, finely grated
+    discrete: true
+  - group: Marinated tomato salad
+    qty: 2
+    unit: tablespoons
+    item: olive oil
+  - group: Marinated tomato salad
+    qty: 1
+    unit: tablespoon
+    item: vinegar or lemon juice
+  - group: Marinated tomato salad
+    qty: 1
+    unit: tablespoon
+    item: fresh herbs, minced (parsley)
+  - group: Marinated tomato salad
+    item: salt to taste (about 1/2 – 3/4 teaspoon kosher salt)
+  - group: Marinated tomato salad
+    qty: 1
+    item: cucumber, sliced
+    discrete: true
+
+steps:
+  - Heat the oven to 425°F.
+  - Toss the tomato salad together and add the sliced cucumber so it marinates while you cook.
+  - >-
+    Pulse the garlic, parsley, cilantro, capers and walnuts in a food processor
+    until finely chopped but not a paste.
+  - >-
+    Put half of that herb base in a large bowl with the egg, paprika, salt, panko
+    and beef and mix well. Roll into balls, set on a sheet pan, brush with olive
+    oil and bake 10–12 minutes.
+  - >-
+    Stir the lemon zest and juice, olive oil, salt and pepper into the other half
+    of the herb base (red pepper flakes optional) to make the green sauce.
+  - >-
+    Serve the meatballs over tzatziki with the bread and tomato salad, drizzled
+    with green sauce.

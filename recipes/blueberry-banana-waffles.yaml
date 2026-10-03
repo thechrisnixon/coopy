@@ -1,0 +1,53 @@
+name: Blueberry Banana Waffles
+tags: [coop, breakfast, waffles]
+
+time:
+  prep: 3m
+  cook: 5m
+  total: 8m
+
+sources:
+  a:
+    name: Feeding Tiny Bellies — Blueberry Banana Waffles
+    url: https://feedingtinybellies.com/waffles-for-babies-blueberry-banana-waffles/
+    role: the whole recipe — a blender oat batter sweetened only by banana and berries
+
+ingredients:
+  - qty: 1
+    unit: large
+    item: overripe banana
+    discrete: true
+  - qty: 1
+    unit: cup
+    item: old fashioned rolled oats
+  - qty: ½
+    unit: tsp
+    item: ground cinnamon
+  - qty: 1
+    unit: tsp
+    item: baking powder
+  - qty: 2
+    unit: ''
+    item: eggs
+    discrete: true
+  - qty: 2
+    unit: tbsp
+    item: mild-tasting oil
+  - qty: ¼
+    unit: tsp
+    item: vanilla extract
+  - qty: ⅓
+    unit: cup
+    item: blueberries
+
+steps:
+  - Heat the waffle iron.
+  - Blend everything except the blueberries until smooth.
+  - Stir in the blueberries.
+  - >-
+    Pour a small amount of batter into the iron and cook according to the
+    waffle maker's directions.
+  - Serve whole or sliced into strips.
+
+notes: |
+  Makes 8 mini waffles.

@@ -1,0 +1,125 @@
+name: Meatballs
+serves: 4
+tags: [dinner, beef, pasta, contains-dairy]
+
+time:
+  prep: 20m
+  cook: 20m
+  total: 40m
+
+sources:
+  a:
+    name: RecipeTin Eats — Italian Meatballs (Extra Soft and Juicy!)
+    url: https://www.recipetineats.com/classic-italian-meatballs-extra-soft-and-juicy/
+    role: the whole recipe — grated onion soaks the bread, which is what keeps them soft
+
+ingredients:
+  - group: Meatballs
+    qty: 1
+    unit: lightly packed cup
+    item: diced white sandwich bread, crusts removed
+  - group: Meatballs
+    qty: 1
+    unit: small
+    item: onion (brown, white or yellow)
+    discrete: true
+  - group: Meatballs
+    qty: 14
+    unit: oz
+    item: ground beef (400 g)
+  - group: Meatballs
+    qty: 3
+    unit: oz
+    item: ground pork (100 g), or more beef
+  - group: Meatballs
+    qty: 1
+    item: egg
+    discrete: true
+  - group: Meatballs
+    qty: 1/4
+    unit: cup
+    item: fresh parsley, finely chopped
+  - group: Meatballs
+    qty: 2
+    item: garlic cloves, minced
+    discrete: true
+  - group: Meatballs
+    qty: 1/4
+    unit: cup
+    item: Parmigiano-Reggiano, freshly grated
+  - group: Meatballs
+    qty: 3/4
+    unit: tsp
+    item: salt
+  - group: Meatballs
+    qty: 1/4
+    unit: tsp
+    item: black pepper
+
+  - group: Cooking meatballs & sauce
+    qty: 2.5
+    unit: tbsp
+    item: olive oil
+  - group: Cooking meatballs & sauce
+    qty: 2
+    item: garlic cloves, minced
+    discrete: true
+  - group: Cooking meatballs & sauce
+    qty: 3/4
+    unit: cup
+    item: onion, finely chopped
+  - group: Cooking meatballs & sauce
+    qty: 24
+    unit: oz
+    item: tomato passata (700 g)
+  - group: Cooking meatballs & sauce
+    qty: 1/2
+    unit: cup
+    item: water
+  - group: Cooking meatballs & sauce
+    qty: 1/2
+    unit: tsp
+    item: red pepper flakes (can omit for not spicy)
+  - group: Cooking meatballs & sauce
+    qty: 3
+    unit: tsp
+    item: dried Italian herb mix
+  - group: Cooking meatballs & sauce
+    qty: 1
+    unit: tsp
+    item: cooking salt / kosher salt
+  - group: Cooking meatballs & sauce
+    item: black pepper
+
+  - group: To serve
+    item: pasta of choice
+  - group: To serve
+    item: Parmesan
+  - group: To serve
+    item: parsley, finely chopped (optional)
+
+steps:
+  - >-
+    Grate the onion on a box grater into a large bowl — you want about ½ cup of
+    onion and juice. Stir in the bread so it soaks up the juice and falls apart,
+    and leave it 5 minutes.
+  - Add the rest of the meatball ingredients and mix well by hand.
+  - Roll heaped tablespoons into balls.
+  - >-
+    Heat 1½ tbsp oil in a large non-stick pan over medium-high and brown the
+    meatballs all over, 3–4 minutes. They should not be cooked through. Move to a
+    plate.
+  - >-
+    Add the remaining 1 tbsp oil, then the onion and garlic, and cook 2–3 minutes
+    until translucent. Add the rest of the sauce ingredients, bring to a simmer,
+    and turn to medium-low so it bubbles gently.
+  - >-
+    Return the meatballs and their juices to the sauce and cook 8–10 minutes,
+    turning occasionally. Season to taste. Cook the pasta meanwhile.
+  - Serve over pasta with extra Parmesan and parsley.
+
+notes: |
+  The meatballs we made for Coop's 2nd birthday.
+
+  The source says the red pepper flakes can be left out for a not-spicy sauce —
+  that's the move when Coop's eating.

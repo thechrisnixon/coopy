@@ -1,0 +1,77 @@
+name: Skillet Chicken Pot Pie
+serves: 6
+tags: [dinner, chicken, contains-dairy]
+
+time:
+  prep: 10m
+  total: 1h
+
+sources:
+  a:
+    name: Delish — Skillet Chicken Pot Pie
+    url: https://www.delish.com/cooking/recipe-ideas/recipes/a56617/easy-skillet-chicken-pot-pie-recipe/
+    role: the whole recipe — a one-skillet filling topped with a ring of canned biscuits
+
+ingredients:
+  - qty: 1
+    unit: tbsp.
+    item: olive oil
+  - qty: 3
+    unit: ''
+    item: boneless, skinless chicken breasts, cut into 1" chunks
+    discrete: true
+  - item: kosher salt
+  - item: freshly ground black pepper
+  - qty: 1/2
+    unit: ''
+    item: onion, chopped
+  - qty: 2
+    unit: medium
+    item: carrots, peeled and chopped
+  - qty: 2
+    unit: stalks
+    item: celery, chopped
+  - qty: 2
+    unit: tsp.
+    item: fresh thyme
+  - qty: 3
+    unit: tbsp.
+    item: flour
+  - qty: 1 1/2
+    unit: c.
+    item: frozen peas
+  - qty: 2
+    unit: c.
+    item: chicken broth
+  - qty: 2
+    unit: tbsp.
+    item: heavy cream
+  - qty: 1
+    unit: can
+    item: refrigerated biscuit dough
+    discrete: true
+  - qty: 1
+    unit: ''
+    item: egg, lightly beaten
+    discrete: true
+
+steps:
+  - >-
+    Heat the oven to 350°. Heat the oil in a large ovenproof skillet over
+    medium. Season the chicken with salt and pepper and cook 6–8 minutes, until
+    golden all over. Set it aside.
+  - >-
+    Add the onion, carrots, celery and thyme to the skillet and cook 4–5
+    minutes, until soft. Sprinkle in the flour and cook 2–3 minutes more.
+  - >-
+    Pour in the broth and simmer 8–10 minutes, until slightly thickened. Turn
+    off the heat and stir in the cream, peas and chicken.
+  - >-
+    Split each biscuit in half horizontally and lay them, overlapping, in a ring
+    around the edge of the skillet. Brush with the egg and bake 25–30 minutes,
+    until golden.
+
+notes: |
+  The recipe says it serves 6–8.
+
+  Contains dairy (heavy cream).

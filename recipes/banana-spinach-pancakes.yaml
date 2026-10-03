@@ -1,0 +1,50 @@
+name: Banana Spinach Pancakes
+tags: [coop, breakfast, pancakes, freezes-well]
+
+time:
+  prep: 2m
+  cook: 10m
+  total: 20m
+
+sources:
+  a:
+    name: Creative Nourish — Banana Spinach Pancakes Baby Recipe
+    url: https://www.creativenourish.com/spinach-pancakes/
+    role: the whole recipe, a blender batter of banana, oats, egg and spinach
+
+ingredients:
+  - qty: 1
+    unit: ripe
+    item: banana
+    discrete: true
+  - qty: ½
+    unit: cup
+    item: oats
+  - qty: 2
+    unit: ''
+    item: eggs
+    discrete: true
+  - qty: ½
+    unit: cup
+    item: raw spinach
+  - qty: 3
+    unit: tablespoon
+    item: water
+  - item: coconut or avocado oil, for cooking
+
+steps:
+  - Blend everything except the oil until smooth.
+  - >-
+    Heat a skillet over medium heat with a little oil. Drop the batter in
+    tablespoons, about 4 pancakes at a time, and cook for about 3 minutes, until
+    the edges are golden and set enough to flip easily.
+  - Flip and cook for another 2 minutes.
+  - Serve plain or with toppings — nut butter and berries both work.
+
+notes: |
+  Makes 12 mini pancakes. Freezes well.
+
+  Keeps in an airtight container in the fridge for up to 3 days, or frozen for
+  up to 3 months with parchment between layers. Reheat from frozen in a
+  180°C / 350°F oven for 5-10 minutes, in the toaster for 1 minute on the
+  defrost setting, or in the microwave for 15 seconds on defrost.

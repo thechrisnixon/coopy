@@ -1,0 +1,81 @@
+name: Broccoli Beef
+serves: 4
+tags: [dinner, beef, special]
+
+time:
+  prep: 17m
+  cook: 13m
+  total: 30m
+
+sources:
+  a:
+    name: Natasha's Kitchen — Beef and Broccoli
+    url: https://natashaskitchen.com/beef-and-broccoli/
+    role: the whole recipe — flank steak and broccoli in a ginger-garlic soy sauce
+
+ingredients:
+  - group: Beef and broccoli
+    qty: 1
+    unit: lb
+    item: flank steak, very thinly sliced into bite-sized strips
+  - group: Beef and broccoli
+    qty: 2
+    unit: Tbsp
+    item: olive oil (or vegetable oil), divided
+  - group: Beef and broccoli
+    qty: 1
+    unit: lb
+    item: fresh broccoli (about 6 cups of florets)
+  - group: Beef and broccoli
+    qty: 2
+    unit: tsp
+    item: sesame seeds, optional garnish
+
+  - group: Stir fry sauce
+    qty: 1
+    unit: tsp
+    item: fresh ginger, grated (loosely packed)
+  - group: Stir fry sauce
+    qty: 2
+    unit: tsp
+    item: garlic, grated (from 3 cloves)
+  - group: Stir fry sauce
+    qty: 1/2
+    unit: cup
+    item: hot water
+  - group: Stir fry sauce
+    qty: 6
+    unit: Tbsp
+    item: low sodium soy sauce (or GF tamari)
+  - group: Stir fry sauce
+    qty: 3
+    unit: Tbsp
+    item: packed light brown sugar
+  - group: Stir fry sauce
+    qty: 1 1/2
+    unit: Tbsp
+    item: corn starch
+  - group: Stir fry sauce
+    qty: 1/4
+    unit: tsp
+    item: black pepper
+  - group: Stir fry sauce
+    qty: 2
+    unit: Tbsp
+    item: sesame oil
+
+steps:
+  - >-
+    Get the rice going first. Freeze the steak for 30 minutes so it slices
+    easily, then cut it thinly against the grain.
+  - Stir all the sauce ingredients together until the sugar dissolves.
+  - >-
+    Heat 1 Tbsp oil over medium and cook the broccoli, partly covered and stirring
+    now and then, 4–5 minutes until bright green and crisp-tender. Remove.
+  - >-
+    Turn the heat to high, add the other 1 Tbsp oil, and sear the beef in a single
+    layer, 2 minutes per side, until cooked through.
+  - >-
+    Pour in the sauce, drop to medium-low and simmer 3–4 minutes until thick.
+    Return the broccoli and toss, adding 1–2 Tbsp water if it's too thick. Serve
+    over rice with sesame seeds.

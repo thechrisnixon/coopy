@@ -1,0 +1,126 @@
+name: Hot Honey Chicken Sausage Breakfast Sandwiches
+serves: 10
+tags: [breakfast, chicken, freezes-well, postpartum-freezer, contains-dairy]
+
+sources:
+  a:
+    name: Screenshot of a saved recipe
+    role: the whole recipe — sheet-pan eggs, hot-honey chicken sausage, English muffins
+  us:
+    name: Our changes
+    role: how we wrap, freeze and reheat them, from the postpartum freezer list
+
+ingredients:
+  - group: Eggs
+    qty: 15
+    item: eggs
+    from: a
+    discrete: true
+  - group: Eggs
+    qty: 1/2
+    unit: cup
+    item: milk
+    from: a
+    note: lactose-free milk works fine
+  - group: Eggs
+    qty: 1
+    unit: cup
+    item: scallions, chopped
+    from: a
+  - group: Eggs
+    qty: 1/2
+    unit: tsp
+    item: salt
+    from: a
+  - group: Eggs
+    item: black pepper
+    from: a
+
+  - group: Sausage
+    qty: 2
+    unit: lbs
+    item: ground chicken
+    from: a
+  - group: Sausage
+    qty: 1/3
+    unit: cup
+    item: hot honey
+    from: a
+  - group: Sausage
+    qty: 1
+    unit: tsp
+    item: garlic powder
+    from: a
+  - group: Sausage
+    qty: 1
+    unit: tsp
+    item: onion powder
+    from: a
+  - group: Sausage
+    qty: 1
+    unit: tsp
+    item: smoked paprika
+    from: a
+  - group: Sausage
+    qty: 1
+    unit: tsp
+    item: salt
+    from: a
+  - group: Sausage
+    item: black pepper, a pinch or two
+    from: a
+  - group: Sausage
+    item: olive oil, for the pan
+    from: a
+
+  - group: To assemble
+    qty: 10
+    item: English muffins
+    from: a
+    discrete: true
+  - group: To assemble
+    item: butter
+    from: a
+  - group: To assemble
+    qty: 10
+    unit: slices
+    item: sharp cheddar cheese
+    from: a
+    discrete: true
+
+steps:
+  - >-
+    Heat the oven to 350°F. Whisk the eggs with the milk, scallions, ½ tsp salt
+    and some black pepper.
+  - >-
+    Line a rimmed baking sheet with parchment and grease it. Pour in the eggs
+    and bake about 15 minutes, until fully set. Cut into circles with the rim
+    of a glass, or into rectangles for less waste — leftover egg goes into
+    burritos or to the baby.
+  - >-
+    Halve the English muffins, butter the cut sides, and bake 6–8 minutes until
+    just lightly toasted.
+  - >-
+    In a large bowl, mix the ground chicken with the hot honey, garlic powder,
+    onion powder, smoked paprika, 1 tsp salt and a pinch or two of pepper. Stop
+    as soon as it's combined — don't overmix.
+  - >-
+    Coat a large skillet with olive oil over medium heat. Form ½-inch-thick
+    patties the width of an English muffin (they shrink) and cook 5 minutes per
+    side.
+  - >-
+    Assemble: cheese on one muffin half, then the sausage, the egg, and the
+    other half.
+  - >-
+    To freeze, wrap each sandwich in plastic wrap and then foil, and bag them.
+    Reheat in the toaster oven, about 8 minutes.
+
+notes: |
+  Makes 10 sandwiches — a postpartum freezer staple.
+
+  The screenshot cuts off mid-sentence at the storage step ("wrap in parchment
+  paper and place in freezer-safe bags…"). The wrap-and-reheat step above is
+  from our postpartum freezer list, where the reheat time is still marked
+  "8 mins?" — confirm it next time and update this.
+
+  The hot honey is mild, but taste it before making Coop's.

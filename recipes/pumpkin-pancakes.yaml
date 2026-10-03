@@ -1,0 +1,57 @@
+name: Pumpkin Pancakes
+tags: [coop, breakfast, pancakes, freezes-well, contains-dairy]
+
+time:
+  prep: 5m
+  cook: 15m
+  total: 20m
+
+sources:
+  a:
+    name: Baby FoodE — The Pumpkin Pancakes I've Been Making for Years
+    url: https://babyfoode.com/blog/pumpkin-pancakes-for-baby-toddler/
+    role: the whole recipe, small pumpkin-and-egg pancakes
+
+ingredients:
+  - qty: 1/2
+    unit: cup
+    item: pumpkin puree
+  - qty: 2
+    unit: large
+    item: eggs
+    discrete: true
+  - qty: 1/2
+    unit: cup
+    item: white whole wheat flour
+  - qty: 2
+    unit: tsp
+    item: baking powder
+  - qty: 1/2
+    unit: tsp
+    item: pumpkin pie spice or cinnamon (optional)
+  - qty: 1/8
+    unit: tsp
+    item: salt
+  - qty: 2-3
+    unit: tbsp
+    item: milk (optional)
+  - item: cooking oil or spray
+
+steps:
+  - Whisk the pumpkin puree and eggs together in a medium bowl.
+  - >-
+    Add the flour, baking powder, spice and salt on top and stir gently until
+    just combined. Loosen with milk a tablespoon at a time if the batter is too
+    thick.
+  - >-
+    Oil a large non-stick skillet over medium heat. Cook 1 tablespoon of batter
+    per pancake for 3-4 minutes, until golden underneath with bubbles at the
+    edges, then flip and cook 2-3 minutes more. Repeat with the rest of the
+    batter.
+  - Serve.
+
+notes: |
+  Makes 12-14 small pancakes. Freezes well.
+
+  Keeps in an airtight container in the fridge for 5 days, or frozen for up to
+  3 months. Reheat in the microwave or toaster.

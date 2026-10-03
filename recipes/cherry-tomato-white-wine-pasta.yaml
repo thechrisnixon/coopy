@@ -1,0 +1,136 @@
+name: Cherry Tomato White Wine Pasta
+serves: 4
+tags: [dinner, chicken, contains-dairy]
+
+time:
+  prep: 5m
+  cook: 40m
+  total: 1h
+
+sources:
+  a:
+    name: NYT Cooking — Lemon and Garlic Chicken With Cherry Tomatoes (Martha Rose Shulman)
+    url: https://cooking.nytimes.com/recipes/1016151-lemon-and-garlic-chicken-with-cherry-tomatoes
+    role: the recipe — pounded lemon-garlic chicken and a white wine cherry tomato pan sauce
+  us:
+    name: Our changes
+    role: store-bought pre-marinated lemon herb chicken instead of marinating our own, and serving it over rigatoni and cauliflower gnocchi
+
+ingredients:
+  - group: Marinade
+    qty: 2
+    unit: tablespoons
+    item: extra-virgin olive oil
+    from: a
+    note: skip the whole marinade when we use pre-marinated chicken
+  - group: Marinade
+    qty: 3
+    unit: tablespoons
+    item: lemon juice
+    from: a
+  - group: Marinade
+    qty: 2
+    item: garlic cloves, minced or puréed
+    from: a
+    discrete: true
+  - group: Marinade
+    qty: 1
+    unit: teaspoon
+    item: fresh rosemary, chopped
+    from: a
+  - group: Marinade
+    item: salt and black pepper, to taste
+    from: a
+
+  - group: Chicken
+    qty: 2
+    item: boneless skinless chicken breasts, pre-marinated lemon herb
+    from: us
+    note: we buy pre-marinated lemon herb chicken to make this very easy — the source marinates plain breasts in the lines above
+    discrete: true
+  - group: Chicken
+    qty: 2
+    unit: tablespoons
+    item: all-purpose flour (or a gluten-free flour such as rice or corn flour)
+    from: a
+  - group: Chicken
+    qty: 2
+    unit: tablespoons
+    item: grapeseed, sunflower or canola oil
+    from: a
+
+  - group: Sauce
+    qty: ¼
+    unit: cup
+    item: dry white wine
+    from: a
+    note: we triple this
+  - group: Sauce
+    qty: 2
+    unit: heaped cups
+    item: cherry tomatoes (about ¾ pound)
+    from: a
+    note: we triple this
+  - group: Sauce
+    item: pinch of sugar
+    from: a
+    note: we triple this
+  - group: Sauce
+    qty: 1
+    unit: tablespoon
+    item: flat-leaf parsley, chopped
+    from: a
+  - group: Sauce
+    qty: ¼
+    unit: cup
+    item: grated Parmesan (optional)
+    from: a
+
+  - group: To serve
+    qty: 1
+    unit: lb
+    item: rigatoni
+    from: us
+    note: the sauce goes over pasta — that's why we call it pasta
+  - group: To serve
+    qty: 1
+    unit: bag
+    item: frozen cauliflower gnocchi
+    from: us
+    discrete: true
+    note: cooked separately and tossed with the rigatoni — Amanda and Cooper like the blend
+
+steps:
+  - >-
+    If marinating your own: mix the olive oil, lemon juice, garlic, rosemary, salt
+    and pepper, halve each chicken breast (thirds if 12 oz or more), and
+    refrigerate in the marinade 15–30 minutes. With pre-marinated chicken, just
+    cut it into pieces.
+  - >-
+    Pat the chicken dry. Between two oiled sheets of plastic wrap, pound each
+    piece from the center out to about ¼ inch thick, gently so it doesn't tear.
+  - Season one side with salt and pepper, dredge lightly in flour, and tap off the excess.
+  - >-
+    Turn the oven on low. Heat the oil in a wide heavy skillet over high and cook
+    the chicken a piece or two at a time without crowding, about 1½ minutes per
+    side, until browned in spots. Keep warm in the oven. Pour off all but about a
+    tablespoon of fat.
+  - >-
+    Drop the heat to medium-high, add the wine and scrape up the browned bits. Add
+    the tomatoes and cook, tossing often, until they start to shrivel and burst.
+    Add the sugar, salt and pepper and cook 5–10 minutes more, until collapsed but
+    still whole.
+  - >-
+    Meanwhile, boil the rigatoni and cook the cauliflower gnocchi separately
+    per its package, then toss them together.
+  - >-
+    Spoon the tomatoes over the chicken and pasta, scatter with parsley (and
+    Parmesan if using), and serve.
+
+notes: |
+  We call this "cherry tomato white wine pasta" — the sauce is the point for us.
+  We triple the sauce lines (wine, tomatoes, sugar) and keep the chicken as
+  written. The quantities above are the source's 1X.
+
+  Buying pre-marinated lemon herb chicken makes this very easy: skip the
+  marinade and go straight to pounding.

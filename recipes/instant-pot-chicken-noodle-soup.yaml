@@ -1,0 +1,91 @@
+name: Instant Pot Chicken Noodle Soup
+serves: 6
+tags: [dinner, soup, instant-pot, chicken]
+
+time:
+  total: 45m
+
+sources:
+  a:
+    name: Food Network Kitchen — Instant Pot Chicken Noodle Soup
+    url: https://www.foodnetwork.com/recipes/food-network-kitchen/instant-pot-chicken-noodle-soup-5195671
+    role: the whole recipe — a whole chicken pressure-cooked into its own broth
+  us:
+    name: Our changes
+    role: extra vegetables, and the noodles cooked in a separate pot so they don't drink the broth
+
+ingredients:
+  - qty: 1
+    unit: tablespoon
+    item: olive oil
+    from: a
+  - qty: 5
+    unit: medium
+    item: carrots, cut into 1/4-inch-thick diagonal slices
+    from: a
+  - qty: 3
+    unit: large stalks
+    item: celery, cut into 1/2-inch-thick slices
+    from: a
+  - qty: 2
+    unit: cloves
+    item: garlic, minced
+    from: a
+    discrete: true
+  - qty: 1
+    unit: large
+    item: yellow onion, cut into a large dice
+    from: a
+    discrete: true
+  - item: extra vegetables
+    from: us
+    note: we always add more veggies than written — no set amount, more carrots and celery or whatever's in the fridge
+  - item: kosher salt and freshly ground black pepper
+    from: a
+  - qty: 1
+    unit: ''
+    item: 3-pound whole chicken
+    from: a
+    discrete: true
+  - qty: 1
+    unit: ''
+    item: 3-inch piece ginger, halved lengthwise (optional)
+    from: a
+    discrete: true
+  - qty: 6
+    unit: ounces
+    item: extra-wide egg noodles (about 4 cups)
+    from: a
+    note: cooked in their own pot, not in the soup — see method
+  - qty: 2
+    unit: tablespoons
+    item: dill fronds, roughly chopped
+    from: a
+
+steps:
+  - >-
+    Set the Instant Pot to high sauté. Add the oil, then the carrots, celery,
+    garlic, onion, any extra vegetables, 1 tablespoon salt and some pepper.
+    Cook 4–5 minutes, until just starting to soften.
+  - >-
+    Add the whole chicken, the ginger if using, and 8 cups water. Lock the lid
+    and pressure cook on high for 20 minutes.
+  - >-
+    Quick release the pressure. Discard the ginger and lift the chicken out to
+    cool for a few minutes.
+  - >-
+    Meanwhile, cook the noodles in a separate pot of salted boiling water until
+    al dente, 5–7 minutes, and drain. (The recipe cooks them in the broth on
+    high sauté — we don't, so they don't soak up the broth, especially in
+    leftovers.)
+  - >-
+    Shred the chicken into bite-size pieces, discarding the skin and bones.
+    Season it, then return it to the pot with the dill. Adjust the seasoning.
+  - Put noodles in each bowl and ladle the soup over.
+
+notes: |
+  Ease: 3/6 (our rating, 1 = easiest).
+
+  We add extra veggies, and cook the noodles separately to save the broth —
+  noodles left in the soup soak it all up. Store leftover noodles and soup
+  separately.

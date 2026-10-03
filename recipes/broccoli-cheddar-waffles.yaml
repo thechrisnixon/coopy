@@ -1,0 +1,43 @@
+name: Broccoli Cheddar Waffles
+tags: [coop, breakfast, waffles, freezes-well, contains-dairy]
+
+time:
+  prep: 10m
+  cook: 10m
+
+sources:
+  a:
+    name: Real Little Meals — Broccoli Cheese Waffles
+    url: https://reallittlemeals.com/post/broccoli-cheese-waffle/
+    role: the whole recipe, a four-ingredient mini-waffle-iron batter
+
+ingredients:
+  - qty: 1/2
+    unit: cup
+    item: cheddar cheese, shredded
+  - qty: 1/4
+    unit: cup
+    item: broccoli, chopped
+  - qty: 1
+    unit: ''
+    item: egg
+    discrete: true
+  - qty: 1/4
+    unit: tsp
+    item: garlic powder
+
+steps:
+  - Stir the cheddar, broccoli, egg and garlic powder together in a bowl until evenly combined.
+  - Heat a mini waffle iron and lightly grease it with cooking spray or oil once hot.
+  - >-
+    Spoon in the batter and spread it evenly, close the lid, and cook for 3-4
+    minutes, until golden brown and crisp.
+  - Let cool before serving.
+
+notes: |
+  One batch makes 2 waffles. We usually make it 2× for 4 waffles, and freeze
+  the extras.
+
+  Keeps in an airtight container in the fridge for up to 3 days, or in the
+  freezer for up to 2 months. Reheat in the toaster or toaster oven until warmed
+  through.

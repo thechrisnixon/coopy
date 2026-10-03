@@ -1,0 +1,114 @@
+name: Dutch Oven Pot Roast
+serves: 6
+tags: [dinner, beef, special]
+
+time:
+  prep: 30m
+  cook: 3h 30m
+  total: 4h
+
+sources:
+  a:
+    name: Cooking For My Soul — Dutch Oven Pot Roast
+    url: https://cookingformysoul.com/dutch-oven-pot-roast/
+    role: the base roast — seared chuck braised low in red wine and broth
+  us:
+    name: Our changes
+    role: extra carrots and parsnips
+
+ingredients:
+  - qty: 3
+    unit: pounds
+    item: beef chuck roast, boneless
+    from: a
+  - qty: 1 ½
+    unit: teaspoons
+    item: kosher salt, plus more to taste
+    from: a
+  - qty: 1
+    unit: teaspoon
+    item: ground black pepper
+    from: a
+  - item: olive oil
+    from: a
+  - qty: 2
+    unit: large
+    item: yellow onions, peeled and sliced
+    from: a
+    discrete: true
+  - qty: 6
+    unit: cloves
+    item: garlic, minced
+    from: a
+    discrete: true
+  - qty: 2
+    unit: tablespoons
+    item: tomato paste
+    from: a
+  - qty: 1
+    unit: cup
+    item: red wine (or beef broth)
+    from: a
+  - qty: 2 to 3
+    unit: cups
+    item: beef broth, plus more as needed
+    from: a
+  - qty: 2
+    unit: teaspoons
+    item: Worcestershire sauce
+    from: a
+  - qty: 4
+    unit: sprigs
+    item: fresh thyme
+    from: a
+    discrete: true
+  - qty: 2
+    unit: sprigs
+    item: fresh rosemary
+    from: a
+    discrete: true
+  - qty: 2
+    item: bay leaves, dried
+    from: a
+    discrete: true
+  - qty: 1
+    unit: pound
+    item: baby carrots
+    from: a
+  - item: extra carrots
+    from: us
+    note: we add extra carrots beyond the pound
+  - item: parsnips
+    from: us
+    note: we add parsnips — they go in with the carrots and potatoes
+  - qty: 1 ½
+    unit: pounds
+    item: baby yellow potatoes
+    from: a
+  - item: chopped Italian parsley, for garnish (optional)
+    from: a
+
+steps:
+  - Heat the oven to 300°F. Season the beef generously all over with the salt and pepper.
+  - >-
+    Heat 2 tablespoons olive oil in a 7–8 quart Dutch oven over medium-high and
+    sear the beef until golden, 5–6 minutes per side. Set aside.
+  - >-
+    Turn to medium, add the onions and cook until browned, about 3 minutes,
+    scraping up the bottom. Add the garlic for 1 minute.
+  - >-
+    Add the wine to deglaze, then 2 cups broth, the Worcestershire, tomato paste,
+    thyme, rosemary and bay leaves. Bring to a low boil.
+  - >-
+    Return the beef — the liquid should come about halfway up it. Cover and bake
+    1½ hours at 300°F.
+  - >-
+    Add the carrots, parsnips and potatoes, cover again, and bake 2 hours more
+    until fork-tender, plus 15–30 minutes if you want it softer still.
+
+notes: |
+  Ease: 4/6 (our rating, 1 = easiest).
+
+  We add extra carrots and parsnips.
+
+  A special-occasion one — it needs the whole afternoon.

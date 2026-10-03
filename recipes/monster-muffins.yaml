@@ -1,0 +1,69 @@
+name: Monster Muffins (Spinach Banana)
+tags: [coop, snack, muffins]
+
+time:
+  prep: 10m
+  cook: 18m
+  total: 28m
+
+sources:
+  a:
+    name: Yummy Toddler Food — Sweet Spinach Muffins with Banana
+    url: https://www.yummytoddlerfood.com/super-green-banana-spinach-muffins/
+    role: the whole recipe — a blender batter that turns the muffins bright green
+
+ingredients:
+  - qty: 1
+    unit: cup
+    item: sliced ripe banana (about 2 small or 1 medium/large)
+  - qty: 2
+    unit: cups
+    item: lightly packed baby spinach
+  - qty: 3/4
+    unit: cup
+    item: milk (dairy or unsweetened plain nondairy)
+  - qty: 1/4
+    unit: cup
+    item: honey
+  - qty: 2
+    unit: tablespoons
+    item: melted and cooled butter (or neutral oil, or plain yogurt)
+  - qty: 2
+    unit: ''
+    item: eggs
+    discrete: true
+  - qty: 1
+    unit: teaspoon
+    item: vanilla extract
+  - qty: 1
+    unit: cup
+    item: rolled oats
+  - qty: 1
+    unit: teaspoon
+    item: baking soda
+  - qty: 1/8
+    unit: teaspoon
+    item: salt
+  - qty: 1
+    unit: cup
+    item: whole-wheat flour
+  - item: mini chocolate chips (optional)
+
+steps:
+  - Heat the oven to 375°F and grease a standard 12-cup muffin tin well.
+  - >-
+    Put everything except the flour and chocolate chips in a blender and blend
+    until completely smooth and green, like a smoothie, scraping down the
+    sides as needed.
+  - Pulse or gently stir in the flour, just until combined.
+  - >-
+    Fill the cups about three-quarters full and sprinkle with chocolate chips,
+    if using.
+  - >-
+    Bake 18–20 minutes, until firm to the touch and lightly browned at the
+    edges.
+  - Loosen with a paring knife if needed and cool on a rack.
+
+notes: |
+  Makes 12 muffins. Serve warm, at room temperature, or cold from the fridge;
+  they also keep in the freezer.

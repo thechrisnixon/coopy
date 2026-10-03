@@ -1,0 +1,46 @@
+name: Cooper's Banana Oat Cookies
+tags: [coop, snack, baking]
+
+time:
+  cook: 10m
+
+sources:
+  a:
+    name: "@nourishmovelove on Instagram — Easy Healthy Cookie"
+    role: the whole recipe — banana, oats and almond butter; no egg or flour, so the dough is safe to taste raw
+
+ingredients:
+  - qty: 2
+    unit: large
+    item: ripe bananas, mashed
+    discrete: true
+  - qty: 2
+    unit: cups
+    item: rolled oats
+  - qty: 1
+    unit: cup
+    item: almond butter (the drippy kind), or another nut or seed butter
+  - group: Optional
+    qty: 1
+    unit: scoop
+    item: whey protein powder
+  - group: Optional
+    qty: 1 tbsp – 1/4 cup
+    item: ground flaxseed
+  - group: Optional
+    qty: 1/2
+    unit: cup
+    item: chocolate chips
+  - group: Optional
+    item: sea salt, to taste
+
+steps:
+  - Heat the oven to 350°F.
+  - Mix everything together until a dough forms.
+  - Scoop, flatten slightly, and bake about 10 minutes.
+
+notes: |
+  A snack Cooper loves. No egg or flour, so he can help and taste the dough.
+
+  The bananas need to be properly ripe (spotty). Delivery bananas often arrive
+  green, so buy them a few days before baking.

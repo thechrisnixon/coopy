@@ -1,0 +1,126 @@
+name: Instant Pot Beef Stew
+tags: [dinner, stew, instant-pot, beef]
+
+time:
+  prep: 10m
+  cook: 1h 20m
+  total: 1h 30m
+
+sources:
+  a:
+    name: Well Plated — Instant Pot Beef Stew
+    url: https://www.wellplated.com/instant-pot-beef-stew/
+    role: the base stew — browned chuck, pressure cooked, thickened with cornstarch
+  us:
+    name: Our changes
+    role: extra carrots, plus parsnips and diced tomatoes for Chris
+
+ingredients:
+  - qty: 2
+    unit: pounds
+    item: boneless chuck roast
+    from: a
+  - qty: 3
+    unit: tablespoons
+    item: extra-virgin olive oil, divided
+    from: a
+  - qty: 2
+    unit: teaspoons
+    item: kosher salt, divided
+    from: a
+  - qty: ½
+    unit: teaspoon
+    item: ground black pepper, divided
+    from: a
+  - qty: 1
+    unit: large
+    item: yellow onion
+    from: a
+    discrete: true
+  - qty: 2
+    unit: cloves
+    item: garlic
+    from: a
+    discrete: true
+  - qty: 1
+    unit: pound
+    item: carrots (about 6 medium)
+    from: a
+  - item: extra carrots
+    from: us
+    note: we add extra carrots on top of the pound
+  - item: parsnips
+    from: us
+    note: added for Chris — they go in with the carrots
+  - qty: 1
+    unit: large
+    item: russet potato
+    from: a
+    discrete: true
+  - qty: 1
+    unit: can
+    item: low-sodium beef broth (14.5 ounces)
+    from: a
+    discrete: true
+  - qty: 1
+    unit: tablespoon
+    item: Worcestershire sauce
+    from: a
+  - qty: 1
+    item: bay leaf
+    from: a
+    discrete: true
+  - qty: 1
+    unit: teaspoon
+    item: dried thyme
+    from: a
+  - qty: 1
+    unit: can
+    item: no salt added tomato sauce (8 ounces)
+    from: a
+    discrete: true
+  - item: diced tomatoes
+    from: us
+    note: added for Chris — layered on top with the tomato sauce
+  - qty: 2
+    unit: tablespoons
+    item: cornstarch
+    from: a
+  - qty: 2
+    unit: tablespoons
+    item: water
+    from: a
+  - qty: 1 ½
+    unit: cups
+    item: fresh or frozen peas (no need to thaw)
+    from: a
+  - item: fresh parsley or rosemary, optional for serving
+    from: a
+
+steps:
+  - >-
+    Cut the chuck into 1½-inch cubes, trimming large pieces of fat, and season
+    with some of the salt and pepper.
+  - >-
+    On Sauté (high), heat some of the oil and brown the beef in batches, 4–5
+    minutes per side. Set aside. Prep the vegetables while it browns.
+  - >-
+    Add the remaining oil and the onion and cook until soft, about 6 minutes. Add
+    the garlic for 30 seconds.
+  - Pour in the broth and scrape the bottom thoroughly to lift every browned bit.
+  - >-
+    Add the carrots, parsnips, potato, Worcestershire, bay leaf, thyme and the
+    beef. Pour the tomato sauce and diced tomatoes over the top and don't stir.
+  - >-
+    Seal and cook on high pressure for 35 minutes, then let the pressure release
+    naturally for 10 minutes before venting.
+  - >-
+    Whisk the cornstarch with the water and stir it in, then add the peas. Serve
+    hot with parsley.
+
+notes: |
+  Takes a while from start to finish — we start at 3:15 for a 5:30 dinner.
+
+  We add extra carrots, plus parsnips and diced tomatoes for Chris.
+
+  The source yields about 7 cups.

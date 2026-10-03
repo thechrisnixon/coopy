@@ -1,0 +1,66 @@
+name: Zucchini Butter Spaghetti
+tags: [dinner, pasta, contains-dairy]
+
+time:
+  total: 25m
+
+sources:
+  a:
+    name: Smitten Kitchen — Zucchini Butter Spaghetti
+    url: https://smittenkitchen.com/2021/06/zucchini-butter-spaghetti/
+    role: the whole recipe — grated zucchini cooked down in butter into a spreadable sauce
+
+ingredients:
+  - qty: 1 1/2
+    unit: teaspoons
+    item: kosher salt, plus more for the pasta water and to taste
+  - qty: 8
+    unit: ounces
+    item: spaghetti (225 grams)
+  - qty: 1
+    unit: cup
+    item: pasta water, reserved (235 ml)
+  - qty: 1 1/4
+    unit: pounds
+    item: zucchini, trimmed and coarsely grated (570 grams)
+  - qty: 6
+    unit: tablespoons
+    item: unsalted butter (85 grams)
+  - qty: 4
+    unit: ''
+    item: garlic cloves, minced
+    discrete: true
+  - qty: 1/4
+    unit: teaspoon
+    item: red pepper flakes, or more to taste
+  - qty: 1/2
+    unit: cup
+    item: grated parmesan (45 grams)
+  - item: handful of fresh basil leaves, cut into thin ribbons
+
+steps:
+  - >-
+    Cook the spaghetti in well-salted boiling water until 1 minute short of
+    done. Save 1 cup of the pasta water, then drain.
+  - >-
+    Meanwhile, melt the butter in a large deep skillet over medium-high. Add
+    the garlic and stir for 1 minute.
+  - >-
+    Add the zucchini, salt and red pepper flakes. Cook 13–15 minutes, stirring
+    now and then, until the liquid has cooked off and the zucchini is soft.
+  - >-
+    Keep cooking 2 more minutes, stirring often and breaking the zucchini up
+    with the spoon until it's almost a spread.
+  - >-
+    Add 1/2 cup of the pasta water to loosen the pan, then add the drained
+    spaghetti and cook together for 2 minutes, tossing with tongs so the
+    zucchini clings to the strands. Add more pasta water if it's tight.
+  - >-
+    Toss in half the parmesan and basil, then top with the rest to serve.
+
+notes: |
+  We serve it with simple chicken on the side.
+
+  Contains dairy (butter and parmesan).
+
+  The recipe says it serves 2 generously or 4 lightly.

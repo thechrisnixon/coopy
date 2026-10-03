@@ -1,0 +1,125 @@
+name: Chicken Lettuce Wraps
+serves: 4
+tags: [dinner, chicken]
+
+time:
+  prep: 30m
+  cook: 20m
+  total: 50m
+
+sources:
+  a:
+    name: The Kitchn — Chicken Lettuce Wraps
+    url: https://www.thekitchn.com/how-to-make-chicken-lettuce-wraps-cooking-lessons-from-the-kitchn-220124
+    role: the whole recipe — hoisin sauce, ground chicken, mushrooms and water chestnuts
+  us:
+    name: Our changes
+    role: more vegetables — a bell pepper and a zucchini cooked in with the mushrooms
+
+ingredients:
+  - group: Sauce
+    qty: 3 to 5
+    unit: tablespoons
+    item: hoisin sauce
+    from: a
+    note: start with 3, add more at the end to taste
+  - group: Sauce
+    qty: 2
+    unit: tablespoons
+    item: soy sauce
+    from: a
+  - group: Sauce
+    qty: 2
+    unit: tablespoons
+    item: rice vinegar
+    from: a
+  - group: Sauce
+    qty: 1
+    unit: teaspoon
+    item: toasted sesame oil
+    from: a
+  - group: Sauce
+    qty: 1
+    unit: teaspoon
+    item: cornstarch (optional, for a glossier sauce)
+    from: a
+
+  - qty: 1
+    unit: pound
+    item: ground chicken
+    from: a
+  - qty: 2
+    unit: teaspoons
+    item: vegetable oil, divided
+    from: a
+  - qty: 8
+    unit: ounces
+    item: white button or cremini mushrooms, finely diced
+    from: a
+  - qty: 1
+    item: bell pepper, thinly sliced
+    from: us
+    discrete: true
+    note: our addition — goes in with the mushrooms
+  - qty: 1
+    item: zucchini, diced
+    from: us
+    discrete: true
+    note: our addition — goes in with the mushrooms
+  - qty: 1
+    unit: (8-ounce) can
+    item: water chestnuts, drained and finely chopped
+    from: a
+    discrete: true
+  - qty: 3
+    unit: cloves
+    item: garlic, minced
+    from: a
+    discrete: true
+  - qty: 1
+    unit: tablespoon
+    item: fresh ginger, peeled and minced
+    from: a
+  - qty: 1/2
+    unit: cup
+    item: scallions, thinly sliced (about 6), divided
+    from: a
+
+  - group: To serve
+    qty: 2
+    unit: small heads
+    item: Bibb or butter lettuce
+    from: a
+    discrete: true
+  - group: To serve
+    item: sriracha or red pepper flakes, on the side
+    from: a
+
+steps:
+  - >-
+    Whisk 3 tbsp hoisin with the soy sauce, rice vinegar and sesame oil (and
+    the cornstarch, if using). Keep it by the stove.
+  - >-
+    Heat 1 tsp oil in a large skillet over medium. Cook the chicken, breaking
+    it into small pieces, until no longer pink, 7–8 minutes. Move it to a bowl.
+  - >-
+    Add the remaining 1 tsp oil to the pan. Cook the mushrooms, bell pepper and
+    zucchini, stirring now and then, until tender, 4–5 minutes.
+  - >-
+    Stir in the water chestnuts, garlic and ginger and cook until fragrant,
+    about 30 seconds.
+  - >-
+    Return the chicken with half the scallions, add the sauce, and cook until
+    bubbling and warmed through, 30–60 seconds. Taste and add more hoisin if it
+    needs it.
+  - >-
+    Serve with the lettuce leaves, the rest of the scallions, and sriracha or
+    pepper flakes on the side, for spooning into leaves at the table.
+
+notes: |
+  We add a thinly sliced bell pepper and a zucchini along with the mushrooms.
+
+  The heat is all at the table, so the filling is Coop-friendly as is.
+
+  The filling keeps 4 days in the fridge. Reheat just what you need, with a
+  splash of broth if it looks dry.

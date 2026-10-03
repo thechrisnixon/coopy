@@ -1,0 +1,77 @@
+name: Healthy Turkey Chili
+serves: 6
+tags: [dinner, turkey]
+
+time:
+  prep: 10m
+  cook: 45m
+  total: 55m
+
+sources:
+  a:
+    name: Ambitious Kitchen — Seriously, The Best Healthy Turkey Chili
+    url: https://www.ambitiouskitchen.com/seriously-the-best-healthy-turkey-chili/
+    role: the whole recipe — lean turkey, kidney beans and corn in a tomato chili
+
+ingredients:
+  - qty: 2
+    unit: teaspoons
+    item: olive oil
+  - qty: 1
+    unit: ''
+    item: yellow onion, chopped
+    discrete: true
+  - qty: 3
+    unit: ''
+    item: garlic cloves, minced
+    discrete: true
+  - qty: 1
+    unit: medium
+    item: red bell pepper, chopped
+  - qty: 1
+    unit: pound
+    item: extra lean ground turkey or chicken (99%)
+  - qty: 4
+    unit: tablespoons
+    item: chili powder
+  - qty: 2
+    unit: teaspoons
+    item: ground cumin
+  - qty: 1
+    unit: teaspoon
+    item: dried oregano
+  - qty: 1/4
+    unit: teaspoon
+    item: cayenne pepper
+  - qty: 1/2
+    unit: teaspoon
+    item: salt, plus more to taste
+  - qty: 1
+    unit: 28-ounce can
+    item: diced or crushed tomatoes
+    discrete: true
+  - qty: 1 1/4
+    unit: cups
+    item: chicken broth
+  - qty: 2
+    unit: 15 oz cans
+    item: dark red kidney beans, rinsed and drained
+    discrete: true
+  - qty: 1
+    unit: 15 oz can
+    item: sweet corn, rinsed and drained
+    discrete: true
+  - group: Toppings
+    item: cheese, avocado, tortilla chips, cilantro, sour cream
+
+steps:
+  - >-
+    Heat the oil in a large pot over medium-high. Cook the onion, garlic and
+    bell pepper 5–7 minutes, until softened.
+  - >-
+    Add the turkey and cook, breaking it up, until cooked through. Stir in the
+    chili powder, cumin, oregano, cayenne and salt for about 20 seconds.
+  - >-
+    Add the tomatoes, broth, beans and corn. Bring to a boil, then lower the
+    heat and simmer 30–45 minutes, until thickened. Adjust the seasoning.
+  - Serve with whatever toppings you like.

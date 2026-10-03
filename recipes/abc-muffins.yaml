@@ -1,0 +1,75 @@
+name: ABC Muffins (Apple, Banana & Carrot)
+tags: [coop, snack, muffins, freezes-well]
+
+time:
+  prep: 10m
+  cook: 16m
+  total: 26m
+
+sources:
+  a:
+    name: Yummy Toddler Food — ABC Baby Muffins (Apple, Banana and Carrot!)
+    url: https://www.yummytoddlerfood.com/baby-muffins/
+    role: the whole recipe — extra-moist mini muffins with three kinds of produce
+
+ingredients:
+  - qty: 1
+    unit: cup
+    item: mashed very ripe banana (about 2–3 small bananas)
+  - qty: ½
+    unit: cup
+    item: shredded apple (about 1 small apple)
+  - qty: ¼
+    unit: cup
+    item: shredded carrot (about 1 small carrot)
+  - qty: ¾
+    unit: cup
+    item: milk
+  - qty: ¼
+    unit: cup
+    item: melted unsalted butter, slightly cooled
+  - qty: 1
+    unit: large
+    item: egg
+    discrete: true
+  - qty: 1
+    unit: teaspoon
+    item: pure vanilla extract
+  - qty: 1
+    unit: cup
+    item: whole wheat flour
+  - qty: ½
+    unit: cup
+    item: rolled oats
+  - qty: 1
+    unit: teaspoon
+    item: cinnamon
+  - qty: 1
+    unit: teaspoon
+    item: baking powder
+  - qty: ½
+    unit: teaspoon
+    item: baking soda
+  - qty: ⅛
+    unit: teaspoon
+    item: salt
+
+steps:
+  - Heat the oven to 375°F and spray a 24-cup mini muffin pan.
+  - >-
+    Stir the banana, apple, carrot, milk, butter, egg and vanilla together in a
+    medium bowl.
+  - >-
+    Gently but thoroughly stir in the flour, oats, cinnamon, baking powder,
+    baking soda and salt.
+  - Fill each mini cup to the rim — about 2 tablespoons of batter each.
+  - Bake 16–20 minutes, until a tester comes out clean (the source does 18).
+  - >-
+    Cool a few minutes in the pan, then move to a rack. Dice for little hands
+    or serve whole.
+
+notes: |
+  Makes 24 mini muffins (or 12 regular). They freeze well.
+
+  They're meant to be moister inside than a normal muffin, so they're easy for
+  a baby to chew.

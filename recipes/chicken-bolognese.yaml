@@ -1,0 +1,121 @@
+name: Chicken Bolognese
+serves: 4
+tags: [dinner, chicken, pasta, freezes-well, contains-dairy, spicy, postpartum-freezer]
+
+time:
+  total: 1h 40m
+
+sources:
+  a:
+    name: Food Network — Katie Lee Biegel's Chicken Bolognese
+    url: https://www.foodnetwork.com/recipes/katie-lee/chicken-bolognese-9493573
+    role: the whole sauce — evaporated milk and white wine instead of the classic cream and red
+  us:
+    name: Our changes
+    role: Calabrian chilis stirred in at the end, after Coop's portion comes out
+
+ingredients:
+  - qty: 2
+    unit: tablespoons
+    item: olive oil
+    from: a
+  - qty: 1
+    unit: pound
+    item: ground chicken breast (or a mix of dark and white)
+    from: a
+  - qty: 1
+    unit: large
+    item: carrot, finely chopped
+    from: a
+    discrete: true
+  - qty: 1/2
+    item: onion, finely chopped
+    from: a
+  - qty: 2
+    unit: cloves
+    item: garlic, minced
+    from: a
+    discrete: true
+  - qty: 1
+    unit: tablespoon
+    item: chili powder
+    from: a
+  - qty: 1
+    unit: teaspoon
+    item: Italian seasoning
+    from: a
+  - qty: 1
+    item: bay leaf
+    from: a
+    discrete: true
+  - qty: 1
+    unit: 6-ounce can
+    item: tomato paste
+    from: a
+    discrete: true
+  - qty: 1/2
+    unit: cup
+    item: dry white wine
+    from: a
+  - qty: 1/2
+    unit: cup
+    item: evaporated milk
+    from: a
+  - qty: 2
+    unit: 8-ounce cans
+    item: tomato sauce (or one 16-ounce can)
+    from: a
+    discrete: true
+  - qty: 1 1/2
+    unit: teaspoons
+    item: kosher salt, plus more as needed
+    from: a
+  - qty: 1/2
+    unit: teaspoon
+    item: freshly ground black pepper
+    from: a
+  - item: Calabrian chilis, chopped
+    from: us
+    note: stirred in at the very end, after we've taken Coop's portion out — he doesn't do spicy
+  - qty: 1
+    unit: pound
+    item: rigatoni
+    from: a
+  - qty: 2
+    unit: tablespoons
+    item: fresh parsley, chopped
+    from: a
+  - item: grated Parmesan, for serving
+    from: a
+
+steps:
+  - >-
+    Heat the oil in a large pot over medium-high and brown the chicken, breaking
+    it up, 5–7 minutes. Add the carrot and onion and cook until tender, 7–8
+    minutes.
+  - >-
+    Add the garlic, chili powder, Italian seasoning and bay leaf and toast 1–2
+    minutes, then stir in the tomato paste and cook until it darkens, 1–2 minutes.
+  - >-
+    Pour in the wine and simmer until it's absorbed. Add the evaporated milk and
+    stir constantly until it cooks down.
+  - >-
+    Add the tomato sauce, salt, pepper and ½ cup water. Cover and simmer over
+    medium, stirring now and then, until thick, 45 minutes to 1 hour. Fish out
+    the bay leaf.
+  - >-
+    Take out Coop's portion now, then stir the Calabrian chilis into the rest of
+    the sauce.
+  - >-
+    Meanwhile cook the rigatoni in salted water until al dente, saving some pasta
+    water. Toss the pasta with the sauce, loosening with pasta water as needed.
+    Top with parsley and serve with Parmesan.
+
+notes: |
+  Pretty good! We triple the sauce and freeze it — it's on our postpartum
+  freezer list.
+
+  When we triple, we only use about 2/3 of a bag of pasta for two meals.
+
+  Coop's portion comes out before the Calabrian chilis go in; the chili powder
+  in the base isn't hot.

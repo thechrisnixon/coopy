@@ -1,0 +1,75 @@
+name: Cottage Cheese Egg Bake
+serves: 9
+tags: [coop, breakfast, contains-dairy]
+
+time:
+  prep: 5m
+  cook: 55m
+  total: 1h
+
+sources:
+  a:
+    name: The Balanced Nutritionist — Cottage Cheese Egg Bake (High Protein)
+    url: https://thebalancednutritionist.com/cottage-cheese-egg-bake/
+    role: the whole recipe — blended eggs and cottage cheese baked with turkey sausage and peppers
+
+ingredients:
+  - qty: 12
+    unit: ''
+    item: eggs
+    discrete: true
+  - qty: 12-16
+    unit: oz
+    item: turkey breakfast sausage (ground, removed from casing, or chopped pre-cooked)
+  - qty: 1
+    unit: tsp
+    item: olive oil
+  - qty: 16
+    unit: oz
+    item: cottage cheese
+  - qty: 1.5
+    unit: cups
+    item: sharp cheddar cheese, shredded
+  - qty: 1/2
+    unit: ''
+    item: sweet onion, diced small
+  - qty: 2
+    unit: cloves
+    item: garlic, minced
+    discrete: true
+  - qty: 1
+    unit: ''
+    item: green bell pepper, diced small
+    discrete: true
+  - qty: 1
+    unit: ''
+    item: red bell pepper, diced small
+    discrete: true
+  - qty: 1/4
+    unit: tsp
+    item: salt
+  - qty: 1/4
+    unit: tsp
+    item: black pepper
+
+steps:
+  - Heat the oven to 350°.
+  - >-
+    Heat the oil in a medium skillet over medium and cook the sausage through,
+    about 10 minutes. Move it to a plate.
+  - >-
+    In the same skillet, sauté the onion, garlic and peppers 4–5 minutes until
+    soft. Take off the heat.
+  - >-
+    Blend the eggs, cottage cheese, cheddar, salt and pepper until smooth — an
+    immersion blender or a regular one both work. Blending is what keeps it
+    fluffy.
+  - Stir in the sausage and vegetables.
+  - >-
+    Pour into a greased 9×13" dish and bake about 40–50 minutes, until firm in
+    the middle. Cover with foil for the last 10 minutes if the top browns too
+    much.
+  - Cool at least 10 minutes, then cut into 9–12 pieces.
+
+notes: |
+  The recipe makes 9–12 pieces. A good make-ahead breakfast.
