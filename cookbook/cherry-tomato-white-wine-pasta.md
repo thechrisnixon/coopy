@@ -30,8 +30,8 @@ Blended from 2 sources. Ingredients below are marked with the letter of the sour
 
 ### Chicken
 
-- **2** boneless skinless chicken breasts, pre-marinated lemon herb — *B*
-  - *we buy pre-marinated lemon herb chicken to make this very easy — the source marinates plain breasts in the lines above*
+- **2** boneless skinless chicken, pre-marinated lemon herb (we use thighs) — *B*
+  - *we buy Whole Foods' Kitchens lemon herb boneless thighs (2 packs) to make this very easy — the source marinates plain breasts in the lines above*
 - **2 tablespoons** all-purpose flour (or a gluten-free flour such as rice or corn flour) — *A*
 - **2 tablespoons** grapeseed, sunflower or canola oil — *A*
 

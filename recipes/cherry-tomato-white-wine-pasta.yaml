@@ -44,9 +44,9 @@ ingredients:
 
   - group: Chicken
     qty: 2
-    item: boneless skinless chicken breasts, pre-marinated lemon herb
+    item: boneless skinless chicken, pre-marinated lemon herb (we use thighs)
     from: us
-    note: we buy pre-marinated lemon herb chicken to make this very easy — the source marinates plain breasts in the lines above
+    note: we buy Whole Foods' Kitchens lemon herb boneless thighs (2 packs) to make this very easy — the source marinates plain breasts in the lines above
     discrete: true
   - group: Chicken
     qty: 2
