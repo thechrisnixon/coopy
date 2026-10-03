@@ -15,3 +15,7 @@ ignoredBuiltDependencies:
 # already recorded, and the pre-script install check just re-reports it.
 strictDepBuilds: false
 verifyDepsBeforeRun: false
+allowBuilds:
+  '@astryxdesign/cli': set this to true or false
+  '@astryxdesign/core': set this to true or false
+  esbuild: set this to true or false
