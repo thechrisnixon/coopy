@@ -6,6 +6,7 @@ import { recipeToMarkdown } from '../lib/markdown'
 import { downloadText } from '../lib/download'
 import IngredientList from '../components/IngredientList'
 import Scaler from '../components/Scaler'
+import IngredientCluster from '../components/ingredient-art/IngredientArt'
 import './Recipe.css'
 
 export default function Recipe() {
@@ -39,6 +40,7 @@ export default function Recipe() {
       <Link to="/" className="backlink">← All recipes</Link>
 
       <header className="recipe__head">
+        <IngredientCluster recipe={recipe} size="lg" />
         <h1 className="display recipe__title">{recipe.name}</h1>
 
         <div className="recipe__meta eyebrow">

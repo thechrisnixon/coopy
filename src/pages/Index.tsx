@@ -4,6 +4,7 @@ import { TextInput } from '@astryxdesign/core/TextInput'
 import { recipes, allTags, searchRecipes } from '../lib/recipes'
 import { cookbookToMarkdown } from '../lib/markdown'
 import { downloadText } from '../lib/download'
+import IngredientCluster from '../components/ingredient-art/IngredientArt'
 import './Index.css'
 
 export default function Index() {
@@ -87,33 +88,38 @@ export default function Index() {
             return (
               <li key={r.slug} className="entry">
                 <Link to={`/r/${r.slug}`} className="entry__link">
-                  <h2 className="display entry__name">{r.name}</h2>
+                  {/* A glance-able fingerprint of the main ingredients. */}
+                  <IngredientCluster recipe={r} />
 
-                  <div className="entry__meta eyebrow">
-                    {r.serves && <span>Serves {r.serves}</span>}
-                    {r.time?.total && <span>{r.time.total}</span>}
-                    <span>
-                      {r.ingredients.length} ingredient
-                      {r.ingredients.length === 1 ? '' : 's'}
-                    </span>
-                    {/* The blend badge is the whole reason this app exists —
-                        surface it in the index, not just on the detail page. */}
-                    {sourceCount > 1 && (
-                      <span className="entry__blend">
-                        Blend of {sourceCount}
+                  <div className="entry__body">
+                    <h2 className="display entry__name">{r.name}</h2>
+
+                    <div className="entry__meta eyebrow">
+                      {r.serves && <span>Serves {r.serves}</span>}
+                      {r.time?.total && <span>{r.time.total}</span>}
+                      <span>
+                        {r.ingredients.length} ingredient
+                        {r.ingredients.length === 1 ? '' : 's'}
                       </span>
+                      {/* The blend badge is the whole reason this app exists —
+                          surface it in the index, not just on the detail page. */}
+                      {sourceCount > 1 && (
+                        <span className="entry__blend">
+                          Blend of {sourceCount}
+                        </span>
+                      )}
+                    </div>
+
+                    {r.tags && (
+                      <div className="entry__tags">
+                        {r.tags.map((t) => (
+                          <span key={t} className="entry__tag">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
                     )}
                   </div>
-
-                  {r.tags && (
-                    <div className="entry__tags">
-                      {r.tags.map((t) => (
-                        <span key={t} className="entry__tag">
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  )}
                 </Link>
               </li>
             )

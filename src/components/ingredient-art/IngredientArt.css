@@ -1,0 +1,38 @@
+.ingredient-art {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Each cartoon sits on a small paper-tinted disc ringed in the page colour,
+   so overlapping neighbours stay legible — the avatar-stack trick. */
+.ingredient-cluster {
+  --art-size: var(--spacing-9);
+  --art-overlap: calc(var(--art-size) * -0.2);
+
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ingredient-cluster--lg {
+  --art-size: var(--spacing-12);
+}
+
+.ingredient-cluster__item {
+  box-sizing: border-box;
+  width: var(--art-size);
+  height: var(--art-size);
+  padding: calc(var(--art-size) * 0.1);
+  border-radius: var(--radius-full);
+  background: var(--color-background-surface);
+  box-shadow: 0 0 0 var(--spacing-0-5) var(--color-background-body);
+  transition:
+    margin 0.2s ease,
+    transform 0.2s ease;
+}
+
+.ingredient-cluster__item + .ingredient-cluster__item {
+  margin-left: var(--art-overlap);
+}

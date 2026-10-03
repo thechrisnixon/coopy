@@ -102,7 +102,13 @@
 }
 
 .entry__link {
-  display: block;
+  /* Text on the left, the ingredient cluster in a right-hand column. The
+     cluster is first in the DOM so that, on phones, it can simply stack
+     above the name without reordering. */
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: var(--gutter);
   padding: 2rem 0;
   text-decoration: none;
   color: inherit;
@@ -111,6 +117,35 @@
 
 .entry__link:hover {
   padding-left: 0.75rem;
+}
+
+.entry__link > .ingredient-cluster {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.entry__body {
+  grid-column: 1;
+  grid-row: 1;
+  min-width: 0;
+}
+
+/* On hover the cluster fans out a touch, in step with the row's nudge. */
+.entry__link:hover .ingredient-cluster__item + .ingredient-cluster__item {
+  margin-left: var(--spacing-1);
+}
+
+@media (max-width: 36rem) {
+  .entry__link {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--spacing-3);
+  }
+
+  .entry__link > .ingredient-cluster,
+  .entry__body {
+    grid-column: 1;
+    grid-row: auto;
+  }
 }
 
 .entry__name {

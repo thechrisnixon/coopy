@@ -3,6 +3,11 @@
   border-bottom: var(--rule-heavy);
 }
 
+/* The same ingredient fingerprint as the index row, larger, as a kicker. */
+.recipe__head > .ingredient-cluster {
+  margin-bottom: var(--spacing-5);
+}
+
 .recipe__title {
   font-size: var(--display-xl);
   max-width: 18ch;
