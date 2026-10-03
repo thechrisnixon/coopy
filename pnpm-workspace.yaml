@@ -1,21 +1,16 @@
 # pnpm 11 reads project settings from this file, not the "pnpm" field in
 # package.json.
 
-# esbuild links a native binary and needs its install script to run.
-onlyBuiltDependencies:
-  - esbuild
-
-# Astryx ships prebuilt dist output; its postinstall scripts only print setup
-# notices, so skipping them keeps installs deterministic here and on Vercel.
-ignoredBuiltDependencies:
-  - "@astryxdesign/cli"
-  - "@astryxdesign/core"
+# Which dependencies may run install scripts:
+# - esbuild links a native binary and needs its install script to run.
+# - Astryx ships prebuilt dist output; its postinstall scripts only print setup
+#   notices, so skipping them keeps installs deterministic here and on Vercel.
+allowBuilds:
+  esbuild: true
+  '@astryxdesign/cli': false
+  '@astryxdesign/core': false
 
 # Don't fail the build over the skipped-scripts notice above — the decision is
 # already recorded, and the pre-script install check just re-reports it.
 strictDepBuilds: false
 verifyDepsBeforeRun: false
-allowBuilds:
-  '@astryxdesign/cli': set this to true or false
-  '@astryxdesign/core': set this to true or false
-  esbuild: set this to true or false
