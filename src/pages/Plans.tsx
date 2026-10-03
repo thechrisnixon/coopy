@@ -76,7 +76,7 @@ export default function Plans() {
               label={p.week ? `${p.week} (built ${p.id})` : p.id}
               description={p.meals.map((m) => m.name).join(' · ') || 'No meals yet'}
               startContent={<StatusDot {...STATUS[p.status]} />}
-              endContent={<Text hasTabularNumbers>{money(p.order?.total ?? subtotal(p))}</Text>}
+              endContent={<Text hasTabularNumbers>{money(p.order?.total ?? p.order?.subtotal ?? subtotal(p))}</Text>}
             />
           ))}
         </List>
@@ -85,6 +85,16 @@ export default function Plans() {
   )
 }
 
+/**
+ * Before the order is placed there's no real total yet: the cart subtotal
+ * plus the planned tip is the honest estimate (tax and bag fees come later).
+ */
+function estTotal(plan: LoadedPlan): number | undefined {
+  const sub = plan.order?.subtotal
+  return sub === undefined ? undefined : sub + (plan.order?.tip ?? 0)
+}
+
+/** Sum of priced lines — only a fallback, since not every line has a price. */
 function subtotal(plan: LoadedPlan): number | undefined {
   const priced = plan.items.filter((i) => i.price !== undefined)
   if (!priced.length) return undefined
@@ -137,7 +147,9 @@ function PlanDetail({ plan }: { plan: LoadedPlan }) {
           {money(plan.order?.subtotal ?? subtotal(plan))}
         </MetadataListItem>
         <MetadataListItem label="Tip">{money(plan.order?.tip)}</MetadataListItem>
-        <MetadataListItem label="Total">{money(plan.order?.total)}</MetadataListItem>
+        <MetadataListItem label={plan.order?.total ? 'Total' : 'Est. total'}>
+          {money(plan.order?.total ?? estTotal(plan))}
+        </MetadataListItem>
         {plan.budget !== undefined && (
           <MetadataListItem label="Budget">{money(plan.budget)}</MetadataListItem>
         )}
