@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Theme } from '@astryxdesign/core/theme'
 import { stoneTheme } from '@astryxdesign/theme-stone/built'
 
@@ -20,11 +20,6 @@ import Add from './pages/Add'
 import Skills from './pages/Skills'
 import Orders from './pages/Orders'
 
-function PlansRedirect() {
-  const { id } = useParams()
-  return <Navigate to={`/orders/${id}`} replace />
-}
-
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     {/* Light-only: this gets read in bright kitchens, and a dark editorial
@@ -40,13 +35,10 @@ createRoot(document.getElementById('root')!).render(
             <Route path="/add" element={<Add />} />
             <Route path="/skills" element={<Skills />} />
             {/* Orders are private (prices, order details): the page
-                ships, but the data comes from /api/plans behind the family
+                ships, but the data comes from /api/orders behind the family
                 passcode. */}
             <Route path="/orders" element={<Orders />} />
             <Route path="/orders/:id" element={<Orders />} />
-            {/* Old name, kept so saved links still work. */}
-            <Route path="/plans" element={<Navigate to="/orders" replace />} />
-            <Route path="/plans/:id" element={<PlansRedirect />} />
           </Route>
         </Routes>
       </BrowserRouter>

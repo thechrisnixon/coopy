@@ -2,7 +2,7 @@ import { createHash, timingSafeEqual } from 'node:crypto'
 import { get, list, put } from '@vercel/blob'
 
 /**
- * Shared plumbing for the passcode-gated private data: weekly plans and the
+ * Shared plumbing for the passcode-gated private data: weekly orders and the
  * household profile. The repo and the site are public, so this data lives in
  * a PRIVATE Vercel Blob store and is only ever read server-side — blob URLs
  * are never handed to a client, and private blobs can't be fetched without

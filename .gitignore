@@ -8,7 +8,7 @@ dist
 .env
 .env.*
 
-# Weekly shopping plans and household shopping preferences hold prices, order
+# Weekly orders and household shopping preferences hold prices, order
 # details and the delivery address. The repo is public, so they stay local.
-plans/
+orders/
 shopping/

@@ -4,8 +4,8 @@ import { join } from 'node:path'
 import { parse as parseYaml } from 'yaml'
 
 /**
- * One-time migration (safe to re-run): push local plans/*.yaml and
- * shopping/household.yaml to the private storage behind /api/plans and
+ * One-time migration (safe to re-run): push local orders/*.yaml and
+ * shopping/household.yaml to the private storage behind /api/orders and
  * /api/household.
  *
  *   pnpm push-private
@@ -86,13 +86,13 @@ async function main() {
     console.log('  skip shopping/household.yaml (not found)')
   }
 
-  const dir = join(root, 'plans')
+  const dir = join(root, 'orders')
   const files = existsSync(dir) ? readdirSync(dir).filter((f) => /^\d{4}-\d{2}-\d{2}\.yaml$/.test(f)) : []
-  if (!files.length) console.log('  skip plans/ (no YYYY-MM-DD.yaml files)')
+  if (!files.length) console.log('  skip orders/ (no YYYY-MM-DD.yaml files)')
   for (const file of files.sort()) {
     const id = file.replace(/\.yaml$/, '')
-    const doc = readYaml(join(dir, file), `plans/${file}`)
-    if (!doc.ok || !(await putJson(`/api/plans?id=${id}`, doc.value, key))) failed++
+    const doc = readYaml(join(dir, file), `orders/${file}`)
+    if (!doc.ok || !(await putJson(`/api/orders?id=${id}`, doc.value, key))) failed++
   }
 
   if (failed) {

@@ -1,18 +1,20 @@
 import { z } from 'zod'
 
 /**
- * A week's shopping plan, written by the /weekly-shop skill to
- * `plans/<YYYY-MM-DD>.yaml` (the date the order was built). Plan files are
+ * A week's order, written by the /weekly-shop skill to
+ * `orders/<YYYY-MM-DD>.yaml` (the date it was built). Order files are
  * gitignored; the skill pushes each one to private storage behind
- * /api/plans (passcode-gated, api/plans.ts validates against this schema),
- * and the /plans page reads them from there.
+ * /api/orders (passcode-gated, api/orders.ts validates against this schema),
+ * and the /orders page reads them from there. An order starts as a draft
+ * while the week is being talked through; `checkout` is filled in once
+ * Whole Foods has actually taken it.
  *
  * The file is the record of what was decided, not just what was bought: the
  * `log` keeps the back-and-forth ("swapped to 365 to get under $250") so a
  * later week can learn from it.
  */
 
-export const PlanStatus = z.enum([
+export const OrderStatus = z.enum([
   'draft', // still talking about it
   'carted', // cart built on Whole Foods, waiting for a yes
   'ordered', // placed after an explicit yes
@@ -48,7 +50,7 @@ export const Item = z.object({
   note: z.string().optional(),
 })
 
-export const Order = z.object({
+export const Checkout = z.object({
   store: z.string().default('Whole Foods via Amazon'),
   order_id: z.string().optional(),
   delivery: z.string().optional(),
@@ -60,16 +62,16 @@ export const Order = z.object({
   placed_at: z.string().optional(),
 })
 
-export const Plan = z.object({
-  status: PlanStatus,
+export const Order = z.object({
+  status: OrderStatus,
   /** The week the food is for, e.g. "Oct 5–11". */
   week: z.string().optional(),
   budget: z.number().optional(),
   meals: z.array(Meal).default([]),
   items: z.array(Item).default([]),
-  order: Order.optional(),
+  checkout: Checkout.optional(),
   log: z.array(z.string()).default([]),
 })
 
-export type Plan = z.infer<typeof Plan>
-export type LoadedPlan = Plan & { id: string }
+export type Order = z.infer<typeof Order>
+export type LoadedOrder = Order & { id: string }

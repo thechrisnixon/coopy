@@ -13,18 +13,17 @@ import { Link } from '@astryxdesign/core/Link'
 import { TextInput } from '@astryxdesign/core/TextInput'
 import { Button } from '@astryxdesign/core/Button'
 import { FormLayout } from '@astryxdesign/core/FormLayout'
-import { Plan, type LoadedPlan } from '../lib/plan'
+import { Order, type LoadedOrder } from '../lib/order'
 
 /**
- * The Orders page: weekly shops built by the /weekly-shop skill (the data
- * model still calls each one a "plan", since it starts as a draft). The site is
- * public, so plans live in private storage behind `/api/plans` and the
- * family passcode (api/plans.ts). The passcode is asked for once and kept in
+ * Weekly orders built by the /weekly-shop skill. The site is
+ * public, so orders live in private storage behind `/api/orders` and the
+ * family passcode (api/orders.ts). The passcode is asked for once and kept in
  * this browser's localStorage.
  *
- * Under `pnpm dev` there are no serverless functions, so when `/api/plans`
- * isn't there the page falls back to the dev-only `/__local/plans.json`
- * (vite/data-plugin.ts), which reads the local `plans/` folder.
+ * Under `pnpm dev` there are no serverless functions, so when `/api/orders`
+ * isn't there the page falls back to the dev-only `/__local/orders.json`
+ * (vite/data-plugin.ts), which reads the local `orders/` folder.
  */
 
 const STATUS = {
@@ -57,18 +56,18 @@ function savePasscode(value: string) {
   }
 }
 
-type RawPlan = { id: string } & Record<string, unknown>
+type RawOrder = { id: string } & Record<string, unknown>
 
-type PlansState =
+type OrdersState =
   | { kind: 'loading' }
   | { kind: 'locked'; error?: string }
   | { kind: 'error'; error: string }
-  | { kind: 'ready'; plans: LoadedPlan[] }
+  | { kind: 'ready'; orders: LoadedOrder[] }
 
-function toPlans(raw: RawPlan[]): LoadedPlan[] {
+function toOrders(raw: RawOrder[]): LoadedOrder[] {
   return raw.flatMap((p) => {
-    const parsed = Plan.safeParse(p)
-    // A plan the skill wrote badly shouldn't hide every other week.
+    const parsed = Order.safeParse(p)
+    // An order the skill wrote badly shouldn't hide every other week.
     return parsed.success ? [{ ...parsed.data, id: p.id }] : []
   })
 }
@@ -77,9 +76,9 @@ function toPlans(raw: RawPlan[]): LoadedPlan[] {
 const isApiResponse = (r: Response) =>
   r.status !== 404 && (r.headers.get('content-type') ?? '').includes('application/json')
 
-function usePlans() {
+function useOrders() {
   const [passcode, setPasscode] = useState(loadPasscode)
-  const [state, setState] = useState<PlansState>(() =>
+  const [state, setState] = useState<OrdersState>(() =>
     // Production with no saved passcode: ask before making any request.
     passcode || import.meta.env.DEV ? { kind: 'loading' } : { kind: 'locked' },
   )
@@ -88,13 +87,13 @@ function usePlans() {
     if (!passcode && !import.meta.env.DEV) return
     let cancelled = false
 
-    async function load(): Promise<PlansState> {
-      const res = await fetch('/api/plans', { headers: { 'x-coopy-passcode': passcode } })
+    async function load(): Promise<OrdersState> {
+      const res = await fetch('/api/orders', { headers: { 'x-coopy-passcode': passcode } })
 
       if (import.meta.env.DEV && !isApiResponse(res)) {
-        // `vite dev` doesn't run functions — read the local plans/ folder.
-        const local = await fetch('/__local/plans.json')
-        return { kind: 'ready', plans: toPlans(await local.json()) }
+        // `vite dev` doesn't run functions — read the local orders/ folder.
+        const local = await fetch('/__local/orders.json')
+        return { kind: 'ready', orders: toOrders(await local.json()) }
       }
 
       if (res.status === 401) {
@@ -109,7 +108,7 @@ function usePlans() {
       if (!res.ok) {
         return { kind: 'error', error: body?.error ?? `HTTP ${res.status}` }
       }
-      return { kind: 'ready', plans: toPlans(body as RawPlan[]) }
+      return { kind: 'ready', orders: toOrders(body as RawOrder[]) }
     }
 
     load()
@@ -171,33 +170,33 @@ function PasscodePrompt({ error, onSubmit }: { error?: string; onSubmit: (v: str
 
 export default function Orders() {
   const { id } = useParams()
-  const { state, unlock } = usePlans()
+  const { state, unlock } = useOrders()
 
   if (state.kind === 'locked') return <PasscodePrompt error={state.error} onSubmit={unlock} />
   if (state.kind === 'error') return <Text>Couldn't load orders: {state.error}</Text>
   if (state.kind === 'loading') return <Text color="secondary">Loading orders…</Text>
 
-  const { plans } = state
-  const plan = plans.find((p) => p.id === id)
-  if (id && plan) return <PlanDetail plan={plan} />
+  const { orders } = state
+  const order = orders.find((p) => p.id === id)
+  if (id && order) return <OrderDetail order={order} />
 
   return (
     <VStack gap={4}>
       <Heading level={1}>Orders</Heading>
-      {plans.length === 0 ? (
+      {orders.length === 0 ? (
         <Text color="secondary">
           No orders yet. Run /weekly-shop in Claude Code to build one.
         </Text>
       ) : (
         <List hasDividers>
-          {plans.map((p) => (
+          {orders.map((p) => (
             <ListItem
               key={p.id}
               href={`/orders/${p.id}`}
               label={p.week ? `${p.week} (built ${p.id})` : p.id}
               description={p.meals.map((m) => m.name).join(' · ') || 'No meals yet'}
               startContent={<StatusDot {...STATUS[p.status]} />}
-              endContent={<Text hasTabularNumbers>{money(p.order?.total ?? p.order?.subtotal ?? subtotal(p))}</Text>}
+              endContent={<Text hasTabularNumbers>{money(p.checkout?.total ?? p.checkout?.subtotal ?? subtotal(p))}</Text>}
             />
           ))}
         </List>
@@ -210,14 +209,14 @@ export default function Orders() {
  * Before the order is placed there's no real total yet: the cart subtotal
  * plus the planned tip is the honest estimate (tax and bag fees come later).
  */
-function estTotal(plan: LoadedPlan): number | undefined {
-  const sub = plan.order?.subtotal
-  return sub === undefined ? undefined : sub + (plan.order?.tip ?? 0)
+function estTotal(order: LoadedOrder): number | undefined {
+  const sub = order.checkout?.subtotal
+  return sub === undefined ? undefined : sub + (order.checkout?.tip ?? 0)
 }
 
 /** Sum of priced lines — only a fallback, since not every line has a price. */
-function subtotal(plan: LoadedPlan): number | undefined {
-  const priced = plan.items.filter((i) => i.price !== undefined)
+function subtotal(order: LoadedOrder): number | undefined {
+  const priced = order.items.filter((i) => i.price !== undefined)
   if (!priced.length) return undefined
   return priced.reduce((sum, i) => sum + i.price! * i.qty, 0)
 }
@@ -232,10 +231,10 @@ type Row = {
   replaced: string
 }
 
-function PlanDetail({ plan }: { plan: LoadedPlan }) {
+function OrderDetail({ order }: { order: LoadedOrder }) {
   const rows = useMemo<Row[]>(
     () =>
-      [...plan.items]
+      [...order.items]
         .sort((a, b) => (a.category ?? 'other').localeCompare(b.category ?? 'other'))
         .map((i) => ({
           name: i.note ? `${i.name} — ${i.note}` : i.name,
@@ -246,16 +245,16 @@ function PlanDetail({ plan }: { plan: LoadedPlan }) {
           for: (i.for ?? []).join(', '),
           replaced: i.replaced ?? '',
         })),
-    [plan.items],
+    [order.items],
   )
 
-  const status = STATUS[plan.status]
+  const status = STATUS[order.status]
 
   return (
     <VStack gap={6}>
       <VStack gap={2}>
         <Link href="/orders">← All orders</Link>
-        <Heading level={1}>{plan.week ?? `Order ${plan.id}`}</Heading>
+        <Heading level={1}>{order.week ?? `Order ${order.id}`}</Heading>
         <HStack gap={2} align="center">
           <StatusDot variant={status.variant} label={status.label} />
           <Text>{status.label}</Text>
@@ -263,29 +262,29 @@ function PlanDetail({ plan }: { plan: LoadedPlan }) {
       </VStack>
 
       <MetadataList columns="multi">
-        <MetadataListItem label="Items">{plan.items.length}</MetadataListItem>
+        <MetadataListItem label="Items">{order.items.length}</MetadataListItem>
         <MetadataListItem label="Subtotal">
-          {money(plan.order?.subtotal ?? subtotal(plan))}
+          {money(order.checkout?.subtotal ?? subtotal(order))}
         </MetadataListItem>
-        <MetadataListItem label="Tip">{money(plan.order?.tip)}</MetadataListItem>
-        <MetadataListItem label={plan.order?.total ? 'Total' : 'Est. total'}>
-          {money(plan.order?.total ?? estTotal(plan))}
+        <MetadataListItem label="Tip">{money(order.checkout?.tip)}</MetadataListItem>
+        <MetadataListItem label={order.checkout?.total ? 'Total' : 'Est. total'}>
+          {money(order.checkout?.total ?? estTotal(order))}
         </MetadataListItem>
-        {plan.budget !== undefined && (
-          <MetadataListItem label="Budget">{money(plan.budget)}</MetadataListItem>
+        {order.budget !== undefined && (
+          <MetadataListItem label="Budget">{money(order.budget)}</MetadataListItem>
         )}
-        {plan.order?.delivery && (
-          <MetadataListItem label="Delivery">{plan.order.delivery}</MetadataListItem>
+        {order.checkout?.delivery && (
+          <MetadataListItem label="Delivery">{order.checkout.delivery}</MetadataListItem>
         )}
-        {plan.order?.order_id && (
-          <MetadataListItem label="Order">{plan.order.order_id}</MetadataListItem>
+        {order.checkout?.order_id && (
+          <MetadataListItem label="Amazon order">{order.checkout.order_id}</MetadataListItem>
         )}
       </MetadataList>
 
       <VStack gap={2}>
         <Heading level={2}>Meals</Heading>
         <List hasDividers>
-          {plan.meals.map((m) => (
+          {order.meals.map((m) => (
             <ListItem
               key={m.name}
               label={[m.day, m.name].filter(Boolean).join(' — ')}
@@ -325,11 +324,11 @@ function PlanDetail({ plan }: { plan: LoadedPlan }) {
         />
       </VStack>
 
-      {plan.log.length > 0 && (
+      {order.log.length > 0 && (
         <VStack gap={2}>
           <Heading level={2}>How we got here</Heading>
           <List listStyle="decimal" density="compact">
-            {plan.log.map((entry, n) => (
+            {order.log.map((entry, n) => (
               <ListItem key={n} label={entry} />
             ))}
           </List>

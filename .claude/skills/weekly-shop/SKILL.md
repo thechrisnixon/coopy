@@ -1,6 +1,6 @@
 ---
 name: weekly-shop
-description: Plan the week's meals from the coopy recipe archive (plus one-offs and recipe URLs), build the Whole Foods order on Amazon in Chrome, iterate on it in conversation until it's explicitly approved, then place it and record the plan. Use when the user says "weekly shop", "plan meals", "grocery order", "Whole Foods order", or asks to add groceries/recipes to an order.
+description: Plan the week's meals from the coopy recipe archive (plus one-offs and recipe URLs), build the Whole Foods order on Amazon in Chrome, iterate on it in conversation until it's explicitly approved, then place it and record it on the Orders page. Use when the user says "weekly shop", "plan meals", "grocery order", "Whole Foods order", or asks to add groceries/recipes to an order.
 ---
 
 # Weekly shop
@@ -19,10 +19,10 @@ else. Check which first — it decides every local path below.
 | --- | --- | --- |
 | Recipes | The public API (below), plus `recipes/*.yaml` for recipes not deployed yet | The public API only |
 | Household profile | `shopping/household.yaml` | `~/.coopy/household.yaml` |
-| Plans | `plans/<date>.yaml` | `~/.coopy/plans/<date>.yaml` (create the folder if needed) |
+| Orders | `orders/<date>.yaml` | `~/.coopy/orders/<date>.yaml` (create the folder if needed) |
 
-Plans and the household profile are also **synced to the site's private
-storage**, so everyone in the family sees the same plans at
+Orders and the household profile are also **synced to the site's private
+storage**, so everyone in the family sees the same orders at
 `https://coopy-nu.vercel.app/orders` and the skill works on any machine. The
 local YAML is the working copy; the site is the shared copy.
 
@@ -41,7 +41,7 @@ mkdir -p ~/.coopy && umask 077 && printf '%s\n' 'PASSCODE' > ~/.coopy/passcode &
 ```
 
 (substituting what they gave you for PASSCODE). Never repeat it back, never
-put it in a URL, a log entry, a plan file or a commit — always read it from
+put it in a URL, a log entry, an order file or a commit — always read it from
 the file with `"$(cat ~/.coopy/passcode)"` inside the header. A `401` means
 the passcode is wrong: ask for it again and overwrite the file.
 
@@ -78,35 +78,35 @@ npx -y yaml --json --single --strict < PATH/TO/household.yaml \
     -H 'content-type: application/json' --data-binary @- > /dev/null
 ```
 
-### Plans
+### Orders
 
-Write the local YAML as described in "Plan file format", and **after every
+Write the local YAML as described in "Order file format", and **after every
 meaningful change** (list agreed, cart built, each round of iteration, order
-placed) push it, using the plan's date as the id:
+placed) push it, using the order's date as the id:
 
 ```sh
-npx -y yaml --json --single --strict < PATH/TO/plans/2026-10-03.yaml \
-  | curl -fsS -X PUT 'https://coopy-nu.vercel.app/api/plans?id=2026-10-03' \
+npx -y yaml --json --single --strict < PATH/TO/orders/2026-10-03.yaml \
+  | curl -fsS -X PUT 'https://coopy-nu.vercel.app/api/orders?id=2026-10-03' \
     -H "x-coopy-passcode: $(cat ~/.coopy/passcode)" \
     -H 'content-type: application/json' --data-binary @-
 ```
 
-The server validates the plan against the schema; a `400` lists what's wrong
-— fix the YAML and push again. A plan that isn't pushed won't appear on the
+The server validates the order against the schema; a `400` lists what's wrong
+— fix the YAML and push again. An order that isn't pushed won't appear on the
 site.
 
-**Past plans:** last week's order, what got swapped, what ran out. Read the
+**Past orders:** last week's order, what got swapped, what ran out. Read the
 most recent one or two before building a new list — from the local folder,
 or from the site if the local folder is empty or behind (the site has
-everyone's plans):
+everyone's orders):
 
 ```sh
-curl -fsS https://coopy-nu.vercel.app/api/plans -H "x-coopy-passcode: $(cat ~/.coopy/passcode)"
+curl -fsS https://coopy-nu.vercel.app/api/orders -H "x-coopy-passcode: $(cat ~/.coopy/passcode)"
 ```
 
 (newest first; add `?id=<date>` for one).
 
-### Plan file format
+### Order file format
 
 One YAML file per week, named for the date it was built (`2026-10-03.yaml`).
 Amounts are plain numbers in USD.
@@ -130,7 +130,7 @@ items:
     category: produce   # produce|meat|dairy|pantry|frozen|bakery|snacks|drinks|household|other
     replaced: Diestel ground turkey (out of stock)   # only when swapped
     note: optional
-order:               # filled in once placed
+checkout:            # filled in once placed
   order_id: 113-…
   delivery: Sun Oct 4 10am–12pm
   subtotal: 263.40
@@ -194,7 +194,7 @@ already in the fridge/pantry, anything running low, any budget this week.
    units (2 cups chopped onion → 2 onions; 1/3 cup hot honey → 1 jar unless
    the pantry has it). Skip pantry basics (salt, pepper, oil, common spices)
    unless they say they're out.
-4. **Add staples** from household.yaml unless told to skip; check the last plan
+4. **Add staples** from household.yaml unless told to skip; check the last order
    so you don't double-buy something bought last week that lasts (cereal,
    granola, protein powder).
 5. **Pick brands** from household.yaml `brands`; 365 by Whole Foods Market when
@@ -202,7 +202,7 @@ already in the fridge/pantry, anything running low, any budget this week.
    whenever one exists.
 
 Show the list grouped by category with which meal each line is for, and ask
-for changes **before** touching the browser. Write `<today>.yaml` in the plans
+for changes **before** touching the browser. Write `<today>.yaml` in the orders
 folder (see "Where things live") with `status: draft` now, push it to the
 site, and keep both updated as things change.
 
@@ -234,7 +234,7 @@ Swaps: Diestel ground turkey → 365 ground turkey (out of stock)
 Biggest lines: NY strip 40 USD, Mary's thighs 13 USD …
 ```
 
-Set `status: carted`, fill `items` with real prices, and push the plan.
+Set `status: carted`, fill `items` with real prices, and push the order.
 
 ## 4. Iterate until accepted
 
@@ -246,8 +246,8 @@ Stay in the conversation. Typical asks:
   without dropping a meal or staple, say what it would take and ask.
 - Adds, removes, quantity changes — do them in the cart and re-read the total.
 
-Append every decision to the plan's `log` ("Swapped 4 items to 365, −11.20 USD")
-and push the plan after each round.
+Append every decision to the order's `log` ("Swapped 4 items to 365, −11.20 USD")
+and push the order after each round.
 
 ## 5. Place the order — only on an explicit yes
 
@@ -264,8 +264,8 @@ didn't say). Tip: household.yaml `tip`. Never change the payment method,
 address, or account settings, and never apply anything that commits to a
 subscription.
 
-After it's placed, record `order` (order id, delivery window, subtotal, fees,
-tip, tax, total, placed_at), set `status: ordered`, and push the plan.
+After it's placed, record `checkout` (order id, delivery window, subtotal, fees,
+tip, tax, total, placed_at), set `status: ordered`, and push the order.
 
 ## Refreshing the profile from order history
 
@@ -282,9 +282,9 @@ push the profile (see "Household profile"), and tell the user what changed.
 
 ## 6. Wrap up
 
-- Make sure the final plan is pushed, then point them to
+- Make sure the final order is pushed, then point them to
   `https://coopy-nu.vercel.app/orders` (it asks for the family passcode once
-  per browser). Mention the local plan file too.
+  per browser). Mention the local order file too.
 - Offer to save any URL/one-off meals that worked into coopy (see step 1 for
   how, in or out of the repo).
 - If they corrected a preference (new brand, new staple, "the kid eats more

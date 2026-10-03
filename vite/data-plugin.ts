@@ -17,10 +17,10 @@ import { Recipe } from '../src/lib/schema.ts'
  *   verbatim from `.claude/skills/` so anyone can install it with one curl
  *   (see the /skills page). It holds no household data; that stays local.
  *
- * - `/__local/plans.json` — weekly shopping plans from `plans/`. Served by the
- *   dev server ONLY and never emitted into the build: plans hold prices and
- *   order details, and the deployed site is public. It's the /plans page's
- *   fallback under `vite dev`, which doesn't run `api/plans.ts` (the
+ * - `/__local/orders.json` — weekly orders from `orders/`. Served by the
+ *   dev server ONLY and never emitted into the build: orders hold prices and
+ *   order details, and the deployed site is public. It's the /orders page's
+ *   fallback under `vite dev`, which doesn't run `api/orders.ts` (the
  *   passcode-gated private store the deployed page uses).
  */
 
@@ -44,8 +44,8 @@ function loadRecipes(root: string) {
     .sort((a, b) => a.name.localeCompare(b.name))
 }
 
-function loadPlans(root: string): unknown[] {
-  const dir = join(root, 'plans')
+function loadOrders(root: string): unknown[] {
+  const dir = join(root, 'orders')
   if (!existsSync(dir)) return []
   return readdirSync(dir)
     .filter((f) => f.endsWith('.yaml'))
@@ -84,8 +84,8 @@ export function coopyData(): Plugin {
         } else if (path.startsWith('/data/recipes/') && path.endsWith('.json')) {
           const slug = path.slice('/data/recipes/'.length, -'.json'.length)
           body = loadRecipes(root).find((r) => r.slug === slug)
-        } else if (path === '/__local/plans.json') {
-          body = loadPlans(root)
+        } else if (path === '/__local/orders.json') {
+          body = loadOrders(root)
         } else {
           return next()
         }

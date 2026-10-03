@@ -74,7 +74,7 @@ points at an undeclared source fails the deploy instead of shipping broken.
 | `/cook/:slug` | Kitchen mode — oversized type, tap-to-check, screen stays awake |
 | `/add` | Parse a recipe from a photo, link, or text, then commit it |
 | `/skills` | How to install the `/weekly-shop` Claude Code skill |
-| `/orders` | Weekly orders built by /weekly-shop — private, behind the family passcode (`/plans` redirects here) |
+| `/orders` | Weekly orders built by /weekly-shop — private, behind the family passcode |
 
 React 19 + TypeScript + Vite, built on [Astryx](https://astryx.atmeta.com)
 (Meta's design system) with a retuned Stone theme. Playfair Display and Inter
@@ -116,17 +116,17 @@ Secrets, none of which live in this repo:
 | Secret | Where it goes | Scope |
 |---|---|---|
 | `ANTHROPIC_API_KEY` | Vercel environment variable | Read only by `/api/parse`, server-side |
-| `COOPY_PASSCODE` | Vercel environment variable | The family passcode for `/api/plans` and `/api/household` |
-| `BLOB_READ_WRITE_TOKEN` | Set by Vercel when a Blob store is connected to the project | Read only by `/api/plans` and `/api/household`, server-side |
+| `COOPY_PASSCODE` | Vercel environment variable | The family passcode for `/api/orders` and `/api/household` |
+| `BLOB_READ_WRITE_TOKEN` | Set by Vercel when a Blob store is connected to the project | Read only by `/api/orders` and `/api/household`, server-side |
 | GitHub token | Pasted into `/add`, stored in browser `localStorage` | Fine-grained, this repo only, `contents:write` |
 
 The Anthropic key and the Blob token are never shipped to the browser. The
 GitHub token never leaves your device. `.gitignore` blocks `.env` files so
 none can be committed by accident.
 
-## Private storage (plans and the household profile)
+## Private storage (orders and the household profile)
 
-Weekly plans and the household profile hold prices, order details and
+Weekly orders and the household profile hold prices, order details and
 dietary needs, and this repo and site are public — so they're never committed
 or built into the site. They live in a **private Vercel Blob store**, read and
 written only server-side by two functions that require the family passcode in
@@ -134,10 +134,10 @@ an `x-coopy-passcode` header:
 
 | Endpoint | Methods |
 |---|---|
-| `/api/plans` | `GET` all plans (newest first) · `GET ?id=YYYY-MM-DD` one · `PUT ?id=YYYY-MM-DD` store one (validated against `src/lib/plan.ts`) |
+| `/api/orders` | `GET` all orders (newest first) · `GET ?id=YYYY-MM-DD` one · `PUT ?id=YYYY-MM-DD` store one (validated against `src/lib/order.ts`) |
 | `/api/household` | `GET` the profile · `PUT` store it (any JSON object, ≤ 100 KB) |
 
-Blobs are stored at fixed pathnames (`plans/<date>.json`, `household.json`)
+Blobs are stored at fixed pathnames (`orders/<date>.json`, `household.json`)
 with private access; blob URLs never reach a client. Responses are
 `no-store`.
 
@@ -149,7 +149,7 @@ with private access; blob URLs never reach a client. Responses are
 2. Project → Settings → Environment Variables → add `COOPY_PASSCODE` (a long
    passphrase the family shares).
 3. Redeploy so the functions pick both up.
-4. Migrate what's local: `pnpm push-private` uploads `plans/*.yaml` and
+4. Migrate what's local: `pnpm push-private` uploads `orders/*.yaml` and
    `shopping/household.yaml`. It reads the passcode from `COOPY_PASSCODE` or
    `~/.coopy/passcode`, and targets `COOPY_URL` (default the live site).
 
@@ -159,7 +159,7 @@ The `/weekly-shop` skill keeps it in `~/.coopy/passcode` — one line,
 `chmod 600` — and asks for it the first time it's missing.
 
 Under `pnpm dev` the functions don't run, so `/orders` falls back to the
-local `plans/` folder via the dev-only `/__local/plans.json`.
+local `orders/` folder via the dev-only `/__local/orders.json`.
 
 ## Commands
 
@@ -168,7 +168,7 @@ pnpm dev        # dev server
 pnpm build      # validate → export cookbook → typecheck → build
 pnpm validate   # check every recipe against the schema
 pnpm export     # regenerate cookbook/ (Markdown)
-pnpm push-private  # upload local plans + household profile to private storage
+pnpm push-private  # upload local orders + household profile to private storage
 pnpm astryx     # Astryx CLI (component docs, theme tools)
 ```
 
@@ -202,10 +202,10 @@ a household profile. Every build publishes the skill verbatim at
 published.
 
 Inside this repo it reads `shopping/household.yaml` (who eats, dietary needs,
-staples, brands) and writes each week to `plans/<date>.yaml`; anywhere else it
-uses `~/.coopy/household.yaml` and `~/.coopy/plans/`. Both are gitignored —
+staples, brands) and writes each week to `orders/<date>.yaml`; anywhere else it
+uses `~/.coopy/household.yaml` and `~/.coopy/orders/`. Both are gitignored —
 they hold prices and order details, and this repo is public. The skill also
-pushes every plan and profile change to the private storage above, so the
-whole family sees plans at `https://coopy-nu.vercel.app/orders`, and on a new
+pushes every order and profile change to the private storage above, so the
+whole family sees orders at `https://coopy-nu.vercel.app/orders`, and on a new
 machine it pulls the profile from there — no files to pass around, just the
 passcode.
