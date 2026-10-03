@@ -4,7 +4,7 @@
  * Astryx Stone supplies the component behaviour and the full token surface;
  * this file retunes only the tokens that carry the look. The design rests on
  * typography and whitespace, so colour stays deliberately narrow: a near-white
- * ground, near-black ink, one crimson accent, and two muted source tints.
+ * ground, near-black ink, one aubergine accent, and two muted source tints.
  *
  * Astryx defines its tokens inside `@layer astryx-theme`, using `@scope` rules
  * rooted at [data-astryx-theme]. Scope proximity is resolved before source
@@ -34,9 +34,12 @@
   --color-shadow: rgb(17 17 17 / 0.08);
 
   /* --- accent --------------------------------------------------------- */
-  --color-accent: #c1121f;
-  --color-accent-muted: #fdf0f1;
-  --color-icon-accent: #c1121f;
+  /* Dark aubergine: ~10:1 on the white ground, so it holds AA as body-size
+     link text, not just as a fill. The muted tint is the same hue at ~5%. */
+  --color-accent: #5b2c83;
+  --color-accent-muted: #f4effa;
+  --color-text-accent: #5b2c83;
+  --color-icon-accent: #5b2c83;
   --color-on-accent: #ffffff;
 
   /* --- type ----------------------------------------------------------- */

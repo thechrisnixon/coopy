@@ -48,8 +48,8 @@
 .add__error {
   margin: 1.5rem 0 0;
   padding: 0.875rem 1rem;
-  border-left: 3px solid var(--color-accent);
-  background: var(--color-accent-muted);
+  border-left: 3px solid var(--color-error);
+  background: var(--color-error-muted);
   font-size: 0.875rem;
   line-height: 1.55;
 }
