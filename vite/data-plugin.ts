@@ -13,12 +13,21 @@ import { Recipe } from '../src/lib/schema.ts'
  *   server, nothing to keep running. Under /data, not /api, because /api is
  *   Vercel's function namespace.
  *
+ * - `/skills/weekly-shop/SKILL.md` — the Claude Code skill itself, copied
+ *   verbatim from `.claude/skills/` so anyone can install it with one curl
+ *   (see the /skills page). It holds no household data; that stays local.
+ *
  * - `/__local/plans.json` — weekly shopping plans from `plans/`. Served by the
  *   dev server ONLY and never emitted into the build: plans hold prices and
  *   order details, and the deployed site is public.
  */
 
 const SITE = 'https://coopy-nu.vercel.app'
+
+/** Published path → source path, relative to the project root. */
+const SKILLS: Record<string, string> = {
+  'skills/weekly-shop/SKILL.md': '.claude/skills/weekly-shop/SKILL.md',
+}
 
 function loadRecipes(root: string) {
   const dir = join(root, 'recipes')
@@ -59,6 +68,13 @@ export function coopyData(): Plugin {
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
         const path = req.url?.split('?')[0] ?? ''
+
+        const skill = SKILLS[path.slice(1)]
+        if (skill) {
+          res.setHeader('content-type', 'text/markdown; charset=utf-8')
+          return res.end(readFileSync(join(root, skill), 'utf8'))
+        }
+
         let body: unknown
 
         if (path === '/data/recipes.json') {
@@ -82,6 +98,14 @@ export function coopyData(): Plugin {
     },
 
     generateBundle() {
+      for (const [fileName, source] of Object.entries(SKILLS)) {
+        this.emitFile({
+          type: 'asset',
+          fileName,
+          source: readFileSync(join(root, source), 'utf8'),
+        })
+      }
+
       const recipes = loadRecipes(root)
       this.emitFile({
         type: 'asset',

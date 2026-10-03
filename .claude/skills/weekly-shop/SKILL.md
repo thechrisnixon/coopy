@@ -9,17 +9,72 @@ A conversation, not a pipeline. You build the order with the user, show it,
 adjust it, and only buy when they explicitly say so. Ask instead of guessing
 whenever an answer changes what lands in the cart.
 
-## Sources of truth
+## Where things live
 
-| What | Where |
-| --- | --- |
-| Recipes | `https://coopy-nu.vercel.app/data/recipes.json` (all) or `/data/recipes/<slug>.json` (one). Fetch with `curl -s`. If you're inside the coopy repo and the user has recipes not deployed yet, read `recipes/*.yaml` directly instead. Quantities are 1X as written; `serves` is how many 1X feeds. |
-| Household | `shopping/household.yaml` in the coopy repo — people, dietary needs, heat, portions, staples, brand rules, tip, what "cheaper" may do. Local only. |
-| Past plans | `plans/*.yaml` — last week's order, what got swapped, what ran out. Local only. |
-| Plan format | `src/lib/plan.ts` (zod schema). Write plans that validate against it. |
+This skill runs in two places: inside the coopy repo (a checkout with
+`recipes/` and `vite/data-plugin.ts` in the current directory) or anywhere
+else. Check which first — it decides every path below.
 
-If `shopping/household.yaml` is missing, tell the user and ask the key
-questions (who eats, dietary needs, staples, brands) before building anything.
+| What | In the coopy repo | Anywhere else |
+| --- | --- | --- |
+| Recipes | The public API (below), plus `recipes/*.yaml` for recipes not deployed yet | The public API only |
+| Household profile | `shopping/household.yaml` | `~/.coopy/household.yaml` |
+| Plans | `plans/<date>.yaml` | `~/.coopy/plans/<date>.yaml` (create the folder if needed) |
+
+**Recipes:** `https://coopy-nu.vercel.app/data/recipes.json` (all) or
+`https://coopy-nu.vercel.app/data/recipes/<slug>.json` (one). Fetch with
+`curl -s`. Quantities are 1X as written; `serves` is how many 1X feeds.
+
+**Household profile** (the file called household.yaml everywhere below):
+people, dietary needs, heat, portions, staples, brand rules, tip, what
+"cheaper" may do, farmers market items. It is private and never on the
+website. If it's missing, tell the user: they can get the file from whoever
+set coopy up for them and save it to `~/.coopy/household.yaml`, or you can
+walk them through creating one now — ask the key questions (who eats, dietary
+needs, heat tolerance, portions, staples, brands, tip) and write it before
+building anything.
+
+**Past plans:** last week's order, what got swapped, what ran out. Read the
+most recent one or two before building a new list.
+
+### Plan file format
+
+One YAML file per week, named for the date it was built (`2026-10-03.yaml`).
+Amounts are plain numbers in USD.
+
+```yaml
+status: draft        # draft | carted (in cart, waiting for a yes) | ordered | cancelled
+week: Oct 5–11       # the week the food is for
+budget: 250          # optional
+meals:
+  - name: Skyline chili
+    recipe: skyline-chili   # coopy slug, when it's an archive recipe
+    url: https://…          # source link, when it isn't
+    scale: 1.5              # multiplier against the recipe's 1X
+    day: Tue
+    notes: leftovers for lunch
+items:
+  - name: 365 Organic Yellow Onion   # product title as Whole Foods lists it
+    qty: 2
+    price: 1.29                      # unit price when carted
+    for: [Skyline chili]             # meal names, "staple", "requested"
+    category: produce   # produce|meat|dairy|pantry|frozen|bakery|snacks|drinks|household|other
+    replaced: Diestel ground turkey (out of stock)   # only when swapped
+    note: optional
+order:               # filled in once placed
+  order_id: 113-…
+  delivery: Sun Oct 4 10am–12pm
+  subtotal: 263.40
+  fees: 0
+  tip: 10
+  tax: 1.78
+  total: 275.18
+  placed_at: 2026-10-03T14:05:00-04:00
+log:                 # every decision, in order
+  - Swapped 4 items to 365, −11.20 USD
+```
+
+Only `status` is required; `meals`, `items` and `log` default to empty.
 
 ## 1. Gather the week
 
@@ -30,9 +85,13 @@ Ask what they want. They'll mix three kinds of meal — handle each:
   "triple and freeze", "start at 3:15").
 - **A URL** — fetch it (WebFetch; if blocked, read it in Chrome with
   `get_page_text`). Extract ingredients at 1X. At the end, offer to save it to
-  coopy as `recipes/<slug>.yaml` following README.md and
-  `recipes/skyline-chili.yaml` (source attribution, `from: us` for our
-  changes) — only if they want it, and run `pnpm validate` after.
+  coopy — only if they want it:
+  - **In the coopy repo:** write `recipes/<slug>.yaml` following README.md and
+    `recipes/skyline-chili.yaml` (source attribution, `from: us` for our
+    changes), then run `pnpm validate`.
+  - **Anywhere else:** give them the recipe as YAML in that same format (or
+    just the URL) to paste into `https://coopy-nu.vercel.app/add`, which
+    parses and commits it.
 - **One-off** — "tacos Thursday", "creatine", "stuff for the kids' lunches".
   Propose a short ingredient list and confirm it.
 
@@ -70,11 +129,12 @@ already in the fridge/pantry, anything running low, any budget this week.
    so you don't double-buy something bought last week that lasts (cereal,
    granola, protein powder).
 5. **Pick brands** from household.yaml `brands`; 365 by Whole Foods Market when
-   there's no rule.
+   there's no rule. If `organic: preferred`, choose the organic version
+   whenever one exists.
 
 Show the list grouped by category with which meal each line is for, and ask
-for changes **before** touching the browser. Write `plans/<today>.yaml` with
-`status: draft` now and keep it updated as things change.
+for changes **before** touching the browser. Write `<today>.yaml` in the plans
+folder (see "Where things live") with `status: draft` now and keep it updated as things change.
 
 ## 3. Build the cart (Chrome)
 
@@ -151,9 +211,11 @@ tell the user what changed.
 
 ## 6. Wrap up
 
-- Tell them the plan is at `http://localhost:5173/plans` when coopy is running
-  locally (`pnpm dev`) — the plans page is never in the public build.
-- Offer to save any URL/one-off meals that worked into coopy.
+- Tell them where the plan file is. Inside the coopy repo only, it's also
+  viewable at `http://localhost:5173/plans` while `pnpm dev` is running — the
+  plans page is never in the public build, and doesn't exist outside the repo.
+- Offer to save any URL/one-off meals that worked into coopy (see step 1 for
+  how, in or out of the repo).
 - If they corrected a preference (new brand, new staple, "the kid eats more
-  now"), update `shopping/household.yaml` so next week starts smarter.
+  now"), update household.yaml so next week starts smarter.
 - Close any browser tabs you opened.

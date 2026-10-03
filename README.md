@@ -73,6 +73,7 @@ points at an undeclared source fails the deploy instead of shipping broken.
 | `/r/:slug` | Ingredients with a batch scaler, the blend panel, method, notes |
 | `/cook/:slug` | Kitchen mode — oversized type, tap-to-check, screen stays awake |
 | `/add` | Parse a recipe from a photo, link, or text, then commit it |
+| `/skills` | How to install the `/weekly-shop` Claude Code skill |
 
 React 19 + TypeScript + Vite, built on [Astryx](https://astryx.atmeta.com)
 (Meta's design system) with a retuned Stone theme. Playfair Display and Inter
@@ -147,7 +148,21 @@ The deployed site serves the archive as static JSON, generated at build time
 eat this week (coopy recipes, links, one-offs), and it builds the Whole Foods
 order in Chrome, adjusts it with you, and only places it when you say so.
 
-It reads `shopping/household.yaml` (who eats, dietary needs, staples, brands)
-and writes each week to `plans/<date>.yaml`. Both are gitignored — they hold
-prices and order details, and this repo is public. Plans show at `/plans`
-under `pnpm dev` only; that route isn't in the deployed site.
+Install it into your own Claude Code (no checkout needed) — the `/skills`
+page on the site has the same instructions:
+
+```sh
+mkdir -p ~/.claude/skills/weekly-shop && curl -fsSL https://coopy-nu.vercel.app/skills/weekly-shop/SKILL.md -o ~/.claude/skills/weekly-shop/SKILL.md
+```
+
+It needs the Claude in Chrome extension, signed in to the Amazon account, and
+a household profile. Every build publishes the skill verbatim at
+`/skills/weekly-shop/SKILL.md` (`vite/data-plugin.ts`); the profile is never
+published.
+
+Inside this repo it reads `shopping/household.yaml` (who eats, dietary needs,
+staples, brands) and writes each week to `plans/<date>.yaml`. Both are
+gitignored — they hold prices and order details, and this repo is public.
+Plans show at `/plans` under `pnpm dev` only; that route isn't in the
+deployed site. Anywhere else, the skill uses `~/.coopy/household.yaml` and
+`~/.coopy/plans/` instead — get the profile from whoever set it up.

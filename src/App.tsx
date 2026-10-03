@@ -27,6 +27,12 @@ export default function App() {
           >
             Add
           </Link>
+          <Link
+            to="/skills"
+            className={`masthead__link ${pathname === '/skills' ? 'is-current' : ''}`}
+          >
+            Skills
+          </Link>
           {import.meta.env.DEV && (
             <Link
               to="/plans"

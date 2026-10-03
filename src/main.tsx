@@ -17,6 +17,7 @@ import Index from './pages/Index'
 import Recipe from './pages/Recipe'
 import Cook from './pages/Cook'
 import Add from './pages/Add'
+import Skills from './pages/Skills'
 import Plans from './pages/Plans'
 
 createRoot(document.getElementById('root')!).render(
@@ -32,6 +33,7 @@ createRoot(document.getElementById('root')!).render(
             <Route path="/" element={<Index />} />
             <Route path="/r/:slug" element={<Recipe />} />
             <Route path="/add" element={<Add />} />
+            <Route path="/skills" element={<Skills />} />
             {/* Shopping plans are local-only (prices, order details) — the
                 route doesn't exist in the public build. */}
             {import.meta.env.DEV && (
