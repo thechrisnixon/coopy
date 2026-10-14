@@ -16,20 +16,20 @@ From a single source.
 
 *Quantities are 1× — one batch, exactly as the source wrote them.*
 
-- **6** medium garlic cloves, peeled (about 2 tablespoons/16 g)
-- **1** medium shallot (about 1½ ounces/45 g), peeled
-- **2 tablespoons** peanut, rice bran, or other neutral oil (30 ml)
-- **1 pound** lean ground pork, chicken, or beef or crumbled firm tofu (450 g)
+- **6** medium garlic cloves, peeled (about 2 tablespoons)
+- **1** medium shallot, peeled
+- **2 tablespoons** peanut, rice bran, or other neutral oil
+- **1 pound** lean ground pork, chicken, or beef or crumbled firm tofu
   - *Hand-chopped pork sirloin gives the best texture; supermarket ground meat is easiest.*
-- **⅓ pound** trimmed green beans, cut into ½-inch pieces (150 g)
+- **1 cup** trimmed green beans, cut into ½-inch pieces (about ⅓ pound)
   - *Not traditional, but a nice way to break up the meatiness.*
-- **2 tablespoons** fish sauce (30 ml), plus more to taste
-- **1 teaspoon** granulated sugar or palm sugar (4 g), more or less to taste
-- **1 tablespoon** dark soy sauce (15 ml), optional
+- **2 tablespoons** fish sauce, plus more to taste
+- **1 teaspoon** granulated sugar or palm sugar, more or less to taste
+- **1 tablespoon** dark soy sauce, optional
   - *Omit soy and oyster sauce (and season with more fish sauce) for a more traditional version.*
-- **1 tablespoon** oyster sauce (15 ml), optional
+- **1 tablespoon** oyster sauce, optional
   - *Omit for a more traditional fish-sauce-only seasoning.*
-- **1½ ounces** fresh basil leaves (45 g; about 1½ cups packed)
+- **1½ cups** fresh basil leaves, packed
   - *Holy basil (bai ka-prao) is most authentic; Thai purple or sweet Italian basil also work.*
 - kosher salt, a small pinch (for the mortar)
 

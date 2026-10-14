@@ -18,39 +18,39 @@ sources:
     role: Excerpted recipe published with the Here & Now interview
 ingredients:
   - qty: "6"
-    item: medium garlic cloves, peeled (about 2 tablespoons/16 g)
+    item: medium garlic cloves, peeled (about 2 tablespoons)
     discrete: true
   - qty: "1"
-    item: medium shallot (about 1½ ounces/45 g), peeled
+    item: medium shallot, peeled
     discrete: true
   - qty: "2"
     unit: tablespoons
-    item: peanut, rice bran, or other neutral oil (30 ml)
+    item: peanut, rice bran, or other neutral oil
   - qty: "1"
     unit: pound
-    item: lean ground pork, chicken, or beef or crumbled firm tofu (450 g)
+    item: lean ground pork, chicken, or beef or crumbled firm tofu
     note: Hand-chopped pork sirloin gives the best texture; supermarket ground meat is easiest.
-  - qty: ⅓
-    unit: pound
-    item: trimmed green beans, cut into ½-inch pieces (150 g)
+  - qty: "1"
+    unit: cup
+    item: trimmed green beans, cut into ½-inch pieces (about ⅓ pound)
     note: Not traditional, but a nice way to break up the meatiness.
   - qty: "2"
     unit: tablespoons
-    item: fish sauce (30 ml), plus more to taste
+    item: fish sauce, plus more to taste
   - qty: "1"
     unit: teaspoon
-    item: granulated sugar or palm sugar (4 g), more or less to taste
+    item: granulated sugar or palm sugar, more or less to taste
   - qty: "1"
     unit: tablespoon
-    item: dark soy sauce (15 ml), optional
+    item: dark soy sauce, optional
     note: Omit soy and oyster sauce (and season with more fish sauce) for a more traditional version.
   - qty: "1"
     unit: tablespoon
-    item: oyster sauce (15 ml), optional
+    item: oyster sauce, optional
     note: Omit for a more traditional fish-sauce-only seasoning.
   - qty: 1½
-    unit: ounces
-    item: fresh basil leaves (45 g; about 1½ cups packed)
+    unit: cups
+    item: fresh basil leaves, packed
     note: Holy basil (bai ka-prao) is most authentic; Thai purple or sweet Italian basil also work.
   - item: kosher salt, a small pinch (for the mortar)
   - item: Steamed jasmine or short-grain rice
