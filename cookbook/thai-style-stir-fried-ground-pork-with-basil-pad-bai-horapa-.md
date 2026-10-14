@@ -21,7 +21,7 @@ From a single source.
 - **2 tablespoons** peanut, rice bran, or other neutral oil (30 ml)
 - **1 pound** lean ground pork, chicken, or beef or crumbled firm tofu (450 g)
   - *Hand-chopped pork sirloin gives the best texture; supermarket ground meat is easiest.*
-- **⅓ pound** green beans or long beans, cut into ½-inch pieces (150 g), optional
+- **⅓ pound** trimmed green beans, cut into ½-inch pieces (150 g)
   - *Not traditional, but a nice way to break up the meatiness.*
 - **2 tablespoons** fish sauce (30 ml), plus more to taste
 - **1 teaspoon** granulated sugar or palm sugar (4 g), more or less to taste
@@ -41,10 +41,11 @@ From a single source.
 
 ## Method
 
-1. If Using a Mortar and Pestle: Roughly chop the garlic and shallot and place in the mortar. Add a small pinch of kosher salt. Pound with the pestle until roughly mashed (no need to form a paste here). If Not Using a Mortar and Pestle: Mince the garlic and shallot by hand or in a minichopper.
+1. Cut the trimmed green beans into ½-inch pieces. If Using a Mortar and Pestle: Roughly chop the garlic and shallot and place in the mortar. Add a small pinch of kosher salt. Pound with the pestle until roughly mashed (no need to form a paste here). If Not Using a Mortar and Pestle: Mince the garlic and shallot by hand or in a minichopper.
 2. Combine the oil and garlic and shallot mixture in a wok or skillet and place over medium-high heat. Cook, stirring frequently, until the aromatics are lightly softened and the oil is fragrant, about 30 seconds after it starts sizzling.
-3. Add the meat or tofu and cook, stirring and tossing while breaking it up with a spatula until no longer pink, about 2 minutes. Add the fish sauce, sugar, soy sauce (if using), and oyster sauce (if using). Continue to cook until most of the liquid is evaporated but the mixture is still nice and moist, about 1 minute.
-4. Remove the wok or skillet from the heat. Add the basil and toss to combine until wilted. Serve immediately with rice, nam pla prik, and extra-crispy fried eggs.
+3. Add the meat or tofu and cook, stirring and tossing while breaking it up with a spatula until no longer pink, about 2 minutes.
+4. Add the green beans and cook, stirring and tossing, until bright green and crisp-tender, about 1 to 2 minutes. Add the fish sauce, sugar, soy sauce (if using), and oyster sauce (if using). Continue to cook until most of the liquid is evaporated but the mixture is still nice and moist, about 1 minute.
+5. Remove the wok or skillet from the heat. Add the basil and toss to combine until wilted. Serve immediately with rice, nam pla prik, and extra-crispy fried eggs.
 
 ## Notes
 
