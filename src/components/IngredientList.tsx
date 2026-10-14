@@ -1,4 +1,5 @@
 import type { Ingredient, Source } from '../lib/schema'
+import { formatIngredientItem } from '../lib/format'
 import { scaleQty } from '../lib/units'
 import './IngredientList.css'
 
@@ -49,6 +50,8 @@ export default function IngredientList({
   checked,
   onToggle,
 }: Props) {
+  const hasBlend = Object.keys(sources ?? {}).length > 1
+
   // Preserve file order while collecting groups — the author's sequencing
   // ("For the chili" before "To serve") is meaningful.
   const groups: { name: string | undefined; items: [Ingredient, number][] }[] = []
@@ -69,20 +72,26 @@ export default function IngredientList({
               const qty = scaleQty(ing.qty, multiplier, ing.discrete)
               const slot = ing.from ? sourceSlot(sources, ing.from) : null
               const isChecked = checked?.has(index) ?? false
+              const hasSubstantiveNote =
+                Boolean(ing.note) &&
+                ing.note!.trim().toLowerCase() !== 'see notes'
+              const showNote =
+                hasSubstantiveNote && (showSources || !hasBlend)
 
               const row = (
                 <>
                   <span className="tabular ingredients__qty">
-                    {qty}
+                    {qty && <span className="ingredients__amount">{qty}</span>}
                     {qty && ing.unit ? ' ' : ''}
-                    {ing.unit}
+                    {ing.unit && (
+                      <span className="ingredients__unit">{ing.unit}</span>
+                    )}
                   </span>
                   <span className="ingredients__item">
-                    {ing.item}
-                    {/* The note is the reasoning behind a blend decision —
-                        shown only when sources are on, so the default read
-                        stays clean. */}
-                    {showSources && ing.note && (
+                    <span className="ingredients__name">
+                      {formatIngredientItem(ing.item)}
+                    </span>
+                    {showNote && (
                       <span className="ingredients__note">{ing.note}</span>
                     )}
                   </span>
@@ -97,6 +106,7 @@ export default function IngredientList({
 
               const className = [
                 'ingredients__row',
+                showSources ? 'has-source-col' : '',
                 showSources && slot ? `is-source-${slot}` : '',
                 isChecked ? 'is-checked' : '',
               ]

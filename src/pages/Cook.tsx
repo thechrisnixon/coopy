@@ -6,6 +6,7 @@ import {
   SegmentedControlItem,
 } from '@astryxdesign/core/SegmentedControl'
 import { getRecipe } from '../lib/recipes'
+import { formatStepParagraphs } from '../lib/format'
 import IngredientList from '../components/IngredientList'
 import { MULTIPLIERS, formatMultiplier } from '../lib/units'
 import './Cook.css'
@@ -72,6 +73,28 @@ export default function Cook() {
   const [step, setStep] = useState(0)
 
   const wakeHeld = useWakeLock(Boolean(recipe))
+  const steps = recipe?.steps ?? []
+
+  useEffect(() => {
+    if (steps.length === 0) return
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (
+        e.target instanceof HTMLInputElement ||
+        e.target instanceof HTMLTextAreaElement
+      ) {
+        return
+      }
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault()
+        setStep((s) => Math.min(steps.length - 1, s + 1))
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault()
+        setStep((s) => Math.max(0, s - 1))
+      }
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [steps.length])
 
   if (!recipe) {
     return (
@@ -82,7 +105,14 @@ export default function Cook() {
     )
   }
 
-  const steps = recipe.steps ?? []
+  const yieldServes = recipe.serves
+    ? Math.round(recipe.serves * multiplier)
+    : undefined
+  const hasMeta =
+    yieldServes !== undefined ||
+    Boolean(recipe.time?.prep) ||
+    Boolean(recipe.time?.cook) ||
+    Boolean(recipe.time?.total)
 
   function toggle(index: number) {
     setChecked((prev) => {
@@ -100,7 +130,17 @@ export default function Cook() {
           ← Done
         </Link>
 
-        <h1 className="display cook__title">{recipe.name}</h1>
+        <div className="cook__heading">
+          <h1 className="display cook__title">{recipe.name}</h1>
+          {hasMeta && (
+            <div className="cook__meta eyebrow">
+              {yieldServes !== undefined && <span>Serves {yieldServes}</span>}
+              {recipe.time?.prep && <span>Prep {recipe.time.prep}</span>}
+              {recipe.time?.cook && <span>Cook {recipe.time.cook}</span>}
+              {recipe.time?.total && <span>Total {recipe.time.total}</span>}
+            </div>
+          )}
+        </div>
 
         <div className="cook__scale">
           <SegmentedControl
@@ -121,16 +161,18 @@ export default function Cook() {
       </header>
 
       <div className="cook__body">
-        <section className="cook__panel">
+        <section className="cook__panel cook__panel--ingredients">
           <div className="cook__panelhead">
-            <h2 className="eyebrow">Ingredients</h2>
+            <h2 className="eyebrow">
+              Ingredients ({checked.size}/{recipe.ingredients.length})
+            </h2>
             {checked.size > 0 && (
               <button
                 type="button"
                 className="cook__reset"
                 onClick={() => setChecked(new Set())}
               >
-                Reset ({checked.size})
+                Reset
               </button>
             )}
           </div>
@@ -150,22 +192,73 @@ export default function Cook() {
           <section className="cook__panel cook__panel--steps">
             <div className="cook__panelhead">
               <h2 className="eyebrow">
-                Step {step + 1} of {steps.length}
+                Method · Step {step + 1} of {steps.length}
               </h2>
+
+              <div className="cook__stepnav">
+                <Button
+                  label="Back"
+                  variant="secondary"
+                  size="sm"
+                  isDisabled={step === 0}
+                  onClick={() => setStep((s) => Math.max(0, s - 1))}
+                />
+                <Button
+                  label="Next"
+                  variant="primary"
+                  size="sm"
+                  isDisabled={step === steps.length - 1}
+                  onClick={() =>
+                    setStep((s) => Math.min(steps.length - 1, s + 1))
+                  }
+                />
+              </div>
             </div>
 
-            <p className="cook__step">{steps[step]}</p>
+            <ol className="cook__steps">
+              {steps.map((s, i) => {
+                const isCurrent = i === step
+                const isDone = i < step
+                return (
+                  <li key={i} className="cook__stepItem">
+                    <button
+                      type="button"
+                      className={[
+                        'cook__stepCard',
+                        isCurrent ? 'is-current' : '',
+                        isDone ? 'is-done' : '',
+                      ]
+                        .filter(Boolean)
+                        .join(' ')}
+                      onClick={() => setStep(i)}
+                      aria-current={isCurrent ? 'step' : undefined}
+                    >
+                      <span className="cook__stepNum tabular" aria-hidden="true">
+                        {i + 1}
+                      </span>
+                      <span className="cook__stepBody">
+                        {formatStepParagraphs(s)}
+                      </span>
+                    </button>
+                  </li>
+                )
+              })}
+            </ol>
 
             <div className="cook__nav">
               <Button
-                label="Back"
+                label="Previous step"
                 variant="secondary"
                 size="lg"
                 isDisabled={step === 0}
                 onClick={() => setStep((s) => Math.max(0, s - 1))}
               />
               <Button
-                label="Next"
+                label={
+                  step < steps.length - 1
+                    ? `Next: Step ${step + 2}`
+                    : 'All steps done'
+                }
                 variant="primary"
                 size="lg"
                 isDisabled={step === steps.length - 1}
@@ -175,19 +268,19 @@ export default function Cook() {
               />
             </div>
 
-            <ol className="cook__dots" aria-label="Steps">
-              {steps.map((_, i) => (
-                <li key={i}>
-                  <button
-                    type="button"
-                    className={`cook__dot ${i === step ? 'is-current' : ''} ${i < step ? 'is-done' : ''}`}
-                    onClick={() => setStep(i)}
-                    aria-label={`Step ${i + 1}`}
-                    aria-current={i === step}
-                  />
-                </li>
-              ))}
-            </ol>
+            {recipe.notes && (
+              <div className="cook__notes" id="recipe-notes">
+                <h3 className="eyebrow cook__notesHead">Cook’s Notes</h3>
+                <div className="cook__notesBody">
+                  {recipe.notes
+                    .trim()
+                    .split(/\n\s*\n/)
+                    .map((para, i) => (
+                      <p key={i}>{para}</p>
+                    ))}
+                </div>
+              </div>
+            )}
           </section>
         )}
       </div>

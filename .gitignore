@@ -12,3 +12,7 @@ dist
 # details and the delivery address. The repo is public, so they stay local.
 orders/
 shopping/
+
+# Platform-specific binary downloaded by the Impeccable skill launcher.
+.claude/skills/impeccable/scripts/bin/
+

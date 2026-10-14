@@ -9,8 +9,10 @@
 }
 
 .recipe__title {
-  font-size: var(--display-xl);
-  max-width: 18ch;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+  max-width: 24ch;
+  text-wrap: balance;
 }
 
 .recipe__meta {
@@ -63,7 +65,7 @@
 
 .blend__source {
   padding: 1.25rem;
-  border-left: 3px solid;
+  border-top: 2px solid;
   background: var(--color-background-surface);
 }
 
@@ -88,12 +90,12 @@
 }
 
 .blend__source.is-slot-a {
-  border-left-color: var(--source-a);
+  border-top-color: var(--source-a);
   background: var(--source-a-wash);
 }
 
 .blend__source.is-slot-b {
-  border-left-color: var(--source-b);
+  border-top-color: var(--source-b);
   background: var(--source-b-wash);
 }
 
@@ -200,6 +202,9 @@
 }
 
 .steps__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
   margin: 0;
   font-size: 0.9375rem;
   line-height: 1.7;

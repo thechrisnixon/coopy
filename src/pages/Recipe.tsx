@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { Button } from '@astryxdesign/core/Button'
 import { getRecipe } from '../lib/recipes'
+import { formatStepParagraphs } from '../lib/format'
 import { recipeToMarkdown } from '../lib/markdown'
 import { downloadText } from '../lib/download'
 import IngredientList from '../components/IngredientList'
@@ -47,6 +48,7 @@ export default function Recipe() {
           {recipe.serves && <span>Serves {recipe.serves} at 1×</span>}
           {recipe.time?.prep && <span>Prep {recipe.time.prep}</span>}
           {recipe.time?.cook && <span>Cook {recipe.time.cook}</span>}
+          {recipe.time?.total && <span>Total {recipe.time.total}</span>}
         </div>
 
         {recipe.tags && (
@@ -147,7 +149,9 @@ export default function Recipe() {
                 {recipe.steps.map((step, i) => (
                   <li key={i} className="steps__item">
                     <span className="steps__num tabular">{i + 1}</span>
-                    <p className="steps__text">{step}</p>
+                    <div className="steps__text">
+                      {formatStepParagraphs(step)}
+                    </div>
                   </li>
                 ))}
               </ol>
